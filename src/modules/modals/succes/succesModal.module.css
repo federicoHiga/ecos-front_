@@ -5,25 +5,15 @@
     transform: translate(-50%, -50%);
     width: 80%;
     background-color: #FAFAFA; /* Podrías usar el color que desees */
-    padding: 12px;
-    margin-right: 12px;
+    padding-top: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
     border-radius: 28px;
  }
 
  .buttonAceptar{
-    width: 75px;
-    height: 40px;
     border-radius: 100px;
     gap:8px;
-}
-
-.textButtonAceptar{
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    font-weight: 600;
-    color:#4E169D;
-    padding: 24px, 24px, 24px, 8px  ;
 }
 
 .containerButtonAceptar{

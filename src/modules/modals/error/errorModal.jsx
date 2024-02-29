@@ -7,8 +7,8 @@ import styles from "./errorModal.module.css";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 
 //closeFuncion debe setear en folse el boolOpen del componente padre, es para controlar el estado de open que ambos los controla el componente padre.
-export default function ErrorModel(props) {
-  const { boolOpen, titulo, parrafo, closeFuncion } = props;
+export default function ErrorModal(props) {
+  const { boolOpen, parrafo, closeFuncion } = props;
   const [open, setOpen] = useState(boolOpen);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function ErrorModel(props) {
             <Typography
               id="modal-modal-description"
               align="center"
-              sx={{ fontSize: "18px", mt: 2, fontFamily: "Nunito, sans-serif" }}
+              sx={{ fontSize: "18px", mt: 2, fontFamily: "Nunito" }}
             >
               {parrafo}
             </Typography>
@@ -44,7 +44,7 @@ export default function ErrorModel(props) {
           <div className={styles.SubparrafoContainer}>
             <Typography
               id="modal-modal-description"
-              sx={{ fontSize: "14px", mt: 2, fontFamily: "Nunito, sans-serif" }}
+              sx={{ fontSize: "14px", mt: 2, fontFamily: "Nunito" }}
               align="start"
             >
               Por favor, volvé a intentarlo.
@@ -59,7 +59,7 @@ export default function ErrorModel(props) {
                 sx={{
                   fontSize: "14px",
                   mt: 2,
-                  fontFamily: "Nunito, sans-serif",
+                  fontFamily: "Nunito",
                   color: "#4E169D",
                 }}
               >
@@ -71,7 +71,7 @@ export default function ErrorModel(props) {
                 sx={{
                   fontSize: "14px",
                   mt: 2,
-                  fontFamily: "Nunito, sans-serif",
+                  fontFamily: "Nunito",
                   color: "#4E169D",
                 }}
               >

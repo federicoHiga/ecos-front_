@@ -33,9 +33,8 @@ export default function AlertModal(props) {
           <div className={styles.parrafoContainer}>
             <Typography
               id="modal-modal-description"
-              sx={{ fontSize: "18px", mt: 2 ,  fontFamily: 'Nunito, sans-serif'   }}
+              sx={{ fontSize: "18px", mt: 2 ,  fontFamily: 'Nunito'   }}
               align="center" 
-              
             >
               {parrafo}
             </Typography>
@@ -44,7 +43,7 @@ export default function AlertModal(props) {
          
           <div className={styles.containerButtonAceptar}>
             <button onClick={closeFuncion} className={styles.buttonAceptar}>
-              <Typography sx={{ fontSize: "14px", mt: 2 ,  fontFamily: 'Nunito, sans-serif', color:'#4E169D'}}>Aceptar</Typography>
+              <Typography sx={{ fontSize: "14px", mt: 2 ,  fontFamily: 'Nunito', color:'#4E169D'}}>Aceptar</Typography>
             </button>
           </div>
         </Box>

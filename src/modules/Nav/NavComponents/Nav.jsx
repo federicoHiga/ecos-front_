@@ -23,7 +23,7 @@ export default function Nav(props){
             }
         </button>
         {
-            (open === true)? 
+            (open === true) ? 
             <ul id='nav-items'>
                {props.links}
             </ul> : 

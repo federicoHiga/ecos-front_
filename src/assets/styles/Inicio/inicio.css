@@ -3,7 +3,7 @@
     background-image: url(../../backgrounds/manos-background.png);
     background-repeat: no-repeat;
     background-size: 400px 100%;
-    height: 100vh;
+    height: 70vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -36,4 +36,23 @@
 
 #inicio p{
     font-size: 20px;
+    padding-bottom: 0;
+}
+
+@media (min-width: 361px) {
+    #inicio {
+        background-size: 600px 100%;
+    }
+}
+
+@media (min-width: 598px) {
+    #inicio {
+        background-size: 700px 100%;
+    }
+}
+
+@media (min-width: 700px) {
+    #inicio {
+        background-size: cover;
+    }
 }

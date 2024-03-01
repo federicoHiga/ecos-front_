@@ -1,7 +1,8 @@
 import React from 'react'
-import logo from '../../../assets/svg/nav/logo.svg'
+import logo from '../../../assets/svg/logo.svg'
 import '../../../assets/styles/Login/logincard.css'
-// import google from '../../../assets/svg/login/google.svg'
+// import google from '../../../assets/svg/google_icon.svg'
+import GoogleButton from '../GoogleAuthButton/GoogleButton'
 
 export default function LoginCard(props){
   return(
@@ -10,10 +11,7 @@ export default function LoginCard(props){
       <p>{props.topText}</p>
       <img src={logo} alt="logo" id='logo'/>
       <p>{props.bottomText}</p>
-      <button>
-        {/* <img src={google} alt="google" id='google-img'/> */}
-        <p>Continuá con Google</p>
-      </button>
+      <GoogleButton/>
     </div>
   )
 }

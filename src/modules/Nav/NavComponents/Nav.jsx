@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import '../../../assets/styles/Nav/nav.css'
-import logotipo from '../../../assets/svg/nav/logotipo.svg'
+import logotipo from '../../../assets/svg/logotipo.svg'
 import bars from '../../../assets/svg/nav/bars.svg'
 import close from '../../../assets/svg/nav/close.svg'
 

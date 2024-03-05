@@ -1,11 +1,12 @@
 import React from 'react'
 import '../../assets/styles/Inicio/inicio.css'
-import NavGlobal from '../Nav/NavGlobal'
+import Nav from '../Nav/Nav'
+import ImpactEnterprises from '../../components/ImpactEnterprises'
 
 export default function Inicio(){
     return(
         <div>
-            <NavGlobal/>
+            <Nav/>
             <div id='inicio'>
                 <div id='title'>
                    <p>RED DE IMPACTO</p>

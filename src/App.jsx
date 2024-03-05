@@ -4,11 +4,13 @@ import { Route, Router, Routes } from "react-router-dom";
 import NavGlobal from "./modules/Nav/NavGlobal";
 import Register from "./modules/Login/Register";
 import LoginCard from "./modules/Login/LoginCard/LoginCard";
+import Proveedores from "./components/Proveedores";
 
 function App() {
   return (
     <>
       <NavGlobal />
+      
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Inicio />}></Route>
@@ -17,7 +19,7 @@ function App() {
         <Route path="register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={""} />
+        <Route path="proveedores" element={<Proveedores />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<LoginCard />} />
@@ -34,6 +36,7 @@ function App() {
           <Route path="proveedores" element={""} />
           <Route path="publicaciones" element={""} />
         </Route>
+        
       </Routes>
     </>
   );

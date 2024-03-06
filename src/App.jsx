@@ -4,12 +4,15 @@ import { Route, Router, Routes} from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
+import LoginCard from "./modules/Login/LoginCard/LoginCard";
+import Proveedores from "./components/Proveedores";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
-      <Nav isAdmin={isAdmin} />
+      <Nav />
+      
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Inicio />}></Route>
@@ -18,7 +21,7 @@ function App() {
         <Route path="register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={""} />
+        <Route path="proveedores" element={<Proveedores />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
@@ -35,6 +38,7 @@ function App() {
           <Route path="proveedores" element={""} />
           <Route path="publicaciones" element={""} />
         </Route>
+        
       </Routes>
     </>
   );

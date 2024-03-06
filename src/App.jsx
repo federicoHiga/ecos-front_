@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Inicio from "./modules/Inicio/Inicio";
-import { Route, Router, Routes} from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Proveedores from "./components/Proveedores";
-import Nav from "./modules/nav/Nav";
+import Nav from "./modules/Nav/Nav";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
       <Nav />
-      
+
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Inicio />}></Route>
@@ -37,7 +37,6 @@ function App() {
           <Route path="proveedores" element={""} />
           <Route path="publicaciones" element={""} />
         </Route>
-        
       </Routes>
     </>
   );

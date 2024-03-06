@@ -1,12 +1,12 @@
 import React from 'react'
 import LoginCard from './LoginCard/LoginCard'
 import '../../assets/styles/Login/login.css'
-import NavGlobal from '../Nav/NavGlobal'
+import Nav from '../Nav/Nav'
 
 export default function Register(){
   return (
     <div id='register'>
-      <NavGlobal/>
+      <Nav/>
       <div>
         <LoginCard 
         title="Registrate"

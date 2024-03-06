@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from '../../../assets/svg/logo.svg'
 import '../../../assets/styles/Login/logincard.css'
-// import google from '../../../assets/svg/google_icon.svg'
 import GoogleButton from '../GoogleAuthButton/GoogleButton'
 
 export default function LoginCard(props){

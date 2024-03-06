@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import Inicio from "./modules/Inicio/Inicio";
-import { Route, Router, Routes } from "react-router-dom";
-import NavGlobal from "./modules/Nav/NavGlobal";
+import { Route, Router, Routes} from "react-router-dom";
 import Register from "./modules/Login/Register";
-import LoginCard from "./modules/Login/LoginCard/LoginCard";
+import SignIn from "./modules/Login/SingnIn";
+import Nav from "./modules/Nav/Nav";
 
 function App() {
+  const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
-      <NavGlobal />
+      <Nav isAdmin={isAdmin} />
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Inicio />}></Route>
@@ -20,7 +21,7 @@ function App() {
         <Route path="proveedores" element={""} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="login" element={<LoginCard />} />
+        <Route path="login" element={<SignIn />} />
 
         {/* Ruta de proveedores (dashboard) */}
         <Route path="miPerfil">

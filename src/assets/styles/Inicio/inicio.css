@@ -1,58 +1,68 @@
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100vw;
+}
+
 #inicio {
-    margin-top: 60px;
-    background-image: url(../../backgrounds/manos-background.png);
-    background-repeat: no-repeat;
-    background-size: 400px 100%;
-    height: 70vh;
-    position: relative;
-    display: flex;
-    align-items: center;
+  margin-top: 60px;
+  background-image: url(../../backgrounds/manos-background.png);
+  background-repeat: no-repeat;
+  background-size: 400px 100%;
+  height: 70vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*BACKGROUND STYLES*/
 
 #inicio:before {
-    content:'';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(41, 41, 41, 0.6);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(41, 41, 41, 0.6);
 }
 
 /*TEXT STYLES*/
 
 #title {
-    position: relative;
-    padding: 0 100px 0 20px;
+  position: relative;
+  padding: 0 100px 0 20px;
 }
 
-#inicio p, #inicio h1 {
-    text-align: start;
-    color: white;
-    font-weight: 500;
+#inicio p,
+#inicio h1 {
+  text-align: start;
+  color: white;
+  font-weight: 500;
 }
 
-#inicio p{
-    font-size: 20px;
-    padding-bottom: 0;
+#inicio p {
+  font-size: 20px;
+  padding-bottom: 0;
 }
 
 @media (min-width: 361px) {
-    #inicio {
-        background-size: 600px 100%;
-    }
+  #inicio {
+    background-size: 600px 100%;
+  }
 }
 
 @media (min-width: 598px) {
-    #inicio {
-        background-size: 700px 100%;
-    }
+  #inicio {
+    background-size: 700px 100%;
+  }
 }
 
 @media (min-width: 700px) {
-    #inicio {
-        background-size: cover;
-    }
+  #inicio {
+    background-size: cover;
+  }
 }

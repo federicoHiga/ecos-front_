@@ -3,9 +3,8 @@ import Inicio from "./modules/Inicio/Inicio";
 import { Route, Router, Routes} from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
-import Nav from "./modules/Nav/Nav";
-import LoginCard from "./modules/Login/LoginCard/LoginCard";
 import Proveedores from "./components/Proveedores";
+import Nav from "./modules/nav/Nav";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);

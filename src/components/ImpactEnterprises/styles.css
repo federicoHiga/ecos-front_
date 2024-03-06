@@ -3,7 +3,6 @@
   border-top: 1px solid #4e169d;
   border-bottom: 1px solid #4e169d;
   box-sizing: border-box;
-  max-width: 320px;
   min-height: 192px;
   display: flex;
   flex-direction: column;

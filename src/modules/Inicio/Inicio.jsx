@@ -1,7 +1,8 @@
 import React from "react";
 import "../../assets/styles/Inicio/inicio.css";
-import NavGlobal from "../Nav/NavGlobal";
 import Proveedores from "../../components/Proveedores";
+import ImpactEnterprises from "../../components/ImpactEnterprises";
+import CategoriesGrid from "../../components/CategoriesGrid";
 
 export default function Inicio() {
   return (
@@ -14,9 +15,9 @@ export default function Inicio() {
             consumo consciente
           </h1>
         </div>
-      </div>
-      <Proveedores />
+      </div>      
       <ImpactEnterprises />
+      <Proveedores />
       <CategoriesGrid />
     </div>
   );

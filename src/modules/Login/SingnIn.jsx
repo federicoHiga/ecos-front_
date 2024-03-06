@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginCard from './LoginCard/LoginCard'
 import '../../assets/styles/Login/login.css'
-import Nav from '../Nav/Nav'
+import Nav from '../nav/Nav'
 
 export default function SignIn(){
   return (

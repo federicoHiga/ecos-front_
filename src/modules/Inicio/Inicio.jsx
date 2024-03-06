@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../assets/styles/Inicio/inicio.css'
 import NavGlobal from '../Nav/NavGlobal'
+import Proveedores from '../../components/Proveedores'
 
 export default function Inicio(){
     return(
@@ -12,6 +13,7 @@ export default function Inicio(){
                    <h1>Conectamos proveedores y personas comprometidas con el impacto y el consumo consciente</h1>
                 </div>
             </div>
+            <Proveedores />
         </div>
     )
 }

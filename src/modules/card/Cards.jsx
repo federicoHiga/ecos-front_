@@ -11,7 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-export default function Cards(props) {
+export default function Cards(/*props*/) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -28,7 +28,8 @@ export default function Cards(props) {
       position: "relative",
       margin: 1.5,
       borderRadius: 4,
-      overflow: 'visible'
+      overflow: 'visible',
+      zIndex:1
     }}>
       <CardContent sx={{ padding: '13px' }}>
         <Box sx={{
@@ -49,7 +50,7 @@ export default function Cards(props) {
           component="img"
           height="128"
           width='304'
-          image="src/modules/card/Rectangle 28.png"
+          image="src/modules/card/Rectangle 28.png"/*props.img*/
           alt="Producto"
         />
         <Container>
@@ -66,7 +67,7 @@ export default function Cards(props) {
       {/* POPPER */}
 
 
-      <Popper
+      <Popper sx={{zIndex: 2}}
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -89,7 +90,8 @@ export default function Cards(props) {
           borderRadius: 4,
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: '#EAEAEA'
+          backgroundColor: '#EAEAEA',
+          
         }}>
           <div>
             <CloseIcon sx={{ float: 'right', padding: 1 }} />

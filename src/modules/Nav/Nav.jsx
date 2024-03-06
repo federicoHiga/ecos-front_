@@ -4,6 +4,7 @@ import logotipo from '../../assets/svg/logotipo.svg'
 import bars from '../../assets/svg/nav/bars.svg'
 import close from '../../assets/svg/nav/close.svg'
 import NavLink from './NavLink'
+import { useLocation } from 'react-router-dom'
 
 const GlobalNav = () => {
   return(
@@ -30,10 +31,16 @@ const AdminNav = () => {
 
 export default function Nav({isAdmin}){
     const [open, setOpen] = useState(false)
+    const location = useLocation()
     
     const handleOpen = () => {
         setOpen(!open)
     }
+
+    const isAdminRoute = () => {
+      return location.pathname.startsWith('/administrador')
+    }
+
   return(
     <nav>
         <div>
@@ -48,7 +55,7 @@ export default function Nav({isAdmin}){
         {
             (open === true) ? 
             <ul id='nav-items'>
-              {isAdmin ? <AdminNav /> : <GlobalNav />}
+              {isAdminRoute() ? <AdminNav /> : <GlobalNav />}
             </ul> : 
             null
         }

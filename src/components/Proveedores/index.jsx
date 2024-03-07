@@ -2,22 +2,30 @@ import Invitacion from '../../modules/invitacion/Invitacion';
 import Cards from '../../modules/card/Cards';
 import './styles.css';
 import { Box } from '@mui/material';
+import { useTheme } from "@emotion/react";
 
 function Proveedores(/*props*/) {
+
+  const theme = useTheme();
 
   return (
     <>
       <Invitacion />
       <div>
         <Box className='recomendaciones' sx={{
-          typography: 'h5',
-          marginLeft: 3
-        }}>Recomendaciones locales para vos{/*props.recomendaciones*/}</Box>
+          marginLeft: 2,
+          fontSize:'16px'
+        }}>
+         <h3 style={{ 
+          fontFamily: theme.typography.fontFamily,}}>Recomendaciones locales para vos{/*props.recomendaciones*/}</h3> 
+          </Box>
         <Box className='proveedores' sx={{
-          typography: 'h4',
           fontWeight: 'bold',
-          padding: 3
-        }}>Proveedores cerca tuyo{/*props.proveedores*/}</Box>
+          margin: 2,
+          fontSize:'22px'
+        }}>
+         <h3 style={{ fontFamily: theme.typography.fontFamily }}> Proveedores cerca tuyo{/*props.proveedores*/}</h3> 
+          </Box>
       </div>
       <div className='cardContainer'>
         <Cards 

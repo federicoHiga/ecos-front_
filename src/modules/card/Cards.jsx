@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
+import { useTheme } from "@emotion/react";
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
@@ -13,6 +14,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 
 export default function Cards(/*props*/) {
 
+  const theme = useTheme();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -23,42 +26,63 @@ export default function Cards(/*props*/) {
   const id = open ? 'simple-popper' : undefined;
 
   return (
-    <Card aria-describedby={id} onClick={handleClick} sx={{
+    <Card className='card' aria-describedby={id} onClick={handleClick} sx={{
       maxWidth: 250,
+      width: '152px',
+      height: '248px',
       position: "relative",
       margin: 1.5,
-      borderRadius: 4,
+      borderRadius: 2,
       overflow: 'visible',
-      zIndex:1
+      zIndex: 1,
+      boxShadow: 'none'
     }}>
-      <CardContent sx={{ padding: '13px' }}>
+      <CardContent sx={{ padding: '10px' }}>
         <Box sx={{
-          typography: 'h5',
           color: '#4E169D',
           width: '60%',
           position: 'absolute',
-          top: '-10px',
-          left: '87px',
-          border: 2,
+          top: '-7px',
+          left: '60px',
+          border: 1,
           borderColor: '#00A364',
-          borderRadius: 1,
+          borderRadius: 0.5,
           backgroundColor: 'white',
-          boxShadow: 10,
-          textAlign: 'center'
-        }}>Categoria{/*props.categoria*/}</Box>
-        <CardMedia sx={{ borderRadius: 1, width: '201px', height: '200px', }}
+          boxShadow: 5,
+          textAlign: 'center',
+        }}>
+          <h4 style={{ fontFamily: theme.typography.fontFamily }}>Categoria{/*props.categoria*/}</h4>
+        </Box>
+        <CardMedia sx={{ borderRadius: 1, width: '136px', height: '136px', }}
           component="img"
-          height="128"
-          width='304'
+          // height="128"
+          // width='304'
           image="src/modules/card/Rectangle 28.png"/*props.img*/
           alt="Producto"
         />
         <Container>
-          <Box sx={{ typography: 'h5', textAlign: 'left', marginTop: '10px' }}>Titulo{/*props.titulo*/}</Box>
-          <Box sx={{ typography: 'h6', textAlign: 'left' }}>Descripcion{/*props.descripcion*/}</Box>
-          <div style={{ display: 'flex', marginTop: '15px' }}>
-            <LocationOnOutlinedIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
-            <Box sx={{ typography: 'h5' }}>Locacion{/*props.locacion*/}</Box>
+          <Box sx={{
+            textAlign: 'left',
+            marginTop: '10px'
+          }}>
+            <h4 style={{ fontFamily: theme.typography.fontFamily }}>Titulo{/*props.titulo*/}</h4>
+          </Box>
+          <Box sx={{
+            textAlign: 'left'
+          }}>
+            <h5 style={{ fontFamily: theme.typography.fontFamily }}>Descripcion{/*props.descripcion*/}</h5>
+          </Box>
+          <div style={{
+            display: 'flex',
+            marginTop: '15px'
+          }}>
+            <LocationOnOutlinedIcon sx={{
+              color: '#4E169D',
+              fontSize: "22px"
+            }} />
+            <Box>
+              <h4 style={{ fontFamily: theme.typography.fontFamily }}>Locacion{/*props.locacion*/}</h4>
+            </Box>
           </div>
         </Container>
       </CardContent>
@@ -67,7 +91,7 @@ export default function Cards(/*props*/) {
       {/* POPPER */}
 
 
-      <Popper sx={{zIndex: 2}}
+      <Popper sx={{ zIndex: 2 }}
         id={id}
         open={open}
         anchorEl={anchorEl}
@@ -85,62 +109,88 @@ export default function Cards(/*props*/) {
         ]}
       >
         <Card aria-describedby={id} onClick={handleClick} elevation={3} sx={{
-          width: '428px',
+          width: '328px',
+          height: '584',
           margin: 1.5,
-          borderRadius: 4,
+          borderRadius: 2,
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: '#EAEAEA',
-          
+
         }}>
           <div>
-            <CloseIcon sx={{ float: 'right', padding: 1 }} />
+            <CloseIcon sx={{
+              float: 'right',
+              padding: 1
+            }} />
           </div>
-          <CardContent sx={{ padding: '13px' }}>
+          <CardContent sx={{ padding: '10px' }}>
             <Box sx={{
-              typography: 'h5',
               color: '#4E169D',
               width: '40%',
               float: 'right',
-              border: 2,
+              border: 1,
               borderColor: '#00A364',
-              borderRadius: 1,
+              borderRadius: 0.5,
               backgroundColor: 'white',
-              boxShadow: 10,
+              boxShadow: 5,
               textAlign: 'center'
-            }}>Categoria{/*props.categoria*/}</Box>
-            <CardMedia sx={{ borderTopLeftRadius: 1, }}
+            }}>
+              <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px'}}>Categoria{/*props.categoria*/}</h4>
+            </Box>
+            <CardMedia sx={{ borderTopLeftRadius: 1, width: '100%', height: 'auto' }}
               component="img"
               image="src/modules/card/Rectangle 28.png"
               alt="Producto"
             />
             <Container>
-              <Box sx={{ typography: 'h5', textAlign: 'left', marginTop: '10px' }}>Titulo{/*props.titulo*/}</Box>
-              <Box sx={{ typography: 'h6', textAlign: 'left', color: '#4E169D' }}>Descripcion{/*props.desc*/}</Box>
+              <Box sx={{
+                textAlign: 'left',
+                marginTop: '10px',
+                
+              }}>
+                <h2 style={{ fontFamily: theme.typography.fontFamily, fontSize: '18px' }}>Titulo{/*props.titulo*/}</h2>
+              </Box>
+              <Box sx={{
+                textAlign: 'left',
+                color: '#4E169D'
+              }}>
+                <h3 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>Descripcion{/*props.descripcion*/}</h3>
+              </Box>
               <div style={{ display: 'flex', marginTop: '15px' }}>
-                <LocationOnOutlinedIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
-                <Box sx={{ typography: 'h5' }}>Locacion{/*props.locacion*/}</Box>
+                <LocationOnOutlinedIcon sx={{ color: '#4E169D', fontSize: "22px" }} />
+                <Box >
+                  <h2 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>Locacion{/*props.locacion*/}</h2>
+                </Box>
               </div>
-              <Box sx={{ typography: 'h5', textAlign: 'left', marginTop: '20px', marginBottom: '20px' }}>Lavanda es un proyecto familiar. Perseguimos una cosmética efectiva, magistral y con personalidad. Nuestro objetivo es hacer productos que enamoren, que cuiden al planeta, con principios activos que dejen el pelo sano y la piel bella.{/*props.body*/}</Box>
+              <Box sx={{
+                textAlign: 'left',
+                marginTop: '10px',
+                marginBottom: '10px'
+              }}>
+                <p style={{ fontFamily: theme.typography.fontFamily }} >Lavanda es un proyecto familiar. Perseguimos una cosmética efectiva, magistral y con personalidad. Nuestro objetivo es hacer productos que enamoren, que cuiden al planeta, con principios activos que dejen el pelo sano y la piel bella.{/*props.body*/}</p>
+              </Box>
 
               {/* footerCard */}
-              <Box sx={{ typography: 'h5' }}>Contactanos</Box>
-              <div style={{display:'flex', justifyContent: 'space-between', marginTop:20}}>
-                <div style={{textAlign:'center',}}>
-                  <WhatsAppIcon sx={{ color: '#4E169D', fontSize: "32px" }}/>
-                  <h4>WhatsApp</h4>
+              <Box>
+                <h2 style={{ fontFamily: theme.typography.fontFamily, fontSize: '16px' }}>Contactanos</h2>
+              </Box>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
+                <div style={{ textAlign: 'center', }}>
+                  <WhatsAppIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
+                  <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>WhatsApp</h4>
                 </div>
-                <div style={{textAlign:'center',}}>
-                  <InstagramIcon sx={{ color: '#4E169D', fontSize: "32px" }}/>
-                  <h4>Instagram</h4>
+                <div style={{ textAlign: 'center', }}>
+                  <InstagramIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
+                  <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>Instagram</h4>
                 </div>
-                <div style={{textAlign:'center',}}>
-                  <FacebookIcon sx={{ color: '#4E169D', fontSize: "32px" }}/>
-                  <h4>Facebook</h4>
+                <div style={{ textAlign: 'center', }}>
+                  <FacebookIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
+                  <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>Facebook</h4>
                 </div>
-                <div style={{textAlign:'center',}}>
-                  <EmailOutlinedIcon sx={{ color: '#4E169D', fontSize: "32px" }}/>
-                  <h4>Mail</h4>
+                <div style={{ textAlign: 'center', }}>
+                  <EmailOutlinedIcon sx={{ color: '#4E169D', fontSize: "32px" }} />
+                  <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: '13px' }}>Mail</h4>
                 </div>
               </div>
               {/* footerCard */}

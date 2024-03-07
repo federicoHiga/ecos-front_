@@ -7,7 +7,6 @@ import Proveedores from "./components/Proveedores";
 import Nav from "./modules/Nav/Nav";
 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(false);
   return (
     <>
       <Nav />

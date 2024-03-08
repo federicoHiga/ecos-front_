@@ -1,10 +1,10 @@
 import Invitacion from '../../modules/invitacion/Invitacion';
-import Cards from '../../modules/card/Cards';
+import SuppliersCard from '../../components/SuppliersCard';
 import './styles.css';
 import { Box } from '@mui/material';
 import { useTheme } from "@emotion/react";
 
-function Proveedores(/*props*/) {
+function SuppliersSection(/*props*/) {
 
   const theme = useTheme();
 
@@ -28,19 +28,19 @@ function Proveedores(/*props*/) {
           </Box>
       </div>
       <div className='cardContainer'>
-        <Cards 
+        <SuppliersCard 
         // categoria={categoria} 
         // titulo={titulo}
         // descripcion={descripcion}
         // locacion={locacion}
         // img={img} 
         />
-        <Cards />
-        <Cards />
+        <SuppliersCard />
+        <SuppliersCard />
       </div>
     </>
   )
 }
 
-export default Proveedores;
+export default SuppliersSection;
 

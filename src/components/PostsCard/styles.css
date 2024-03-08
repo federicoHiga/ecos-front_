@@ -1,0 +1,43 @@
+.PublicacionesCards-section {
+    background-color: #EAEAEA;
+    width: 328px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    border-radius:16px ;
+    margin: 10px;
+}
+
+.PublicacionesCards-section h1 {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+.PublicacionesCards-section h2 {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px;
+}
+
+.PublicacionesCards-section p {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 7px;
+}
+
+.ver-mas {
+    width: 152px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}

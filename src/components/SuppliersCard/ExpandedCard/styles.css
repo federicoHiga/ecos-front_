@@ -1,0 +1,16 @@
+.expanded-card > .expanded-card-dialog{
+    width: 328px;
+    height: 584px;
+    border-radius: 16px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eaeaea;
+}
+
+.expanded-card-dialog > .expanded-card-header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

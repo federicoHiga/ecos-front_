@@ -1,8 +1,9 @@
 import React from "react";
 import "../../assets/styles/Inicio/inicio.css";
-import Proveedores from "../../components/Proveedores";
+import PostsSection from "../PostsSection/index";
 import ImpactEnterprises from "../../components/ImpactEnterprises";
 import CategoriesGrid from "../../components/CategoriesGrid";
+import SuppliersSection from "../SuppliersSection";
 
 export default function Inicio() {
   return (
@@ -17,8 +18,9 @@ export default function Inicio() {
         </div>
       </div>      
       <ImpactEnterprises />
-      <Proveedores />
+      <SuppliersSection/>
       <CategoriesGrid />
+      <PostsSection />
     </div>
   );
 }

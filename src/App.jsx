@@ -4,7 +4,7 @@ import { Route, Router, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
-import PostsSection from "./modules/PostsSection";
+
 import SuppliersSection from "./modules/SuppliersSection";
 
 function App() {

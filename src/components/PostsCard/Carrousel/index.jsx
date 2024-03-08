@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import './styles.css';
 import Slider from "react-slick";
 
+
 const imagenes = [
     // CarrouselImg,
     // CarrouselImg,
     // CarrouselImg
 ]
-
 
 const Carrusel = () => {
 

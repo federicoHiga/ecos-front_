@@ -3,9 +3,9 @@ import Inicio from "./modules/Inicio/Inicio";
 import { Route, Router, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
-
 import Nav from "./modules/Nav/Nav";
 import PostsSection from "./modules/PostsSection";
+import SuppliersSection from "./modules/SuppliersSection";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -21,7 +21,7 @@ function App() {
         <Route path="register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={<PostsSection/>} />
+        <Route path="proveedores" element={<SuppliersSection/>} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

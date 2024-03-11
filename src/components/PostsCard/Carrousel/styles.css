@@ -1,4 +1,44 @@
-.carousel-images{
-    width: 100px;
-    height: 100px;
+.carrousel-container{
+    margin-bottom: 20px;
 }
+
+.carrousel-img{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrousel-img img{
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.slick-arrow{
+    color: black !important;
+    /* position: absolute; */
+}
+
+.slick-next{
+    right: 25px !important;
+    color: #4E169D !important;
+}
+
+.slick-next::before{
+    color: #4E169D !important;
+}
+
+.slick-prev{
+    left: 25px !important;
+    z-index: 10;
+    color: #4E169D !important;
+}
+
+.slick-prev::before{
+    left: 25px !important;
+    /* z-index: 10; */
+    color: #4E169D !important;
+}
+
+/* npm install react-slick
+npm install slick-carousel --save */

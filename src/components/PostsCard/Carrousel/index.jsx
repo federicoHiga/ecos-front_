@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import './styles.css';
 import Slider from "react-slick";
 
-
 const imagenes = [
-    // CarrouselImg,
-    // CarrouselImg,
-    // CarrouselImg
+  // CarrouselImg,
+  // CarrouselImg,
+  // CarrouselImg
 ]
 
-const Carrusel = () => {
+export default function Carrousel(/*props*/) {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
-    const settings = {
-      dots: true, // Habilita puntos de navegación
-      infinite: true, // Deslizamiento infinito
-      slidesToShow: 3, // Número de elementos visibles
-      slidesToScroll: 1, // Número de elementos a desplazar
-      autoplay: true, // Autoplay (opcional)
-      autoplaySpeed: 2000, // Velocidad de autoplay (opcional)
-    };
-  
-    return (
+  return (
+    <section className="carrousel-container">
       <Slider {...settings}>
-        {imagenes.map((imagen, index) => (
-          <div key={index} className="carousel-item">
-            <img src={imagen.src} alt={imagen.alt} />
-          </div>
-        ))}
+        <div className="carrousel-img">
+          <img src="src/assets/images/Rectangle 28.png">{/*props.img*/}</img>
+        </div>
+        <div className="carrousel-img">
+          <img src="src/assets/images/Rectangle 29.png">{/*props.img*/}</img>
+        </div>
+        <div className="carrousel-img">
+          <img src="src/assets/images/Rectangle 30.png">{/*props.img*/}</img>
+        </div>
       </Slider>
-    );
-  }
-  
-export default Carrusel;
+    </section>
+  );
+}

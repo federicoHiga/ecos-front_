@@ -4,12 +4,14 @@ import './styles.css';
 function PostsSection() {
 
     return (
-        <section className="publicaciones-section">
-            <div className="publicaciones-title">
-                <h1 className='titulo' >Publicaciones</h1>
+        <section className="posts-section">
+            <div className="posts-section-title">
+                <h1 className='title' >Publicaciones</h1>
                 <h2 >Impulsando transformaciones</h2>
             </div>
             <PostsCard />
+            <PostsCard />
+            <button className='posts-section-button'>Ir a Publicaciones</button>
         </section>
     )
 }

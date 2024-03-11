@@ -22,12 +22,22 @@ export default function Invitacion() {
 
   return (
     <Container maxWidth="sm" sx={{ marginBottom: 3, marginTop: 2 }}>
-      <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Box sx={{ 
-          padding: 3,
-          textAlign: 'center',
-          }}>
-          <h3 style={{ fontFamily: theme.typography.fontFamily, fontSize: '24px', fontWeight:400 }}>
+      <CardContent
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <Box
+          sx={{
+            padding: 3,
+            textAlign: "center",
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: theme.typography.fontFamily,
+              fontSize: "24px",
+              fontWeight: 400,
+            }}
+          >
             ¿Querés formar parte de la Red de impacto ECO como Proveedor?
           </h3>
         </Box>

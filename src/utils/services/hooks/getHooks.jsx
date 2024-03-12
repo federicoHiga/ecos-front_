@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import instanceAxios from "../axiosConfig";
+import { SuppliersData } from "../../data/suppliersMock";
 
 export default function useGetByNameHook(props) {
   const { url, name } = props;
-
   const [data, setData] = useState(null);
   const [error, setError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const filterForData = () =>{
+      if(!name ) {
+        setData(null)
+        setLoading(true)
+        return}
+        const newData = SuppliersData.filter((s)=>s.name === name)
+        console.log(newData)
+      setData(newData)
+      setLoading(false)
+    }
+
+     filterForData()
     const get = async () => {
       try {
         if(!name ) {
@@ -23,7 +35,7 @@ export default function useGetByNameHook(props) {
         setData(null)
       }
     };
-    get();
+    // get();
   }, [url,name]);
 
   return { data, loading, error };

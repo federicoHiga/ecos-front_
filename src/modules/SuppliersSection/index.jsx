@@ -28,26 +28,16 @@ function SuppliersSection(props) {
           </Box>
       </div>
       <div className='cardContainer'>
-        {
-          listSupplier?.length>0?(listSupplier.map((supplier)=>
-           { return   <SuppliersCard
-            // categoria={categoria} 
-             titulo={supplier.name}
-            // descripcion={descripcion}
-            // locacion={locacion}
-            // img={img} 
-            />}
-          )):null
-        }
+     
         <SuppliersCard
         // categoria={categoria} 
-         titulo={name}
+        //  titulo={name}
         // descripcion={descripcion}
         // locacion={locacion}
         // img={img} 
         />
-        {/* <SuppliersCard />
-        <SuppliersCard /> */}
+        <SuppliersCard />
+        <SuppliersCard />
       </div>
     </>
   )

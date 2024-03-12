@@ -63,7 +63,7 @@ export default function Inicio() {
           </Typography>
         </section>
         <section className="search-results-grid">
-          {SuppliersData.map((data) => (
+          {data.map((data) => (
             <SearchResultCard key={data.name} supplier={data} />
           ))}
         </section>

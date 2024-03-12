@@ -11,6 +11,9 @@ export default function useGetByNameHook(props) {
   useEffect(() => {
     const get = async () => {
       try {
+        if(!name ) {
+          setData(null)
+          return}
         const response = await instanceAxios.get(url, { params: {name:name} });
         setData(response.data);
         setLoading(false);

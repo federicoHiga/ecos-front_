@@ -23,10 +23,8 @@ export default function Inicio() {
     url: "/supplier/searchbyname",
     name: searchText,
   });
-
-  /* Para ver la card de no resultados, quitar el comentario en la condición  */
-
-  if (data?.length === 0 /* || data === null */) {
+  console.log(data)
+  if (data?.length === 0) {
     return (
       <div className="search-results-screen">
         <Searchbar functionText={handleSearch} text={searchText} />
@@ -48,8 +46,7 @@ export default function Inicio() {
       </div>
     );
   }
-  // condición original => data?.length > 0 && data !== null
-  if (data === null) {
+  if (data?.length > 0 && data !== null) {
     return (
       <div className="search-results-screen">
         <Searchbar functionText={handleSearch} text={searchText} />
@@ -66,7 +63,7 @@ export default function Inicio() {
           </Typography>
         </section>
         <section className="search-results-grid">
-          {SuppliersData.map((data) => (
+          {data.map((data) => (
             <SearchResultCard key={data.name} supplier={data} />
           ))}
         </section>
@@ -86,7 +83,7 @@ export default function Inicio() {
         </div>
       </div>
       <ImpactEnterprises />
-      <SuppliersSection/>
+      <SuppliersSection   />
       <CategoriesGrid />
       <PostsSection />
     </div>

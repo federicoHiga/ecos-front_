@@ -53,7 +53,7 @@ export const SearchResultCard = ({ supplier }) => {
   return (
     <div
       className="search-result-card"
-      style={{ height: expanded === supplier.id ? "max-content" : "min-content" }}
+      style={{ height: expanded === supplier?.id ? "max-content" : "min-content" }}
     >
       <div className="search-result-wrapper">
         <section className="search-result-product-header">
@@ -67,7 +67,7 @@ export const SearchResultCard = ({ supplier }) => {
                 lineHeight: "18px",
               }}
             >
-              {supplier.category.category}
+              {supplier?.category?.category}
             </Typography>
           </div>
           <img className="search-result-image" alt="Imagen ilustrativa" src={supplier.image} />
@@ -84,7 +84,7 @@ export const SearchResultCard = ({ supplier }) => {
               lineHeight: "25px",
             }}
           >
-            {supplier.name}
+            {supplier?.name}
           </Typography>
           <Typography
             variant="subtitle"
@@ -118,8 +118,8 @@ export const SearchResultCard = ({ supplier }) => {
       </div>
       <IconButton
         className="search-result-card-footer"
-        onClick={() => handleExpand(supplier.id)}
-        aria-expanded={expanded === supplier.id}
+        onClick={() => handleExpand(supplier?.id)}
+        aria-expanded={expanded === supplier?.id}
         aria-label="show-more"
         sx={{ marginTop: "8px" }}
       >
@@ -128,7 +128,7 @@ export const SearchResultCard = ({ supplier }) => {
             width: "24px",
             height: "20px",
             color: theme.palette.violeta.main,
-            transform: !(expanded === supplier.id) ? "rotate(0deg)" : "rotate(180deg)",
+            transform: !(expanded === supplier?.id) ? "rotate(0deg)" : "rotate(180deg)",
             transition: theme.transitions.create("transform", {
               duration: theme.transitions.duration.shortest,
             }),
@@ -137,8 +137,8 @@ export const SearchResultCard = ({ supplier }) => {
       </IconButton>
 
       <Collapse
-        in={expanded === supplier.id}
-        out={expanded === supplier.id}
+        in={expanded === supplier?.id}
+        out={expanded === supplier?.id}
         timeout={"auto"}
         unmountOnExit
         className="search-result-card-hidden-content"
@@ -151,7 +151,7 @@ export const SearchResultCard = ({ supplier }) => {
             fontFamily: theme.typography.fontFamily,
           }}
         >
-          {supplier.description}
+          {supplier?.description}
         </Typography>
 
         <section className="search-result-card-contact">

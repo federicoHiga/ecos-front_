@@ -4,8 +4,8 @@ import './styles.css';
 import { Box } from '@mui/material';
 import { useTheme } from "@emotion/react";
 
-function SuppliersSection(/*props*/) {
-
+function SuppliersSection(props) {
+  const { listSupplier} = props
   const theme = useTheme();
 
   return (
@@ -28,15 +28,26 @@ function SuppliersSection(/*props*/) {
           </Box>
       </div>
       <div className='cardContainer'>
-        <SuppliersCard 
+        {
+          listSupplier?.length>0?(listSupplier.map((supplier)=>
+           { return   <SuppliersCard
+            // categoria={categoria} 
+             titulo={supplier.name}
+            // descripcion={descripcion}
+            // locacion={locacion}
+            // img={img} 
+            />}
+          )):null
+        }
+        <SuppliersCard
         // categoria={categoria} 
-        // titulo={titulo}
+         titulo={name}
         // descripcion={descripcion}
         // locacion={locacion}
         // img={img} 
         />
-        <SuppliersCard />
-        <SuppliersCard />
+        {/* <SuppliersCard />
+        <SuppliersCard /> */}
       </div>
     </>
   )

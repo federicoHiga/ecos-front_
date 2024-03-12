@@ -8,6 +8,8 @@ import Nav from "./modules/Nav/Nav";
 import SuppliersSection from "./modules/SuppliersSection";
 
 function App() {
+
+
   return (
     <>
       <Nav />

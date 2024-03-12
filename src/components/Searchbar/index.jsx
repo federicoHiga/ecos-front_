@@ -1,15 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
-const Searchbar = () => {
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearch = (evt) => {
-    setSearchText(evt);
-  };
-
+const Searchbar = (props) => {
+  const {functionText, text} = props
   return (
     <div className="searchbar-container">
       <div className="searchbar">
@@ -20,8 +14,8 @@ const Searchbar = () => {
           className="searchbar-input"
           placeholder="Buscar Proveedores"
           inputProps={{ "aria-label": "searchbar" }}
-          value={searchText !== "" ? searchText : null}
-          onChange={(evt) => handleSearch(evt.target.value)}
+          value={text !==null ? text : ""}
+          onChange={(evt) => functionText(evt.target.value)}
         />
       </div>
     </div>

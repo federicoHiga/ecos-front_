@@ -9,13 +9,13 @@ export default function GoogleButton() {
   const navigate = useNavigate()
 
     const googleSuccess = async (res) => {
-      const result = res?.scope
-      const token = res?.code
+      const scope = res?.scope
+      const code = res?.code
       try {
         console.log(res)
-        console.log(token)
-        console.log(result)
-        await axios.post('', { token, result }); // ruta del backend 
+        console.log(scope)
+        console.log(code)
+        await axios.post('http://localhost:8080/login/oauth2/code/google', { code, scope }); // ruta del backend 
         navigate('/');
       } catch (error) {
         console.log(error)

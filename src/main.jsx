@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import "./assets/styles/index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const clientId = "739667084030-pk65jkf718r56763mjf0t76d3m5j744s.apps.googleusercontent.com"
+const clientId = "484365535315-4548gahjuri85jqdbibpf7g2nkuv6rtp.apps.googleusercontent.com"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={clientId}>

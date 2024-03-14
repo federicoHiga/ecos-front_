@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { Button, useTheme } from "@mui/material";
 
 const CategoriesGrid = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <div className="categories-section">
@@ -122,10 +124,11 @@ const CategoriesGrid = () => {
         </Button>
       </section>
       <section>
-        {/* <button className="categories-section-button">
-          <p>Ver más categorías</p>
-        </button> */}
-        <Button variant="purple" sx={{ padding: "10px 24px" }}>
+        <Button
+          variant="purple"
+          sx={{ padding: "10px 24px" }}
+          onClick={() => navigate("/categories")}
+        >
           Ver más categorías
         </Button>
       </section>

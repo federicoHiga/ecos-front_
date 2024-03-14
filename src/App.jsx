@@ -6,10 +6,10 @@ import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
 
 import SuppliersSection from "./modules/SuppliersSection";
+import CategoriesHome from "./modules/Categories/views/CategoriesHome";
+import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
 
 function App() {
-
-
   return (
     <>
       <Nav />
@@ -22,7 +22,7 @@ function App() {
         <Route path="register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={<SuppliersSection/>} />
+        <Route path="proveedores" element={<SuppliersSection />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
@@ -39,6 +39,9 @@ function App() {
           <Route path="proveedores" element={""} />
           <Route path="publicaciones" element={""} />
         </Route>
+
+        <Route path="/categories" element={<CategoriesHome />} />
+        <Route path="/categories/:category" element={<CategoriesDetail />} />
       </Routes>
     </>
   );

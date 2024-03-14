@@ -1,5 +1,6 @@
 .impact-enterprise-section {
-  margin: 30px 0px;
+  max-width: 328px;
+  margin: 30px auto;
   border-top: 1px solid #4e169d;
   border-bottom: 1px solid #4e169d;
   box-sizing: border-box;

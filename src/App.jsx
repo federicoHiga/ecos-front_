@@ -9,6 +9,8 @@ import SuppliersSection from "./modules/SuppliersSection";
 import CategoriesHome from "./modules/Categories/views/CategoriesHome";
 import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
 import Providers from "./modules/Providers";
+import CategoriesHome from "./modules/Categories/views/CategoriesHome";
+import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
 
         {/* Ruta de publicaciones (visitante) */}
         <Route path="publicaciones" element={<PostsView />} />
+        <Route path="proveedores" element={<SuppliersSection />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

@@ -4,7 +4,7 @@ import { Route, Router, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
-
+import PostsView from "./modules/PostsView";
 import SuppliersSection from "./modules/SuppliersSection";
 import Providers from "./modules/Providers";
 
@@ -24,6 +24,9 @@ function App() {
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="proveedores" element={<Providers/>} />
+
+        {/* Ruta de publicaciones (visitante) */}
+        <Route path="publicaciones" element={<PostsView />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

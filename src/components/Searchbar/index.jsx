@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";

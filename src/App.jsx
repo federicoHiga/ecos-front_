@@ -8,6 +8,7 @@ import Nav from "./modules/Nav/Nav";
 import SuppliersSection from "./modules/SuppliersSection";
 import CategoriesHome from "./modules/Categories/views/CategoriesHome";
 import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
+import Providers from "./modules/Providers";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="proveedores" element={<SuppliersSection />} />
+        <Route path="proveedores" element={<Providers/>} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

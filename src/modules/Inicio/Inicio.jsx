@@ -7,8 +7,12 @@ import SuppliersSection from "../SuppliersSection";
 import Searchbar from "../../components/Searchbar";
 import useGetByNameHook from "../../utils/services/hooks/getHooks";
 import { Typography, useTheme } from "@mui/material";
-import { NoResultsCard, SearchResultCard } from "../../components/SearchResultsCards";
+import {
+  NoResultsCard,
+  SearchResultCard,
+} from "../../components/SearchResultsCards";
 import { SuppliersData } from "../../utils/data/suppliersMock";
+import SearchByChildren from "../../components/SearchFlexible";
 
 export default function Inicio() {
   const theme = useTheme();
@@ -72,20 +76,12 @@ export default function Inicio() {
   }
   return (
     <div>
-      <div id="inicio">
-        <div id="title">
-          <Searchbar functionText={handleSearch} text={searchText} />
-          <p>RED DE IMPACTO</p>
-          <h1>
-            Conectamos proveedores y personas comprometidas con el impacto y el consumo
-            consciente
-          </h1>
-        </div>
-      </div>
-      <ImpactEnterprises />
-      <SuppliersSection   />
-      <CategoriesGrid />
-      <PostsSection />
+      <SearchByChildren>
+        <ImpactEnterprises />
+        <SuppliersSection />
+        <CategoriesGrid />
+        <PostsSection />
+      </SearchByChildren>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Route, Router, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
-
+import PostsView from "./modules/PostsView";
 import SuppliersSection from "./modules/SuppliersSection";
 import CategoriesHome from "./modules/Categories/views/CategoriesHome";
 import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
@@ -25,6 +25,9 @@ function App() {
         {/* Ruta de proveedores (visitante) */}
         <Route path="proveedores" element={<SuppliersSection />} />
         <Route path="proveedores" element={<Providers/>} />
+
+        {/* Ruta de publicaciones (visitante) */}
+        <Route path="publicaciones" element={<PostsView />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

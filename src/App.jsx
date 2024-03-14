@@ -6,6 +6,7 @@ import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
 
 import SuppliersSection from "./modules/SuppliersSection";
+import Providers from "./modules/Providers";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
         <Route path="register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={<SuppliersSection/>} />
+        <Route path="proveedores" element={<Providers/>} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

@@ -25,6 +25,7 @@ function App() {
         {/* Ruta de proveedores (visitante) */}
         <Route path="proveedores" element={<SuppliersSection />} />
         <Route path="proveedores" element={<Providers/>} />
+        <Route path="publicaciones" element={<Providers/>} />
 
         {/* Ruta de publicaciones (visitante) */}
         <Route path="publicaciones" element={<PostsView />} />

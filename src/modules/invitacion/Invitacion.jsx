@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import { Box, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 
 const Custombutton = styled(Button)(() => ({
   backgroundColor: "#4E169D",
@@ -19,12 +20,10 @@ const Custombutton = styled(Button)(() => ({
 
 export default function Invitacion() {
   const theme = useTheme();
-
+  const navigate = useNavigate();
   return (
     <Container maxWidth="sm" sx={{ marginBottom: 3, marginTop: 2 }}>
-      <CardContent
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box
           sx={{
             padding: 3,
@@ -41,7 +40,10 @@ export default function Invitacion() {
             ¿Querés formar parte de la Red de impacto ECO como Proveedor?
           </h3>
         </Box>
-        <Custombutton variant="contained"> Registrarte </Custombutton>
+        <Custombutton variant="contained" onClick={() => navigate("/register")}>
+          {" "}
+          Registrarte{" "}
+        </Custombutton>
       </CardContent>
     </Container>
   );

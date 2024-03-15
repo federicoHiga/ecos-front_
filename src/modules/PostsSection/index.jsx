@@ -11,7 +11,7 @@ function PostsSection() {
       </div>
       <PostsCard />
       <PostsCard />
-      <Link to={'/publicaciones'}>
+      <Link to={"/posts"}>
         <button className="posts-section-button">Ir a Publicaciones</button>
       </Link>
     </section>

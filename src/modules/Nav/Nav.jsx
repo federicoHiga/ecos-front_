@@ -10,8 +10,8 @@ const GlobalNav = () => {
   return(
     <div>
       <NavLink href="/" font="bold" text="Inicio"/>
-      <NavLink href="/" font="bold" text="Proveedores"/>
-      <NavLink href="/" font="bold" text="Publicaciones"/>
+      <NavLink href="/providers" font="bold" text="Proveedores"/>
+      <NavLink href="/posts" font="bold" text="Publicaciones"/>
       <NavLink href="/login" font="bold" text="Iniciá sesión"/>
       <NavLink href="/" font="italic" text="¿Querés formar parte de la Red de impacto ECO como Proveedor?"/>
       <NavLink href="/register" font="bold" text="Registrate"/>

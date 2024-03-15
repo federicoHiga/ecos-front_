@@ -62,7 +62,7 @@ export default function SuppliersCard(/*props*/) {
           component="img"
           // height="128"
           // width='304'
-          image="src/modules/card/Rectangle 28.png" /*props.img*/
+          image="https://res.cloudinary.com/dxatwbzff/image/upload/v1710415070/Quinto/1c27a72869b176f8ac7bc5f75f460594_fddnpc.jpg" /*props.img*/
           alt="Producto"
         />
         <Container>

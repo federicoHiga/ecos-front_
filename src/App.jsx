@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import Inicio from "./modules/Inicio/Inicio";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
 import PostsView from "./modules/PostsView";
-import SuppliersSection from "./modules/SuppliersSection";
-import CategoriesHome from "./modules/Categories/views/CategoriesHome";
-import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
-import Providers from "./modules/Providers";
-import CategoriesHome from "./modules/Categories/views/CategoriesHome";
-import CategoriesDetail from "./modules/Categories/views/CategoriesDetail";
+import ProvidersHome from "./modules/Providers/ProvidersHome";
+import ProvidersDetail from "./modules/Providers/ProvidersDetail";
 
 function App() {
   return (
@@ -22,16 +18,14 @@ function App() {
         <Route path="/" element={<Inicio />}></Route>
 
         {/* Ruta de registro */}
-        <Route path="register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={<SuppliersSection />} />
-        <Route path="proveedores" element={<Providers/>} />
-        <Route path="publicaciones" element={<Providers/>} />
+        <Route path="/providers" element={<ProvidersHome />} />
+        <Route path="/providers/:category" element={<ProvidersDetail />} />
 
         {/* Ruta de publicaciones (visitante) */}
-        <Route path="publicaciones" element={<PostsView />} />
-        <Route path="proveedores" element={<SuppliersSection />} />
+        <Route path="/posts" element={<PostsView />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
@@ -48,9 +42,6 @@ function App() {
           <Route path="proveedores" element={""} />
           <Route path="publicaciones" element={""} />
         </Route>
-
-        <Route path="/categories" element={<CategoriesHome />} />
-        <Route path="/categories/:category" element={<CategoriesDetail />} />
       </Routes>
     </>
   );

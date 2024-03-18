@@ -118,6 +118,18 @@ const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: "modal" },
+          style: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textTransform: "none",
+            color: "#4E169D",
+            fontWeight: "600",
+            fontSize: "16px"
+          },
+        },
       ],
     },
   },

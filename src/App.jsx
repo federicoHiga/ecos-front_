@@ -5,7 +5,10 @@ import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
 
-import SuppliersSection from "./modules/SuppliersSection";
+import PostsView from "./modules/PostsView";
+import ProvidersHome from "./modules/Providers/ProvidersHome";
+import ProvidersDetail from "./modules/Providers/ProvidersDetail";
+import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesModal";
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
-        <Route path="proveedores" element={<SuppliersSection/>} />
+        <Route path="/providers" element={<ProvidersHome/>} />
+        <Route path="/posts" element={<PostsView/>} />
+        <Route path="/providers/:category" element={<ProvidersDetail/>} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

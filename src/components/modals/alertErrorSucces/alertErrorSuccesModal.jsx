@@ -8,7 +8,7 @@ import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import CheckIcon from "@mui/icons-material/Check";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 
-//type debe ser error, succes o alert, closeFuncion es una funcion del componente 
+//type debe ser error, succes o alert, closeFuncion es una funcion del componente
 //padre que abre o cierra el modal a traves de boolOpen, parrafo es el texto ue mostrara el modal
 export default function AlertModal({ boolOpen, parrafo, closeFuncion, type }) {
   const [open, setOpen] = useState(boolOpen);

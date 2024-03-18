@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Inicio from "./modules/Inicio/Inicio";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
@@ -8,8 +8,6 @@ import Nav from "./modules/Nav/Nav";
 import SuppliersSection from "./modules/SuppliersSection";
 
 function App() {
-
-
   return (
     <>
       <Nav />
@@ -19,7 +17,7 @@ function App() {
         <Route path="/" element={<Inicio />}></Route>
 
         {/* Ruta de registro */}
-        <Route path="register" element={<Register />} />
+        <Route path="/register" element={<Register />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="proveedores" element={<SuppliersSection/>} />

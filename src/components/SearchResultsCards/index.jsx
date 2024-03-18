@@ -9,6 +9,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import Slider from "react-slick";
 
 export const NoResultsCard = () => {
   const theme = useTheme();
@@ -50,6 +51,14 @@ export const SearchResultCard = ({ supplier }) => {
     setExpanded(expanded === id ? -1 : id);
   };
 
+  let settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <div
       className="search-result-card"
@@ -70,7 +79,15 @@ export const SearchResultCard = ({ supplier }) => {
               {supplier?.category?.category}
             </Typography>
           </div>
-          <img className="search-result-image" alt="Imagen ilustrativa" src={supplier.image} />
+          <Slider {...settings} className="search-result-card-carousel">
+            <div className="search-result-card-img">
+              <img
+                className="search-result-image"
+                alt="Imagen ilustrativa"
+                src={supplier.image}
+              />
+            </div>
+          </Slider>
         </section>
 
         <section className="search-result-product-data-container">

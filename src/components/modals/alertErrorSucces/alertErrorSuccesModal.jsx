@@ -90,7 +90,8 @@ export default function AlertModal({ boolOpen, parrafo, closeFuncion, type }) {
                 Intentar nuevamente
               </Button>
             </div>
-          ) : null}
+          ) : null
+          }
         </Box>
       </Modal>
     </div>

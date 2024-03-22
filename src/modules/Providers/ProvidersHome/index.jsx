@@ -4,10 +4,15 @@ import { Button, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { CategoriesData } from "../../../utils/data/categoriesMock";
 import SearchByChildren from "../../../components/SearchFlexible";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
 
 const ProvidersHome = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { data, error, loading } = useGetAll({ url: "category" });
+
+  //TODO recorrer esta data en la vista, una vez que estén terminados los cambios del JSON
+  console.log("HOOK DATA: ", data?.data);
 
   return (
     <SearchByChildren>
@@ -26,7 +31,9 @@ const ProvidersHome = () => {
               variant="categories"
               key={category.id}
               sx={{ width: "328px", margin: "0 auto" }}
-              onClick={() => navigate(`/providers${category.url}`, { state: { category } })}
+              onClick={() =>
+                navigate(`/providers/${category.category}`, { state: { category } })
+              }
             >
               <div className="button-inner-container">
                 <section className="button-icon-container">
@@ -41,7 +48,7 @@ const ProvidersHome = () => {
                     variant="subtitulos"
                     sx={{ fontWeight: "600", fontSize: "18px" }}
                   >
-                    {category.title}
+                    {category.category}
                   </Typography>
                 </section>
               </div>

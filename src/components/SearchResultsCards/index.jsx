@@ -128,7 +128,7 @@ export const SearchResultCard = ({ supplier }) => {
               className="search-result-location"
               sx={{ fontFamily: theme.typography.fontFamily }}
             >
-              Godoy Cruz, Mendoza, Argentina
+              {`${supplier?.city}, ${supplier?.province.nombre}, ${supplier?.country.name}`}
             </Typography>
           </section>
         </section>
@@ -188,7 +188,7 @@ export const SearchResultCard = ({ supplier }) => {
           <div className="search-result-social-media-container">
             <figure className="search-result-social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={`https://api.whatsapp.com/send?phone=${supplier.numberPhone}`}
                 target="_blank"
                 rel="noreferrer"
                 className="search-result-social-media-icon-container"
@@ -201,7 +201,7 @@ export const SearchResultCard = ({ supplier }) => {
             </figure>
             <figure className="search-result-social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={supplier.instagram}
                 target="_blank"
                 rel="noreferrer"
                 className="search-result-social-media-icon-container"
@@ -214,7 +214,7 @@ export const SearchResultCard = ({ supplier }) => {
             </figure>
             <figure className="search-result-social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={supplier.facebook}
                 target="_blank"
                 rel="noreferrer"
                 className="search-result-social-media-icon-container"
@@ -227,7 +227,7 @@ export const SearchResultCard = ({ supplier }) => {
             </figure>
             <figure className="search-result-social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={`mailto:${supplier.email}`}
                 target="_blank"
                 rel="noreferrer"
                 className="search-result-social-media-icon-container"

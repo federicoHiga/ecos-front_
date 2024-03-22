@@ -4,12 +4,15 @@ import SearchByChildren from "../../../components/SearchFlexible";
 import { Typography, useTheme } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { SearchResultCard } from "../../../components/SearchResultsCards";
-import { SuppliersData } from "../../../utils/data/suppliersMock";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
 
 const ProvidersDetail = () => {
   const theme = useTheme();
   const { state } = useLocation();
-  console.log("STATE: ", state.category);
+
+  const { data, error, loading } = useGetAll({
+    url: `supplier/searchbycategory?id=${state.category.id}`,
+  });
 
   return (
     <SearchByChildren>
@@ -30,7 +33,7 @@ const ProvidersDetail = () => {
                 color: theme.palette.violeta.main,
               }}
             >
-              {state.category.title}
+              {state.category.category}
             </Typography>
           </div>
         </div>
@@ -51,9 +54,9 @@ const ProvidersDetail = () => {
               salud, hasta terapias holísticas y más.
             </Typography>
           </div>
-          
+
           <section className="providers-grid">
-            {SuppliersData.map((provider) => (
+            {data?.data.map((provider) => (
               <SearchResultCard supplier={provider} key={provider.id} />
             ))}
           </section>

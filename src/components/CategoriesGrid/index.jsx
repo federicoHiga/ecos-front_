@@ -3,10 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { Button, useTheme } from "@mui/material";
 import { CategoriesData } from "../../utils/data/categoriesMock";
+import useGetAll from "../../utils/services/hooks/useGetAll";
 
 const CategoriesGrid = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { data, error, loading } = useGetAll({ url: "category" });
+
+  //TODO recorrer esta data en la vista, una vez que estén terminados los cambios del JSON
+  console.log("data", data?.data);
 
   return (
     <div className="categories-section">
@@ -18,14 +23,16 @@ const CategoriesGrid = () => {
             variant="categories"
             className="categories-grid-button"
             key={category.id}
-            onClick={() => navigate(`/providers${category.url}`, { state: { category } })}
+            onClick={() =>
+              navigate(`/providers/${category.category}`, { state: { category } })
+            }
           >
             <div className="button-inner-wrapper">
               <section className="grid-item-icon-container">
                 <img src={category.img} alt={category.title} />
               </section>
               <h6 className="grid-item-title" style={{ color: theme.palette.negro.main }}>
-                {category.title}
+                {category.category}
               </h6>
             </div>
           </Button>

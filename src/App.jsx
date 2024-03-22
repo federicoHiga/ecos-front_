@@ -9,6 +9,7 @@ import PostsView from "./modules/PostsView";
 import ProvidersHome from "./modules/Providers/ProvidersHome";
 import ProvidersDetail from "./modules/Providers/ProvidersDetail";
 import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesModal";
+import IndexFile from "./components/cloudinary/IndexFile";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
 
         {/* Ruta de administrador (dashboard) */}
         <Route path="admin">
-          <Route index element={""} />
+          <Route index element={< IndexFile/>} />
           <Route path="providers" element={""} />
           <Route path="publications" element={""} />
         </Route>

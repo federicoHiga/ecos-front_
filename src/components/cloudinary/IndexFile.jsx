@@ -1,16 +1,19 @@
-import { useState } from "react"
+import { useState } from "react";
+import convertFileToBase64 from "../../utils/convert/convertFileToBase64";
 
+export default function IndexFile({ functionLoad }) {
+  const [file, setFile] = useState();
 
-
-
-export default function IndexFile(){
-    const [file, setFile ] = useState()
-
-    const HandlerLoadFile = (event) =>{
-    setFile(event.target.files[0])
-    }
-    console.log(file)
-    return(
-        <input type="file" onChange={HandlerLoadFile} />
-    )
+  const HandlerLoadFile = async (event) => {
+    const loadedFile = event.target.files[0];
+    const fileBase64 = await convertFileToBase64(loadedFile);
+    //funcion para recuperar el string base64
+    functionLoad(fileBase64);
+    setFile(fileBase64);
+  };
+  return (
+    <div style={{ marginTop: "150px" }}>
+      <input type="file" onChange={HandlerLoadFile} />
+    </div>
+  );
 }

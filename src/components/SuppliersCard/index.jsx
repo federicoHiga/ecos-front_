@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ExpandedCard from "./ExpandedCard";
+import "./styles.css";
 
 export default function SuppliersCard(/*props*/) {
   const theme = useTheme();
@@ -65,7 +66,7 @@ export default function SuppliersCard(/*props*/) {
           image="https://res.cloudinary.com/dxatwbzff/image/upload/v1710415070/Quinto/1c27a72869b176f8ac7bc5f75f460594_fddnpc.jpg" /*props.img*/
           alt="Producto"
         />
-        <Container>
+        <Container className="text-container">
           <Box
             sx={{
               textAlign: "left",

@@ -1,17 +1,15 @@
 import React from "react";
-import './styles.css';
+import "./styles.css";
 import Slider from "react-slick";
 
-const imagenes = [
-  // CarrouselImg,
-  // CarrouselImg,
-  // CarrouselImg
-]
+export default function Carrousel(props) {
+  const { img1, img2, img3 } = props;
 
-export default function Carrousel(/*props*/) {
+  const hasMultipleImages = img1 && (img2 || img3);
+
   var settings = {
     dots: true,
-    infinite: true,
+    infinite: hasMultipleImages,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -19,17 +17,28 @@ export default function Carrousel(/*props*/) {
 
   return (
     <section className="carrousel-container">
-      <Slider {...settings}>
+      {hasMultipleImages ? (
+        <Slider {...settings}>
+          <div className="carrousel-img">
+            <img src={img1} alt="Image 1" />
+          </div>
+          {img2 && (
+            <div className="carrousel-img">
+              <img src={img2} alt="Image 2" />
+            </div>
+          )}
+          {img3 && (
+            <div className="carrousel-img">
+              <img src={img3} alt="Image 3" />
+            </div>
+          )}
+        </Slider>
+      ) : (
         <div className="carrousel-img">
-          <img src="src/assets/images/Rectangle 28.png">{/*props.img*/}</img>
+          <img src={img1} alt="Single Image" />
         </div>
-        <div className="carrousel-img">
-          <img src="src/assets/images/Rectangle 29.png">{/*props.img*/}</img>
-        </div>
-        <div className="carrousel-img">
-          <img src="src/assets/images/Rectangle 30.png">{/*props.img*/}</img>
-        </div>
-      </Slider>
+      )}
     </section>
   );
 }
+

@@ -4,8 +4,7 @@ import Carrousel from "./Carrousel";
 import ExpandedCard from "./ExpandedCard";
 
 export default function PostsCard(props) {
-  const { title, img1, img2, img3, date, shortDescription, longDescription } =
-    props;
+  const { title, img1, img2, img3, date, description } = props;
 
   return (
     <>
@@ -13,9 +12,7 @@ export default function PostsCard(props) {
         <h1>{title}</h1>
         <Carrousel img1={img1} img2={img2} img3={img3} />
         <h2>{date}</h2>
-        <ExpandedCard
-          shortDescription={shortDescription}
-          longDescription={longDescription}/>
+        <ExpandedCard description={description} />
       </section>
     </>
   );

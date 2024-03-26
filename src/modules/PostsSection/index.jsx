@@ -2,20 +2,15 @@ import { Link } from "react-router-dom";
 import PostsCard from "../../components/PostsCard/index";
 import "./styles.css";
 import { PostsData } from "../../utils/data/postsMock";
-import useGetAll from "../../utils/services/hooks/useGetAll";
 import useGetToken from "../../utils/services/hooks/useGetToken";
 
 function PostsSection() {
-  // const navigate = useNavigate();
-  // const { data, error, loading } = useGetAll({ url: `publication/getAll` });
+  const { data, loading, error } = useGetToken(
+    "publication/getAll",
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
+  );
 
-  // console.log("data", data?.data);
-
-  // const { data, loading, error } = useGetToken(
-  //   "publication/getAll",
-  //   "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NTM3ODQsImV4cCI6MTcxMTQ1NzM4NH0.0xDAsJ89x-ZEBf22jpBc5YlbbdZ-xF7fu080R5b1dwNsh9ZeDYJY0f6Sc0zzjuEaB5AduKqK3413HHT-CKV8IQ"
-  // );
-  // console.log("postdata", data);
+  console.log("postdata", data);
 
   return (
     <section className="posts-section">
@@ -31,8 +26,7 @@ function PostsSection() {
           img2={post.img2}
           img3={post.img3}
           date={post.date}
-          shortDescription={post.shortDescription}
-          longDescription={post.longDescription}
+          description={post.description}
         />
       ))}
       <Link to={"/posts"}>

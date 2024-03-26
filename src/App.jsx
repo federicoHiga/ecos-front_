@@ -26,7 +26,7 @@ function App() {
         {/* Ruta de proveedores (visitante) */}
         <Route path="/providers" element={<ProvidersHome />} />
         <Route path="/posts" element={<PostsView />} />
-        <Route path="/providers/:category" element={<ProvidersDetail />} />
+        <Route path="/providers/:id" element={<ProvidersDetail />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

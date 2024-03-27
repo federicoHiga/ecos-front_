@@ -51,6 +51,8 @@ export const SearchResultCard = ({ supplier }) => {
     setExpanded(expanded === id ? -1 : id);
   };
 
+  console.log("supplier", supplier);
+
   let settings = {
     dots: true,
     infinite: true,
@@ -114,7 +116,7 @@ export const SearchResultCard = ({ supplier }) => {
               color: theme.palette.violeta.main,
             }}
           >
-            Breve descripcion
+            {supplier?.shortDescription}
           </Typography>
 
           <section className="search-result-location-container">
@@ -175,6 +177,7 @@ export const SearchResultCard = ({ supplier }) => {
           <Typography
             variant="subtitle1"
             sx={{
+              textAlign: "start",
               fontFamily: theme.typography.fontFamily,
               fontSize: "16px",
               fontWeight: theme.typography.subtitulos.fontWeight,

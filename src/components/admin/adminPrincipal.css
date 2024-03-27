@@ -116,3 +116,19 @@
     gap: 2px;
     padding: 8px;
 }
+
+.ButtonContainer{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+}
+
+.buttonCerrarSesion{
+  background-color: #D2D2D2 ;
+  color:#222222 ;
+  border-radius: 0px;
+  border-bottom-left-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  
+}

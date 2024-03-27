@@ -17,7 +17,7 @@ export default function AdminPrincipal() {
       <Typography variant="subtitulos">Estadisticas mensuales</Typography>
       <div class="newProfiles">
         <Typography variant="subtitulos"> Nuevos Perfiles Creados:</Typography>
-        <Typography variant="subtitulos">100</Typography>
+        <Typography variant="subtitulos">{data?.data?.newSuppliers||0} </Typography>
       </div>
       <div class="boxCalculosContainer">
         <div class="boxcalculos box colorAceptado">

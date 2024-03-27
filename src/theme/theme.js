@@ -25,20 +25,22 @@ const theme = createTheme({
       medium: "#a628bf",
       light: "#e4c0ec",
     },
+    postulado: {
+      main: "#505050",
+    },
     exito: {
       main: "#1d9129",
     },
     revision: {
       main: "#b86b11",
     },
-    rojo: {
+    denegado: {
       main: "#bc1111",
     },
     blanco: {
       main: "#FAFAFA",
     },
     grises: {
-      dark: "#505050",
       medium: "#d2d2d2",
       light: "#EAEAEA",
     },
@@ -84,7 +86,7 @@ const theme = createTheme({
           style: {
             textTransform: "none",
             border: "none",
-            maxWidth: "200px",
+            maxWidth: "328px",
             maxHeight: "40px",
             borderRadius: "100px",
             padding: "10px 24px",
@@ -127,7 +129,7 @@ const theme = createTheme({
             textTransform: "none",
             color: "#4E169D",
             fontWeight: "600",
-            fontSize: "16px"
+            fontSize: "16px",
           },
         },
       ],

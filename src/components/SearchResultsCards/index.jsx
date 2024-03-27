@@ -51,8 +51,6 @@ export const SearchResultCard = ({ supplier }) => {
     setExpanded(expanded === id ? -1 : id);
   };
 
-  console.log("supplier", supplier);
-
   let settings = {
     dots: true,
     infinite: true,

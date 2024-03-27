@@ -1,25 +1,25 @@
 import { Typography } from "@mui/material";
-import styles from "./visualizacionPublicacion.module.css";
-const array = [1, 1, 1, 1, 1];
+import "./visualizacionPublicacion.css";
+const array = [1, 2, 3, 4, 5];
 
 export default function VisualizacionPublicacion() {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <div>
-        <h1 className={styles.title} >
+        <h1 className="title" >
           Visualizaciones por Publicación
         </h1>
       </div>
-      {array.map((a) => {
+      {array.map((a, i) => {
         return (
-          <div className={styles.boxVisualizacion}>
-            <div className={styles.publiucation}>
+          <div className="boxVisualizacion" key={i}>
+            <div className="publiucation">
               <Typography variant="subtitulos">
                 ¿Qué es el Upcycling?
               </Typography>
               <Typography variant="subtitulos">17/04/2023</Typography>
             </div>
-            <div className={styles.vistas}>
+            <div className="vistas">
               <svg
                 width="40"
                 viewBox="0 0 25 24"
@@ -31,7 +31,7 @@ export default function VisualizacionPublicacion() {
                   fill="#4E169D"
                 />
               </svg>
-              <p className={styles.count}>50</p>
+              <p className="count">50</p>
             </div>
           </div>
         );

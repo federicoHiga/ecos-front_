@@ -1,33 +1,36 @@
 import { Typography } from "@mui/material";
 import "./adminPrincipal.css";
-import ProviderCategory from "./providerCategory";
-import VisualizacionPublicacion from "./visualizacionPublicacion";
+import ProviderCategory from "./providerCategory/providerCategory";
+import VisualizacionPublicacion from "./visualizacionPublicacion/visualizacionPublicacion";
+
 
 export default function AdminPrincipal() {
   return (
-    <div class="container">
-      <Typography variant="titulos">Dashboard Administrador</Typography>
+    <div className="adminContainer">
+      <div className="adminBox">
+        <Typography variant="titulos">Dashboard Administrador</Typography>
       <Typography variant="subtitulos">Estadisticas mensuales</Typography>
-      <div class="newProfiles">
+      <div className="newProfiles">
         <Typography variant="subtitulos"> Nuevos Perfiles Creados:</Typography>
         <Typography variant="subtitulos">100</Typography>
       </div>
-      <div class="boxCalculosContainer">
-        <div class="boxcalculos box colorAceptado">
-          <p class="title">Aprobados</p>
-          <p class="count">80</p>
+      <div className="boxCalculosContainer">
+        <div className="boxcalculos box colorAceptado">
+          <p className="title">Aprobados</p>
+          <p className="count">80</p>
         </div>
-          <div class="boxcalculos box colorRevicion">
-            <p class="title">Aprobados</p>
-            <p class="count">80</p>
+          <div className="boxcalculos box colorRevicion">
+            <p className="title">Aprobados</p>
+            <p className="count">80</p>
           </div>
-          <div class="boxcalculos box colorDenegado">
-            <p class="title">Aprobados</p>
-            <p class="count">80</p>
+          <div className="boxcalculos box colorDenegado">
+            <p className="title">Aprobados</p>
+            <p className="count">80</p>
           </div>
       </div>
-      <ProviderCategory />
-      <VisualizacionPublicacion />
+      </div>
+     <ProviderCategory />
+     <VisualizacionPublicacion />
     </div>
   );
 }

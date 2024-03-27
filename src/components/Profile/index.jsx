@@ -40,13 +40,11 @@ const StyledMenu = styled((props) => (
 
 
 export default function Profile() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const [userData, setUserData] = useState(null); // Estado local para almacenar los datos del usuario
+  const [anchorEl, setAnchorEl] = useState(null)
+  const { user, setUser, setToken } = useContext(AuthContext)
   const navigate = useNavigate()
 
-
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,12 +56,11 @@ export default function Profile() {
 
   const googleSignOut = async () => {
     try {
-      if (isLoggedIn) {
+      if (user) {
         sessionStorage.removeItem('userData')
-        sessionStorage.removeItem('rol')
         sessionStorage.removeItem('token')
-        sessionStorage.removeItem('isLoggedIn')
-        setIsLoggedIn(false); 
+        setToken(null)
+        setUser(null)
         navigate('/login')
       }
     } catch (error) {
@@ -72,31 +69,18 @@ export default function Profile() {
     }
   };
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      const userDataString = sessionStorage.getItem('userData');
-      if (userDataString) {
-        const userDataObject = JSON.parse(userDataString);
-        setUserData(userDataObject);
-      }
-    }
-    console.log(`isLoggedIn es: ${isLoggedIn}`)
-  }, [isLoggedIn]);
-  
-
-
   const getInitials = (fullName) => {
     if (!fullName) return '';
     const nameParts = fullName.split(' ');
     return nameParts.map((part) => part.charAt(0)).join('').toUpperCase();
   };
 
-  const initialName = getInitials(userData?.name)
-  const initialLastname = getInitials(userData?.lastName)
+  const initialName = getInitials(user?.name)
+  const initialLastname = getInitials(user?.lastName)
 
   return (
     <div id="profile-menu">
-    { isLoggedIn ?
+    { user ?
      <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip>
@@ -112,7 +96,7 @@ export default function Profile() {
           </IconButton>
         </Tooltip>
       </Box>
-      {userData && userData.rol === "PROVEEDOR" ? 
+      {user && user.rol === "PROVEEDOR" ? 
       <StyledMenu
         anchorEl={anchorEl}
         id="account-menu"
@@ -126,10 +110,10 @@ export default function Profile() {
           <div id="profile">
           <img src={perfilImage}/>
           <div id="info">
-          {userData && userData.lastName && userData.name && 
-            (<p id="name">{`${userData.name}  ${userData.lastName}`}</p>)}
-            {userData && userData.email && 
-            (<p>{userData.email}</p>)}
+          {user && user.lastName && user.name && 
+            (<p id="name">{`${user.name}  ${user.lastName}`}</p>)}
+            {user && user.email && 
+            (<p>{user.email}</p>)}
           </div>
           </div>
         </div>

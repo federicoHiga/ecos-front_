@@ -3,10 +3,13 @@ import React, { createContext, useState } from 'react';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(() => window.sessionStorage.getItem("token"));
+  const [user, setUser] = useState(() =>
+    JSON.parse(window.sessionStorage.getItem("userData"))
+  );
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+    <AuthContext.Provider value={{token, setToken, user, setUser}}>
       {children}
     </AuthContext.Provider>
   );

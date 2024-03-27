@@ -1,17 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from "axios";
 import google from '../../../assets/svg/google_icon.svg'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from "react";
-import { AuthContext } from "../../../utils/context/AuthContext"
 
 
 export default function GoogleButton() {
   const navigate = useNavigate()
-  const [accessToken, setAccessToken] = useState(null);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const [userData, setUserData] = useState(null); 
 
    const googleSuccess = async (res) => {
      const scope = res.scope
@@ -21,8 +16,11 @@ export default function GoogleButton() {
        if(response){
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('userData', JSON.stringify(response.data))
-        setIsLoggedIn(true)
-         navigate('/');
+        if(response.data.rol === "PROVEEDOR"){
+          navigate('/')
+        } else {
+          navigate('/administrador')
+        } 
        } else {
         console.log("Error al iniciar sesión.")
        }

@@ -9,18 +9,18 @@ import Profile from '../../components/Profile'
 import { AuthContext } from '../../utils/context/AuthContext'
 
 const GlobalNav = () => {
-  const { isLoggedIn } = useContext(AuthContext)
+  const {token, user} = useContext(AuthContext)
   return(
     <div>
-        <NavLink href="/" font="bold" text="Inicio" />
+      <NavLink href="/" font="bold" text="Inicio" />
       <NavLink href="/providers" font="bold" text="Proveedores" />
       <NavLink href="/posts" font="bold" text="Publicaciones" />
-      {!isLoggedIn && (
+      {!token && !user && (
         <NavLink href="/login" font="bold" text="Iniciá sesión" />
       )}
       <NavLink href="/" font="italic" text="¿Querés formar parte de la Red de impacto ECO como Proveedor?" />
-      {!isLoggedIn && (
-          <NavLink href="/register" font="bold" text="Registrate" />
+      {!token && !user && (
+        <NavLink href="/register" font="bold" text="Registrate" />
       )}
     </div>
   )

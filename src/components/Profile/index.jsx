@@ -11,7 +11,7 @@ import './profile.css'
 import { AuthContext } from '../../utils/context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 
-const StyledMenu = styled((props) => (
+const ProviderStyledMenu = styled((props) => (
   <Menu
     elevation={0}
     anchorOrigin={{
@@ -36,7 +36,35 @@ const StyledMenu = styled((props) => (
     boxShadow:
       'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
   },
-}));
+}))
+
+const AdminStyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    backgroundColor: '#D2D2D2',
+    borderTopLeftRadius : 'unset',
+    borderTopRightRadius : 'unset',
+    marginTop: theme.spacing(1),
+    minWidth: 100,
+    padding: '2px 10px 2px 12px',
+    color:
+      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+    boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+  },
+}))
 
 
 export default function Profile() {
@@ -97,7 +125,7 @@ export default function Profile() {
         </Tooltip>
       </Box>
       {user && user.rol === "PROVEEDOR" ? 
-      <StyledMenu
+      <ProviderStyledMenu
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -125,9 +153,9 @@ export default function Profile() {
             Cerrar sesión
           </span>
         </div>
-      </StyledMenu> 
+      </ProviderStyledMenu> 
       : 
-      <StyledMenu
+      <AdminStyledMenu
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -141,7 +169,7 @@ export default function Profile() {
             Cerrar sesión
           </span>
         </div>
-      </StyledMenu>
+      </AdminStyledMenu>
     }
 
     </React.Fragment>  

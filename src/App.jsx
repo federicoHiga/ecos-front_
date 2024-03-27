@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
-
+import { AuthProvider } from "./utils/context/AuthContext";
 import PostsView from "./modules/PostsView";
 import ProvidersHome from "./modules/Providers/ProvidersHome";
 import ProvidersDetail from "./modules/Providers/ProvidersDetail";
@@ -12,7 +12,7 @@ import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesMod
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Nav />
 
       <Routes>
@@ -43,7 +43,7 @@ function App() {
           <Route path="publicaciones" element={""} />
         </Route>
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 

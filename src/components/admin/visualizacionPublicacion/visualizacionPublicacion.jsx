@@ -1,8 +1,11 @@
 import { Typography } from "@mui/material";
 import "./visualizacionPublicacion.css";
-const array = [1, 2, 3, 4, 5];
+import useGetAll from "../../../utils/services/hooks/useGetAll";
+// const array = [1, 2, 3, 4, 5];
 
 export default function VisualizacionPublicacion() {
+
+  const {data} = useGetAll({url:"statistics/publicationByQuantityViews"})
   return (
     <div className="container">
       <div>
@@ -10,14 +13,14 @@ export default function VisualizacionPublicacion() {
           Visualizaciones por Publicación
         </h1>
       </div>
-      {array.map((a, i) => {
+      {data?.data?.map((a, i) => {
         return (
           <div className="boxVisualizacion" key={i}>
             <div className="publiucation">
               <Typography variant="subtitulos">
-                ¿Qué es el Upcycling?
+                {a.title}
               </Typography>
-              <Typography variant="subtitulos">17/04/2023</Typography>
+              <Typography variant="subtitulos">{a.fechaCreacion} </Typography>
             </div>
             <div className="vistas">
               <svg
@@ -31,7 +34,7 @@ export default function VisualizacionPublicacion() {
                   fill="#4E169D"
                 />
               </svg>
-              <p className="count">50</p>
+              <p className="count">{a.views}</p>
             </div>
           </div>
         );

@@ -1,9 +1,12 @@
 import AdminPrincipal from "../../../components/admin/adminPrincipal";
-import styles from "./adminDashboard.module.css"
+import "./adminDashboard.css"
 export default function AdminDashboard() {
   return (
-    <div className={styles.container}>
-      <AdminPrincipal  />
-    </div>
+    // <div className="container">
+    //   <AdminPrincipal  />
+    // </div>
+    <>
+    <AdminPrincipal  />
+    </>
   );
 }

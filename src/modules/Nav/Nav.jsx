@@ -6,10 +6,9 @@ import close from '../../assets/svg/nav/close.svg'
 import NavLink from './NavLink'
 import { useLocation } from 'react-router-dom'
 import Profile from '../../components/Profile'
-import { AuthContext } from '../../utils/context/AuthContext'
 
 const GlobalNav = () => {
-  const {user} = useContext(AuthContext)
+  const user = JSON.parse(sessionStorage.getItem("userData"))
   return(
     <div>
       <NavLink href="/" font="bold" text="Inicio" />

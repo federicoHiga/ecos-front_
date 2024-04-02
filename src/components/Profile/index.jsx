@@ -69,7 +69,7 @@ const AdminStyledMenu = styled((props) => (
 
 export default function Profile() {
   const [anchorEl, setAnchorEl] = useState(null)
-  const { user, setUser, setToken } = useContext(AuthContext)
+  const user = JSON.parse(sessionStorage.getItem("userData"))
   const navigate = useNavigate()
 
   const open = Boolean(anchorEl)
@@ -87,21 +87,23 @@ export default function Profile() {
       if (user) {
         sessionStorage.removeItem('userData')
         sessionStorage.removeItem('token')
-        setToken(null)
-        setUser(null)
         navigate('/login')
       }
     } catch (error) {
       console.log(error);
-      console.log('Error al cerrar sesión.');
+      console.log('Error al cerrar sesión.')
     }
   };
 
   const getInitials = (fullName) => {
     if (!fullName) return '';
     const nameParts = fullName.split(' ');
-    return nameParts.map((part) => part.charAt(0)).join('').toUpperCase();
-  };
+    return nameParts.map((part) => part.charAt(0)).join('').toUpperCase()
+  }
+
+  useEffect(() => {
+    console.log('Datos de usuario desde AuthContext:', user);
+  }, [user])
 
   const initialName = getInitials(user?.name)
   const initialLastname = getInitials(user?.lastName)

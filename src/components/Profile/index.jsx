@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -8,7 +8,6 @@ import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import perfilImage from '../../assets/svg/perfil.svg'
 import './profile.css'
-import { AuthContext } from '../../utils/context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 
 const ProviderStyledMenu = styled((props) => (
@@ -100,10 +99,6 @@ export default function Profile() {
     const nameParts = fullName.split(' ');
     return nameParts.map((part) => part.charAt(0)).join('').toUpperCase()
   }
-
-  useEffect(() => {
-    console.log('Datos de usuario desde AuthContext:', user);
-  }, [user])
 
   const initialName = getInitials(user?.name)
   const initialLastname = getInitials(user?.lastName)

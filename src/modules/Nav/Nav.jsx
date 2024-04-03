@@ -4,6 +4,7 @@ import logotipo from "../../assets/svg/image 33 (1).png";
 import bars from "../../assets/svg/nav/bars.svg";
 import close from "../../assets/svg/nav/close.svg";
 import NavLink from "./NavLink";
+import Profile from '../../components/Profile'
 import { useLocation } from "react-router-dom";
 
 const GlobalNav = () => {

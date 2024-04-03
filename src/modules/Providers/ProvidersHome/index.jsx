@@ -8,7 +8,7 @@ import useGetAll from "../../../utils/services/hooks/useGetAll";
 const ProvidersHome = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { data } = useGetAll({ url: "category" });
+  const { data } = useGetAll({ url: "category", needsAuth: false });
 
   return (
     <SearchByChildren>

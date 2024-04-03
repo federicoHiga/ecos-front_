@@ -12,6 +12,7 @@ const ProvidersDetail = () => {
 
   const { data, error, loading } = useGetAll({
     url: `supplier/searchbycategory?id=${state.category.id}`,
+    needsAuth: false,
   });
 
   return (

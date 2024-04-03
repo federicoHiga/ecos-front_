@@ -7,7 +7,10 @@ import useGetAll from "../../utils/services/hooks/useGetAll";
 const CategoriesGrid = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { data } = useGetAll({ url: "category" });
+  const { data } = useGetAll({
+    url: "category",
+    needsAuth: false,
+  });
 
   return (
     <div className="categories-section">
@@ -19,9 +22,7 @@ const CategoriesGrid = () => {
             variant="categories"
             className="categories-grid-button"
             key={category.id}
-            onClick={() =>
-              navigate(`/providers/${category?.id}`, { state: { category } })
-            }
+            onClick={() => navigate(`/providers/${category?.id}`, { state: { category } })}
           >
             <div className="button-inner-wrapper">
               <section className="grid-item-icon-container">

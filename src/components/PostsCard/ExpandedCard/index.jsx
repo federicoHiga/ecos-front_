@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { useState } from "react";
-import { CardActions, Collapse, IconButton } from "@mui/material";
+import { CardActions, Collapse, Button } from "@mui/material";
 
 export default function ExpandedCard(props) {
   const { description } = props;
@@ -28,7 +28,8 @@ export default function ExpandedCard(props) {
       >
         <p className="longText">{description}</p>
       </Collapse>
-      <IconButton
+      <Button sx={{textTransform: 'none'}}
+        variant="text"
         expand={expanded ? "true" : undefined}
         onClick={handleExpandClick}
         aria-expanded={expanded}
@@ -39,7 +40,7 @@ export default function ExpandedCard(props) {
         ) : (
           <p className="see-more">Ver mas</p>
         )}
-      </IconButton>
+      </Button>
     </CardActions>
   );
 }

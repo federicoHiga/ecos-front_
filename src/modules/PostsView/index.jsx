@@ -10,8 +10,8 @@ export default function PostsView() {
   const { pathname } = useLocation();
 
   const { data, loading, error } = useGetToken(
-    "publication/getAll",
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
+    "publication",
+    // "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
   );
 
   console.log("postdata", data);
@@ -24,7 +24,7 @@ export default function PostsView() {
     <SearchByChildren>
       <div className="postsView-section">
         <div className="postsView-container">
-          {PostsData.slice(0, 8).map((post) => (
+          {data.slice(0, 8).map((post) => (
             <PostsCard
               key={post.id}
               title={post.title}

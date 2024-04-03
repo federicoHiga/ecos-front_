@@ -19,7 +19,7 @@ export default function GoogleButton() {
         if(response.data.rol === "PROVEEDOR"){
           navigate('/')
         } else {
-          navigate('/administrador')
+          navigate('/admin')
         } 
        } else {
         console.log("Error al iniciar sesión.")

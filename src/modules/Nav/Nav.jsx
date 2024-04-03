@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import "../../assets/styles/Nav/nav.css";
-import logotipo from "../../assets/svg/logotipo.svg";
-import bars from "../../assets/svg/nav/bars.svg";
-import close from "../../assets/svg/nav/close.svg";
-import NavLink from "./NavLink";
-import { useLocation } from "react-router-dom";
+import React, {useState, useContext} from 'react'
+import '../../assets/styles/Nav/nav.css'
+import logotipo from '../../assets/svg/logotipo.svg'
+import bars from '../../assets/svg/nav/bars.svg'
+import close from '../../assets/svg/nav/close.svg'
+import NavLink from './NavLink'
+import { useLocation } from 'react-router-dom'
+import Profile from '../../components/Profile'
 
 const GlobalNav = () => {
-  return (
+  const user = JSON.parse(sessionStorage.getItem("userData"))
+  return(
     <div>
       <NavLink href="/" font="bold" text="Inicio" />
       <NavLink href="/providers" font="bold" text="Proveedores" />
       <NavLink href="/posts" font="bold" text="Publicaciones" />
-      <NavLink href="/login" font="bold" text="Iniciá sesión" />
-      <NavLink
-        href="/"
-        font="italic"
-        text="¿Querés formar parte de la Red de impacto ECO como Proveedor?"
-      />
-      <NavLink href="/register" font="bold" text="Registrate" />
+      {!user && (
+        <NavLink href="/login" font="bold" text="Iniciá sesión" />
+      )}
+      <NavLink href="/" font="italic" text="¿Querés formar parte de la Red de impacto ECO como Proveedor?" />
+      {!user && (
+        <NavLink href="/register" font="bold" text="Registrate" />
+      )}
     </div>
   );
 };
@@ -44,9 +46,13 @@ const ProviderNav = () => {
   );
 };
 
-export default function Nav({ isAdmin }) {
-  const [open, setOpen] = useState(false);
-  const location = useLocation();
+export default function Nav(){
+    const [open, setOpen] = useState(false)
+    const location = useLocation()
+    
+    const handleOpen = () => {
+        setOpen(!open)
+    }
 
   const handleOpen = () => {
     setOpen(!open);
@@ -74,15 +80,16 @@ export default function Nav({ isAdmin }) {
             />
           )}
         </button>
-        {open === true ? (
-          <ul id="nav-items">
-            {isAdminRoute() ? <AdminNav /> : null}
-            {isProviderRoute() ? <ProviderNav /> : null}
-            {!isProviderRoute() && !isAdminRoute() ? <GlobalNav /> : null}
-          </ul>
-        ) : null}
-      </div>
-      <img src={logotipo} alt="logotipo" id="logotipo" />
+        {
+            (open === true) ? 
+            <ul id='nav-items'>
+              {isAdminRoute() ? <AdminNav /> : <GlobalNav />}
+            </ul> : 
+            null
+        }
+        </div>
+      <img src={logotipo} alt="logotipo" id="logotipo"/>
+      <Profile/>
     </nav>
   );
 }

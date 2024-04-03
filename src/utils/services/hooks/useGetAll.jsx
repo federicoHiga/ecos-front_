@@ -9,7 +9,11 @@ const useGetAll = (props) => {
   const [loading, setLoading] = useState(true);
 
   const getData = async () => {
-    return instanceAxios.get(`${LOCAL_URL}/${url}`);
+    return await instanceAxios.get(`${LOCAL_URL}/${url}`,{
+      headers:{
+        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYW1pcm9zYW5jaGV6c29sYW5vQGdtYWlsLmNvbSIsInJvbGVzIjoiQURNSU5JU1RSQURPUiIsImlhdCI6MTcxMTUzOTIzNywiZXhwIjoxNzExNTQyODM3fQ.FYT8cks35yYZA3j4DD4gOA1IYMUyaFYVSlsCp6arHLBGy33uRWPCm0dAnuP1l6-RsxhcWsPdir92iD7uc-yHGQ'
+      }
+    });
   };
 
   useEffect(() => {

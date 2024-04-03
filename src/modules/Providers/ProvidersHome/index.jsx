@@ -2,17 +2,13 @@ import React from "react";
 import "./styles.css";
 import { Button, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { CategoriesData } from "../../../utils/data/categoriesMock";
 import SearchByChildren from "../../../components/SearchFlexible";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 
 const ProvidersHome = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { data, error, loading } = useGetAll({ url: "category" });
-
-  //TODO recorrer esta data en la vista, una vez que estén terminados los cambios del JSON
-  console.log("HOOK DATA: ", data?.data);
+  const { data } = useGetAll({ url: "category" });
 
   return (
     <SearchByChildren>
@@ -26,19 +22,17 @@ const ProvidersHome = () => {
           </Typography>
         </div>
         <div className="providers">
-          {CategoriesData.map((category) => (
+          {data?.data.map((category) => (
             <Button
               variant="categories"
               key={category.id}
               sx={{ width: "328px", margin: "0 auto" }}
-              onClick={() =>
-                navigate(`/providers/${category.category}`, { state: { category } })
-              }
+              onClick={() => navigate(`/providers/${category?.id}`, { state: { category } })}
             >
               <div className="button-inner-container">
                 <section className="button-icon-container">
                   <img
-                    src={category.img}
+                    src={category?.image}
                     alt="imagen característica de la categoría"
                     className="button-category-icon"
                   />
@@ -48,7 +42,7 @@ const ProvidersHome = () => {
                     variant="subtitulos"
                     sx={{ fontWeight: "600", fontSize: "18px" }}
                   >
-                    {category.category}
+                    {category?.category}
                   </Typography>
                 </section>
               </div>

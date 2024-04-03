@@ -10,6 +10,7 @@ import ProvidersHome from "./modules/Providers/ProvidersHome";
 import ProvidersDetail from "./modules/Providers/ProvidersDetail";
 import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesModal";
 import IndexFile from "./components/cloudinary/IndexFile";
+import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         {/* Ruta de proveedores (visitante) */}
         <Route path="/providers" element={<ProvidersHome />} />
         <Route path="/posts" element={<PostsView />} />
-        <Route path="/providers/:category" element={<ProvidersDetail />} />
+        <Route path="/providers/:id" element={<ProvidersDetail />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
@@ -40,7 +41,7 @@ function App() {
 
         {/* Ruta de administrador (dashboard) */}
         <Route path="admin">
-          <Route index element={< IndexFile/>} />
+          <Route index element={< AdminDashboard/>} />
           <Route path="providers" element={""} />
           <Route path="publications" element={""} />
         </Route>

@@ -4,17 +4,18 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./modules/Login/Register";
 import SignIn from "./modules/Login/SingnIn";
 import Nav from "./modules/Nav/Nav";
-
+import { AuthProvider } from "./utils/context/AuthContext";
 import PostsView from "./modules/PostsView";
 import ProvidersHome from "./modules/Providers/ProvidersHome";
 import ProvidersDetail from "./modules/Providers/ProvidersDetail";
 import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesModal";
 import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
+import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Nav />
 
       <Routes>
@@ -42,12 +43,12 @@ function App() {
 
         {/* Ruta de administrador (dashboard) */}
         <Route path="admin">
-          <Route index element={<IndexFile />} />
+          <Route index element={< AdminDashboard/>} />
           <Route path="providers" element={""} />
           <Route path="publications" element={""} />
         </Route>
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 

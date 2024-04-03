@@ -60,6 +60,11 @@ const theme = createTheme({
       fontWeight: 500,
       // ... otros estilos que quieras agregar
     },
+    boxAdmin: {
+      fontSize: "18px",
+      fontWeight: 500,
+      // ... otros estilos que quieras agregar
+    },
     parrafos: {
       fontSize: "0.75rem",
       fontWeight: 300,

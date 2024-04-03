@@ -21,8 +21,12 @@ const Custombutton = styled(Button)(() => ({
 export default function Invitacion() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const user = JSON.parse(sessionStorage.getItem("userData"));
+
   return (
     <Container maxWidth="sm" sx={{ marginBottom: 3, marginTop: 2 }}>
+      {!user &&
+      (
       <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box
           sx={{
@@ -45,6 +49,7 @@ export default function Invitacion() {
           Registrarte{" "}
         </Custombutton>
       </CardContent>
+      )}
     </Container>
   );
 }

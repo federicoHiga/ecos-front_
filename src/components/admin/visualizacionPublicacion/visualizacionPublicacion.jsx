@@ -1,28 +1,28 @@
 import { Typography } from "@mui/material";
-import styles from "./visualizacionPublicacion.module.css";
-import useGetAll from "../../utils/services/hooks/useGetAll";
-const array = [1, 1, 1, 1, 1];
+import "./visualizacionPublicacion.css";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
+// const array = [1, 2, 3, 4, 5];
 
 export default function VisualizacionPublicacion() {
 
   const {data} = useGetAll({url:"statistics/publicationByQuantityViews"})
   return (
-    <div className={styles.container}>
+    <div className="container">
       <div>
-        <h1 className={styles.title} >
+        <h1 className="title" >
           Visualizaciones por Publicación
         </h1>
       </div>
-      {data?.data?.map((a, index) => {
+      {data?.data?.map((a, i) => {
         return (
-          <div className={styles.boxVisualizacion} key={index}>
-            <div className={styles.publiucation}>
+          <div className="boxVisualizacion" key={i}>
+            <div className="publiucation">
               <Typography variant="subtitulos">
                 {a.title}
               </Typography>
               <Typography variant="subtitulos">{a.fechaCreacion} </Typography>
             </div>
-            <div className={styles.vistas}>
+            <div className="vistas">
               <svg
                 width="40"
                 viewBox="0 0 25 24"
@@ -34,7 +34,7 @@ export default function VisualizacionPublicacion() {
                   fill="#4E169D"
                 />
               </svg>
-              <p className={styles.count}>{a.views} </p>
+              <p className="count">{a.views}</p>
             </div>
           </div>
         );

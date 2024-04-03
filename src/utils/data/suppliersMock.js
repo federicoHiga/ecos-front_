@@ -1,27 +1,36 @@
 export const SuppliersData = [
   {
     id: 1,
-    name: "Lavanda2",
+    name: "Lavanda",
     description:
       "Lavanda es un proyecto familiar. Perseguimos una cosmética efectiva, magistral y con personalidad. Nuestro objetivo es hacer productos que enamoren, que cuiden al planeta, con principios activos que dejen el pelo sano y la piel bella.",
     country: {
-      id: 2,
-      name: null,
+      id: 1,
+      name: "Argentina",
     },
-    city: null,
+    city: "Luján de Cuyo",
     category: {
+      id: 1,
       category: "Bienestar",
+      image:
+        "https://res.cloudinary.com/dpbuvii9v/image/upload/v1710858373/Ecosistema-semillero/Categorias/bienestar_onzpey.png",
     },
     image:
-      "https://s3-alpha-sig.figma.com/img/1d2e/ea59/1c27a72869b176f8ac7bc5f75f460594?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oYjO3J7M9kSb-5cSRgDaIamiKJJwgMy6m3vC7ElW6UnS28UyfU1Da5tCgyJfrsXD-qh6FffOJl~Bvy~HiwBHRWekqzsX8KwjsyXg-t6avJbImm5JtRd3~jkEcVdCR~Ig2i7WjAsZbdtdeiHij2~vOcBqXTToiWVXYeFxOAVlwhJ5JHr2FLaF-snJsXOOBm0jT-byexy2LVloD7xwGSQQe1X90DYzETH9k8hm~2Q~hX1-fP4H6IsUo7nJFphQZTLgnkCU2NYD0vaR-iIVRRqVj~QyZ-gAtstlNY0Z7sbf9pw15ObfHwmXa-v-PzlFqI06NnYI0k2YK6ZG9wDBb3GxuQ__",
-    provincia: {
-      id: 2,
-      nombre: "Buenos Aires",
+      "https://res.cloudinary.com/dxatwbzff/image/upload/v1710415070/Quinto/1c27a72869b176f8ac7bc5f75f460594_fddnpc.jpg",
+    province: {
+      id: 18,
+      nombre: "Mendoza",
       pais: {
         id: 1,
         name: "Argentina",
       },
     },
+    facebook: "https://es-la.facebook.com/",
+    numberPhone: "2616574963",
+    instagram: "https://www.instagram.com/",
+    email: "leandromercadosimi@gmail.com",
+    shortDescription: "Cosmética Natural",
+    images: [],
   },
   {
     id: 2,

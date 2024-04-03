@@ -1,0 +1,34 @@
+.providers-profile-screen {
+  min-height: 100vh;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.providers-profile-name-container {
+  width: 100%;
+  text-align: center;
+  margin: 40px 0 32px 0;
+}
+
+.providers-profile-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.providers-profile-products-container {
+  margin: 32px 0 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(328px, 1fr));
+  grid-auto-rows: minmax(224px, max-content);
+  gap: 16px;
+}
+
+.providers-profile-product-demo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

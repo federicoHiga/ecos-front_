@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Dialog, useTheme, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,7 +10,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import "./styles.css";
 
 // eslint-disable-next-line react/prop-types
-const ExpandedCard = ({ open, handleClose }) => {
+const ExpandedCard = ({ open, handleClose, supplier }) => {
   const theme = useTheme();
 
   return (
@@ -29,51 +30,50 @@ const ExpandedCard = ({ open, handleClose }) => {
           <div className="expanded-card-category-container">
             <Typography
               className="expanded-card-category"
-              sx={{ fontFamily: theme.typography.fontFamily }}
+              sx={{
+                fontFamily: theme.typography.fontFamily,
+                fontSize: "13px",
+                fontWeight: 400,
+                color: theme.palette.violeta.main,
+              }}
             >
-              Categoría
+              {supplier?.category?.category}
             </Typography>
           </div>
-          <img
-            className="expanded-card-img"
-            src="https://s3-alpha-sig.figma.com/img/1d2e/ea59/1c27a72869b176f8ac7bc5f75f460594?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oYjO3J7M9kSb-5cSRgDaIamiKJJwgMy6m3vC7ElW6UnS28UyfU1Da5tCgyJfrsXD-qh6FffOJl~Bvy~HiwBHRWekqzsX8KwjsyXg-t6avJbImm5JtRd3~jkEcVdCR~Ig2i7WjAsZbdtdeiHij2~vOcBqXTToiWVXYeFxOAVlwhJ5JHr2FLaF-snJsXOOBm0jT-byexy2LVloD7xwGSQQe1X90DYzETH9k8hm~2Q~hX1-fP4H6IsUo7nJFphQZTLgnkCU2NYD0vaR-iIVRRqVj~QyZ-gAtstlNY0Z7sbf9pw15ObfHwmXa-v-PzlFqI06NnYI0k2YK6ZG9wDBb3GxuQ__"
-            alt="Producto"
-          />
+          <img className="expanded-card-img" src={supplier?.image} alt="Producto" />
         </div>
 
         <div className="expanded-card-data-container">
-          <Typography
-            variant="subtitle1"
-            className="expanded-card-title"
-            sx={{
-              fontFamily: theme.typography.fontFamily,
-              fontSize: "18px",
-              fontWeight: theme.typography.subtitulos.fontWeight,
-              lineHeight: "24px",
-            }}
-          >
-            Proveedor
+          <Typography variant="boxAdmin" sx={{ lineHeight: "25px" }}>
+            {supplier?.name}
           </Typography>
           <Typography
             variant="subtitle"
-            className="expanded-card-subtitle"
             sx={{
               fontFamily: theme.typography.fontFamily,
+              fontWeight: 600,
               fontSize: "13px",
-              fontWeight: theme.typography.parrafos.fontWeight,
               lineHeight: "18px",
+              color: theme.palette.violeta.main,
             }}
           >
-            Breve descripcion
+            {supplier?.shortDescription}
           </Typography>
           <section className="expanded-card-location-container">
             <div className="location-icon-container">
               <LocationOnOutlinedIcon
-                sx={{ color: "#4e169d", width: "20px", height: "20px" }}
+                sx={{ color: theme.palette.violeta.main, width: "20px", height: "20px" }}
               />
             </div>
-            <Typography variant="body1" className="expanded-card-location">
-              Godoy Cruz, Mendoza, Argentina
+            <Typography
+              variant="body1"
+              className="expanded-card-location"
+              sx={{
+                fontSize: "13px",
+                fontWeight: 400,
+              }}
+            >
+              {`${supplier?.city}, ${supplier?.province?.nombre}, ${supplier?.country?.name}`}
             </Typography>
           </section>
         </div>
@@ -92,9 +92,7 @@ const ExpandedCard = ({ open, handleClose }) => {
               padding: 0,
             }}
           >
-            Lavanda es un proyecto familiar. Perseguimos una cosmética efectiva, magistral y
-            con personalidad. Nuestro objetivo es hacer productos que enamoren, que cuiden al
-            planeta, con principios activos que dejen el pelo sano y la piel bella.
+            {supplier?.description}
           </Typography>
         </div>
         <div className="expanded-card-contact-container">
@@ -103,7 +101,7 @@ const ExpandedCard = ({ open, handleClose }) => {
             sx={{
               fontFamily: theme.typography.fontFamily,
               fontSize: "16px",
-              fontWeight: theme.typography.subtitulos.fontWeight,
+              fontWeight: 500,
               lineHeight: "25px",
               padding: 0,
             }}
@@ -113,7 +111,7 @@ const ExpandedCard = ({ open, handleClose }) => {
           <div className="social-media-icons-container">
             <figure className="social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={`https://api.whatsapp.com/send?phone=+54${supplier?.phoneNumber}`}
                 target="_blank"
                 rel="noreferrer"
                 className="social-media-icon-container"
@@ -124,7 +122,7 @@ const ExpandedCard = ({ open, handleClose }) => {
             </figure>
             <figure className="social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={supplier?.instagram}
                 target="_blank"
                 rel="noreferrer"
                 className="social-media-icon-container"
@@ -135,7 +133,7 @@ const ExpandedCard = ({ open, handleClose }) => {
             </figure>
             <figure className="social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={supplier?.facebook}
                 target="_blank"
                 rel="noreferrer"
                 className="social-media-icon-container"
@@ -146,7 +144,7 @@ const ExpandedCard = ({ open, handleClose }) => {
             </figure>
             <figure className="social-media">
               <a
-                href="https://stackoverflow.com//"
+                href={`mailto:${supplier?.email}`}
                 target="_blank"
                 rel="noreferrer"
                 className="social-media-icon-container"

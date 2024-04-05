@@ -13,6 +13,8 @@
   max-width: 304px;
   height: auto;
   position: relative;
+  object-fit: cover;
+  max-height: 140px;
 }
 
 .slick-arrow {

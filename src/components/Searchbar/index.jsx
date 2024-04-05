@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import "./styles.css";
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 const Searchbar = (props) => {
-  const {functionText, text} = props
+  const { functionText, text } = props;
+
   return (
     <div className="searchbar-container">
       <div className="searchbar">
@@ -12,8 +14,9 @@ const Searchbar = (props) => {
         <InputBase
           className="searchbar-input"
           placeholder="Buscar Proveedores"
+          autoFocus={text !== null}
           inputProps={{ "aria-label": "searchbar" }}
-          value={text !==null ? text : ""}
+          value={text !== null ? text : ""}
           onChange={(evt) => functionText(evt.target.value)}
         />
       </div>

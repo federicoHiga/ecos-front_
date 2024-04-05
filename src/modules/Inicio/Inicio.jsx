@@ -1,25 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../assets/styles/Inicio/inicio.css";
 import PostsSection from "../PostsSection/index";
 import ImpactEnterprises from "../../components/ImpactEnterprises";
 import CategoriesGrid from "../../components/CategoriesGrid";
 import SuppliersSection from "../SuppliersSection";
-import Searchbar from "../../components/Searchbar";
-import useGetByNameHook from "../../utils/services/hooks/getHooks";
-import { Typography, useTheme } from "@mui/material";
-import {
-  NoResultsCard,
-  SearchResultCard,
-} from "../../components/SearchResultsCards";
-import { SuppliersData } from "../../utils/data/suppliersMock";
 import SearchByChildren from "../../components/SearchFlexible";
+import useGetAll from "../../utils/services/hooks/useGetAll";
 
 export default function Inicio() {
+  const { data } = useGetAll({
+    url: "supplier",
+    needsAuth: false,
+  });
+
   return (
     <div>
       <SearchByChildren>
         <ImpactEnterprises />
-        <SuppliersSection />
+        <SuppliersSection suppliers={data?.data} />
         <CategoriesGrid />
         <PostsSection />
       </SearchByChildren>

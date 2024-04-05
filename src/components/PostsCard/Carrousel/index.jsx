@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import "./styles.css";
 import Slider from "react-slick";
 
-export default function Carrousel(props) {
-  const { img1, img2, img3 } = props;
-
-  const hasMultipleImages = img1 && (img2 || img3);
+export default function Carrousel({ images }) {
+  const hasMultipleImages = images.length > 1;
 
   var settings = {
     dots: true,
@@ -20,25 +19,24 @@ export default function Carrousel(props) {
       {hasMultipleImages ? (
         <Slider {...settings}>
           <div className="carrousel-img">
-            <img src={img1} alt="Image 1" />
+            <img src={images[0]} alt="Image 1" />
           </div>
-          {img2 && (
+          {images[1] && (
             <div className="carrousel-img">
-              <img src={img2} alt="Image 2" />
+              <img src={images[1]} alt="Image 2" />
             </div>
           )}
-          {img3 && (
+          {images[2] && (
             <div className="carrousel-img">
-              <img src={img3} alt="Image 3" />
+              <img src={images[2]} alt="Image 3" />
             </div>
           )}
         </Slider>
       ) : (
         <div className="carrousel-img">
-          <img src={img1} alt="Single Image" />
+          <img src={images[0]} alt="Single Image" />
         </div>
       )}
     </section>
   );
 }
-

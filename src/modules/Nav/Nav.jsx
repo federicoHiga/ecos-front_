@@ -28,7 +28,7 @@ const GlobalNav = () => {
 const AdminNav = () => {
   return (
     <div>
-      <NavLink href="/" font="bold" text="Dashboard Administrador" />
+      <NavLink href="/admin" font="bold" text="Dashboard Administrador" />
       <NavLink href="/admin/providers" font="bold" text="Proveedores" />
       <NavLink href="/admin/publications" font="bold" text="Publicaciones" />
       <NavLink href="/" font="bold" text="Logout" />

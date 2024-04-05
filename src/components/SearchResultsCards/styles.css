@@ -73,7 +73,7 @@
 }
 
 .search-result-category {
-  width: 40%;
+  width: 96px;
   height: 100%;
   border: 1px solid #00a364;
   border-top-left-radius: 4px;
@@ -145,12 +145,6 @@
   align-items: center;
 }
 
-.search-result-location {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 20px;
-}
-
 .search-result-card > .search-result-card-footer {
   width: 24px;
   height: 24px;
@@ -172,9 +166,6 @@
 .search-result-card-description {
   width: 304px;
   text-align: center;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
 }
 
 .search-result-card-contact {

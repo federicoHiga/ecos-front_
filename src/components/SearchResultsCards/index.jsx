@@ -72,6 +72,7 @@ export const SearchResultCard = ({ supplier }) => {
               sx={{
                 fontFamily: theme.typography.fontFamily,
                 color: theme.palette.violeta.main,
+                fontWeight: 400,
                 fontSize: "13px",
                 lineHeight: "18px",
               }}
@@ -125,8 +126,12 @@ export const SearchResultCard = ({ supplier }) => {
             </div>
             <Typography
               variant="body1"
-              className="search-result-location"
-              sx={{ fontFamily: theme.typography.fontFamily }}
+              sx={{
+                fontFamily: theme.typography.fontFamily,
+                fontSize: "13px",
+                fontWeight: 400,
+                lineHeight: "20px",
+              }}
             >
               {`${supplier?.city}, ${supplier?.province.nombre}, ${supplier?.country.name}`}
             </Typography>
@@ -166,6 +171,9 @@ export const SearchResultCard = ({ supplier }) => {
           sx={{
             padding: "0px",
             fontFamily: theme.typography.fontFamily,
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "20px",
           }}
         >
           {supplier?.description}

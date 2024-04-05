@@ -11,7 +11,7 @@ const ProvidersDetail = () => {
   const { state } = useLocation();
 
   const { data, error, loading } = useGetAll({
-    url: `supplier/searchbycategory?id=${state.category.id}`,
+    url: `supplier/searchbycategory?id=${state?.category?.id}`,
     needsAuth: false,
   });
 
@@ -34,7 +34,7 @@ const ProvidersDetail = () => {
                 color: theme.palette.violeta.main,
               }}
             >
-              {state.category.category}
+              {state?.category?.category}
             </Typography>
           </div>
         </div>

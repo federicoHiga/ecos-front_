@@ -12,6 +12,7 @@ import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesMod
 import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
 import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
+import ProvidersForm from "./modules/Providers/ProvidersForm";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/posts" element={<PostsView />} />
         <Route path="/providers/:id" element={<ProvidersDetail />} />
         <Route path="/providers/profile" element={<ProvidersProfile />} />
+        <Route path="/providers/profile/postProduct" element={<ProvidersForm />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />

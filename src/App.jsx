@@ -12,6 +12,7 @@ import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesMod
 import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
 import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
+import AdminListProviders from "./modules/dashboard/administrador/adminListProviders";
 
 function App() {
   return (
@@ -43,8 +44,11 @@ function App() {
 
         {/* Ruta de administrador (dashboard) */}
         <Route path="admin">
-          <Route index element={< AdminDashboard/>} />
-          <Route path="providers" element={""} />
+          <Route index element={<AdminDashboard />} />
+          <Route path="providers">
+            <Route index element={<AdminListProviders />} />
+            <Route path=":id" element={""} />
+          </Route>
           <Route path="publications" element={""} />
         </Route>
       </Routes>

@@ -1,0 +1,75 @@
+.container{
+    padding-top: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContainerlistButtons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: solid 1px;
+}
+
+.buttonTypeStatus{
+    background-color:white;
+    color: #222222;
+}
+
+.buttonSelected{
+        border-bottom: solid 2px;
+        border-radius: 0;
+        border-color: #4E169D;
+}
+
+.card{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EAEAEA;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.containerName{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-around;
+}
+
+.name{
+    font-weight: 700;
+    font-size: 18px;
+    color: #4E169D;
+    padding-bottom: 0px;
+
+}
+
+.subName{
+    font-weight: 400;
+    font-size: 16px;
+    color:#222222;
+
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: #00A364;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.buttonCard{
+    background-color: #EAEAEA;
+    color:#222222 ;
+}

@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import "./visualizacionPublicacion.css";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
-// const array = [1, 2, 3, 4, 5];
 
 export default function VisualizacionPublicacion() {
 

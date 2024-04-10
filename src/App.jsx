@@ -12,6 +12,8 @@ import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesMod
 import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
 import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
+import PostsAdmin from "./modules/Admin/PostsAdmin";
+import LoadPost from "./modules/Admin/LoadPost";
 
 function App() {
   return (
@@ -45,7 +47,10 @@ function App() {
         <Route path="admin">
           <Route index element={< AdminDashboard/>} />
           <Route path="providers" element={""} />
-          <Route path="publications" element={""} />
+          <Route path="publications">
+            <Route index element={<PostsAdmin />} />
+            <Route path="loadPublication" element={<LoadPost />} />
+          </Route>
         </Route>
       </Routes>
     </AuthProvider>

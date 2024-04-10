@@ -1,0 +1,38 @@
+#posts_admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#posts_admin h2, #posts_admin h3{
+    font-weight: 600;
+}
+
+#posts_admin button{
+    padding: 10px 90px;
+    margin: 30px 0 48px 0;
+}
+
+#posts_admin button a{
+    color: white;
+    text-decoration: none;
+}
+
+.posts_admin {
+    margin-top: 25px;
+}
+
+.options {
+    background-color: transparent !important; 
+    width: 5px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.options:active {
+    background-color: #4E169D !important;
+}
+

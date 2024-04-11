@@ -10,7 +10,7 @@ import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 
 //type debe ser error, succes o alert, closeFuncion es una funcion del componente
 //padre que abre o cierra el modal a traves de boolOpen, parrafo es el texto ue mostrara el modal
-export default function AlertModal({ boolOpen, parrafo, closeFuncion, type }) {
+export default function AlertSuccesErrorModal({ boolOpen, parrafo, closeFuncion, type }) {
   const [open, setOpen] = useState(boolOpen);
 
   useEffect(() => {

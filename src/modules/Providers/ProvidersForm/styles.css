@@ -1,3 +1,7 @@
+div > p{
+    padding: 0px; 
+}
+
 .providers-form-screen{
     display: flex;
     margin-top: 90px;
@@ -20,17 +24,23 @@
 }
 
 .providers-form-inputBox{
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.inputField{
+.custom-textfield{
     width: 328px !important;
     height: 28px;
-    margin-bottom: 55px !important;
+    margin-bottom: 35px !important;
+    font-weight: 500 !important; 
 }
 
-div > p{
-    padding: 0px; 
+.input-error label{
+    color: rgb(255, 0, 0)!important;
+}
+
+.ok-button{
+    background-color: #4E169D!important;
 }

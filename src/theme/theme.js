@@ -87,7 +87,7 @@ const theme = createTheme({
     MuiButton: {
       variants: [
         {
-          props: { variant: "purple" },
+          props: { variant: "purple" }, 
           style: {
             textTransform: "none",
             border: "none",
@@ -137,7 +137,51 @@ const theme = createTheme({
             fontSize: "16px",
           },
         },
+        {
+          props: { variant: "form" }, 
+          style: {
+            textTransform: "none",
+            border: "none",
+            maxWidth: "328px",
+            maxHeight: "40px",
+            borderRadius: "100px",
+            padding: "10px 24px",
+            fontSize: "16px",
+            color: "white",
+            fontWeight: 700,
+            lineHeight: "20px",
+            backgroundColor: "#505050",
+            "&:hover": {
+              backgroundColor: "#505050",
+            },
+          },
+        }
       ],
+    },
+    MuiTextField: {
+      defaultProps: {
+        style: {
+          width: "328px",
+          height: "56px",
+        },
+      },
+      styleOverrides: {
+        root: {
+          "&.custom-textfield": {
+            "& label.MuiInputLabel-shrink": {
+              color: "#4E169D",
+              fontWeight: 500,
+            },
+            "& fieldset": {
+              border: "1px solid #222",
+              borderRadius: 4,
+              fontWeight: 400,
+              fontSize: "16px",
+              color: "#222",
+            },
+          },
+        },
+      },
     },
   },
 });

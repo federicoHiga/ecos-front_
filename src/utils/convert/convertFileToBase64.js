@@ -7,7 +7,6 @@ export default function convertFileToBase64(file) {
             reader.readAsDataURL(file);
             reader.onload = () => {
                 const baseUrl = reader.result.split(",")[1];
-                console.log(baseUrl);
                 resolve(baseUrl);
             };
             reader.onerror = error => reject(error);

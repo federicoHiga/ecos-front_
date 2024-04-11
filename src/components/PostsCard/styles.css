@@ -11,6 +11,16 @@
     z-index: 1;
 }
 
+.buttonEditarOcultar{
+    background-color: #EAEAEA;
+}
+.buttonTitleSection{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: start;
+}
+
 .postsCards-section h1 {
     font-size: 18px;
     font-weight: 600;

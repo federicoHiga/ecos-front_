@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
-import { Formik } from "formik"
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { styled } from '@mui/material/styles';
 import './index.css'
 import { NavLink } from "react-router-dom";
 import PostsCard from '../../../components/PostsCard'
-import editSvg from '../../../assets/svg/edit_post_admin.svg'
 
 const OptionsStyledMenu = styled((props) => (
     <Menu
@@ -25,20 +24,17 @@ const OptionsStyledMenu = styled((props) => (
     />
   ))(({ theme }) => ({
     '& .MuiPaper-root': {
-      backgroundColor: '#D2D2D2',
+      backgroundColor: 'white',
       borderTopLeftRadius : 'unset',
       borderTopRightRadius : 'unset',
       marginTop: theme.spacing(1),
-      minWidth: 70,
-      padding: '2px 10px 2px 12px',
-      color:
-        theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+      minWidth: 100,
+      color: '#22222',
       boxShadow:
         'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     },
   }))
   
-
 export default function PostsAdmin(){
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -63,16 +59,38 @@ export default function PostsAdmin(){
     return(
         <div id="posts_admin">
             <h2>Publicaciones</h2>
-            <button><NavLink to="loadPublication">Crear publicación</NavLink></button>
+            <button className='btn_create'><NavLink to="loadPublication">Crear publicación</NavLink></button>
             <h3>Publicaciones cargadas</h3>
-            <div className="posts_admin">
-                <div>
-                      <PostsCard 
-                       post={post}
-                       images={hardImages}/>
-                       
-                </div>
-            </div>
+            
+            <Box sx={{position: 'relative', marginTop: '25px'}}>
+              {/* Render del Post */}
+              <PostsCard 
+                post={post}
+                images={hardImages}
+                />
+              {/* Boton de opciones */}
+              <Box sx={{position:'absolute', top:'23px', right: '23px'}}>
+                  <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2, color: 'black', "&:hover": { color: "white", backgroundColor: '#4E169D' }, }}
+                    aria-controls={open ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                  >
+                    <MoreVertIcon/>
+                  </IconButton>
+                <OptionsStyledMenu
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                > 
+                  {/* Botones de editar y ocultar */}
+                  <MenuItem>Editar</MenuItem>
+                  <MenuItem>Ocultar</MenuItem>
+                </OptionsStyledMenu>
+              </Box>
+            </Box>
             
         </div>
     )

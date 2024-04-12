@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import "./adminNewPublication.css";
 import { useEffect, useState } from "react";
 import IndexFile from "../../../components/cloudinary/IndexFile";
@@ -11,7 +10,19 @@ import useGetAll from "../../../utils/services/hooks/useGetAll";
 import useGetToken from "../../../utils/services/hooks/useGetToken";
 import useGetPulblication from "../../../utils/services/hooks/getPublication";
 import { useLocation } from "react-router-dom";
+import { Typography, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { useFormik } from "formik";
+import { schemaFormPublication } from "../../../utils/schemas/schemaFormPublication";
+
 export default function NewPublication() {
+  const { errors, touched, handleBlur, handleChange} = useFormik ({
+    // initialValues: {
+    //   title: "",
+    //   description: "",
+    // },
+    validationSchema: schemaFormPublication,
+  })
   const [publication, setPublication] = useState({
     title: "",
     description: "",
@@ -21,9 +32,9 @@ export default function NewPublication() {
   const [modal, setModal] = useState(false);
   const [parrafoModal, setParrafoModal] = useState("");
   const [typeModal, setTypeModal] = useState("");
-  const handlerChangeText = (event) => {
-    setPublication({ ...publication, [event.target.name]: event.target.value });
-  };
+  // const handlerChangeText = (event) => {
+  //   setPublication({ ...publication, [event.target.name]: event.target.value });
+  // };
   const { token } = useUser();
   const location = useLocation();
   useEffect(() => {
@@ -134,7 +145,8 @@ export default function NewPublication() {
         Completá los datos para crear una nueva publicación
       </Typography>
       <form action="" className="form">
-        <div className="containerTextInput">
+
+        {/* <div className="containerTextInput">
           <div className="">
             <input
               type="text"
@@ -148,8 +160,28 @@ export default function NewPublication() {
           <label htmlFor="title" className="labelText">
             Se visualizará en el título de la publicación
           </label>
-        </div>
-        <div className="containerTextarea">
+        </div> */}
+
+        <TextField
+            className={
+              errors.title && touched.title
+                ? "custom-textfield input-error"
+                : "custom-textfield"
+            }
+            required
+            value={publication?.title}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.title && touched.title}
+            name="title"
+            label="Título"
+            helperText={
+              errors.title && touched.title
+                ? errors.title
+                : "Se visualizará en el título de la publicación"
+            }
+          />
+        {/* <div className="containerTextarea">
           <div className="divTextarea">
             <textarea
               type="description"
@@ -168,16 +200,37 @@ export default function NewPublication() {
               {publication.description.length} /2000
             </label>
           </div>
-
-          {images.length >= 3 ? null : (
+        </div> */}
+        <TextField
+            sx={{marginBottom: 22}}
+            className={
+              errors.description && touched.description
+                ? "custom-textfield input-error"
+                : "custom-textfield"
+            }
+            required
+            value={publication?.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.description && touched.description}
+            name="description"
+            label="Ingresá el contenido de la publicación"
+            helperText={
+              errors.description && touched.description
+                ? errors.description
+                : "Máximo 2.000 caracteres"
+            }
+            multiline
+            rows={10}
+          />
+        {images.length >= 3 ? null : (
             <div className="containerIndexFile">
               <IndexFile functionLoad={handlerLoadImage} type={"input"} />
             </div>
           )}
-        </div>
       </form>
       <div className="imageContainer">
-        <ImagesPublicationList
+        <ImagesPublicationList 
           listImages={images}
           handlerDeleteImage={handleDeleteImage}
           handleEditImage={handleEditImage}

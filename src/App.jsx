@@ -13,7 +13,8 @@ import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
 import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
 import PostsAdmin from "./modules/Admin/PostsAdmin";
-import LoadPost from "./modules/Admin/LoadPost";
+import LoadPost from "./modules/Admin/PostsForm/LoadPost";
+import EditPost from "./modules/Admin/PostsForm/EditPost";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="publications">
             <Route index element={<PostsAdmin />} />
             <Route path="loadPublication" element={<LoadPost />} />
+            <Route path="editPublication" element={<EditPost />} />
           </Route>
         </Route>
       </Routes>

@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import './index.css'
 import { NavLink } from "react-router-dom";
 import PostsCard from '../../../components/PostsCard'
+import {useNavigate} from 'react-router-dom'
 
 const OptionsStyledMenu = styled((props) => (
     <Menu
@@ -37,6 +38,8 @@ const OptionsStyledMenu = styled((props) => (
   
 export default function PostsAdmin(){
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate()
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -62,6 +65,7 @@ export default function PostsAdmin(){
             <button className='btn_create'><NavLink to="loadPublication">Crear publicación</NavLink></button>
             <h3>Publicaciones cargadas</h3>
             
+            {/* La idea es que se renderice por Box, y dentro del Box estaría el post y el boton de opciones */}
             <Box sx={{position: 'relative', marginTop: '25px'}}>
               {/* Render del Post */}
               <PostsCard 
@@ -86,7 +90,7 @@ export default function PostsAdmin(){
                   onClose={handleClose}
                 > 
                   {/* Botones de editar y ocultar */}
-                  <MenuItem>Editar</MenuItem>
+                  <MenuItem onClick={()=> navigate('/admin/publications/editPublication')}>Editar</MenuItem>
                   <MenuItem>Ocultar</MenuItem>
                 </OptionsStyledMenu>
               </Box>

@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 import "./visualizacionPublicacion.css";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
-
+import useUser from "../../../utils/services/hooks/useUser";
 export default function VisualizacionPublicacion() {
-
-  const {data} = useGetAll({url:"statistics/publicationByQuantityViews"})
+  const {token} = useUser()
+  const {data} = useGetAll({url:"statistics/publicationByQuantityViews",token})
   return (
     <div className="container">
       <div>

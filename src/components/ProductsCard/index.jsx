@@ -3,10 +3,16 @@ import React from "react";
 import "./styles.css";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Button, Typography, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const ProductsCard = ({ status, provider }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const toDetail = () => {
+    console.log('navega al form del update')
+  }
 
   return (
     <div className="product-card">
@@ -29,6 +35,7 @@ const ProductsCard = ({ status, provider }) => {
             variant="modal"
             sx={{ color: theme.palette.blanco.main, fontWeight: 700 }}
             endIcon={<ChevronRightIcon />}
+            onClick={toDetail}
           >
             Editar
           </Button>

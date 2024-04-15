@@ -6,6 +6,7 @@ import { SearchResultCard } from "../../../components/SearchResultsCards";
 import useUser from "../../../utils/services/hooks/useUser";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 import CustomTabPanel from "../../../components/TabPanel";
+import { useNavigate } from "react-router-dom";
 
 const allyProps = (index) => {
   return {
@@ -18,10 +19,12 @@ const ProvidersProfile = () => {
   const theme = useTheme();
   const [providers, setProviders] = useState([]);
   const [value, setValue] = useState(0);
+  const navigate = useNavigate()
   const { user } = useUser();
   const { data } = useGetAll({
-    url: `./supplier/user/${user.id}`,
+    url: `supplier/user/${user.id}`,
     needsAuth: true,
+    token: user.token
   });
 
   useEffect(() => {
@@ -34,6 +37,9 @@ const ProvidersProfile = () => {
     setValue(newValue);
   };
 
+  const handleClick = () => {
+    navigate('/providers/profile/postProduct')
+  }
 
   return (
     <div className="providers-profile-screen">
@@ -44,11 +50,11 @@ const ProvidersProfile = () => {
       </section>
 
       <section className="providers-profile-main-container">
-        <Button variant="purple">Cargar Producto/Servicio</Button>
+        <Button variant="purple" onClick={handleClick} >Cargar Producto/Servicio</Button>
         <Typography variant="subtitulos" sx={{ mt: 7 }}>
           Mis Productos/Servicios
         </Typography>
-        
+
       </section>
 
       <section className="providers-profile-tabs-container">

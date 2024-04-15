@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { useFormik } from "formik";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import useUser from "../../../utils/services/hooks/useUser";
 import { schemaFormProviders } from "../../../utils/schemas/schemaFormProviders";
+import useUser from "../../../utils/services/hooks/useUser";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
+import IndexFile from "../../../components/cloudinary/IndexFile";
+import ImagesPublicationList from "../../../components/admin/imagesPublication/imagesPublication";
+import usePost from "../../../utils/services/hooks/usePost";
+import { useParams } from "react-router-dom";
+import AlertSuccesErrorModal from "../../../components/modals/alertErrorSucces/alertErrorSuccesModal";
+import useGetPulblication from "../../../utils/services/hooks/getPublication";
+import useUpdate from "../../../utils/services/hooks/useUpdate";
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
   console.log(values);
 };
 
@@ -22,9 +28,9 @@ const ProvidersForm = () => {
     handleSubmit,
     handleChange,
     handleBlur,
+    setValues,
   } = useFormik({
     initialValues: {
-      //id o name?
       name: "",
       shortDescription: "",
       category: "",
@@ -32,16 +38,151 @@ const ProvidersForm = () => {
       phoneNumber: "",
       instagram: "",
       facebook: "",
-      country: "",
+      country: 1,
       province: "",
       city: "",
-      longDescription: "",
+      description: "",
     },
     validationSchema: schemaFormProviders,
     onSubmit,
   });
+  const { token, user } = useUser();
+  const [images, setImages] = useState([]);
 
-  console.log("errors", errors);
+  //estados modal
+  const [modal, setModal] = useState(false);
+  const [parrafoModal, setParrafoModal] = useState("");
+  const [typeModal, setTypeModal] = useState("");
+
+  const { id } = useParams();
+  //carga de select
+  const category = useGetAll({ url: "category" });
+  const categoryData = category?.data?.data;
+
+  const paises = useGetAll({ url: "pais/paises", token });
+  const paisesData = paises?.data?.data;
+  const provincias = useGetAll({
+    url: `provincias/provinciasByIdPais/${values.country}`,
+    token,
+  });
+  const provinciasData = provincias?.data?.data;
+  //logica de manejo de imagenes
+  const handlerLoadImage = (text, name) => {
+    if (images.length >= 3) {
+      return;
+    }
+    if (images.some((img) => img.name === name)) {
+      return;
+    }
+    setImages([
+      ...images,
+      {
+        isBase64: true,
+        path: text,
+        name: name,
+      },
+    ]);
+  };
+
+  const handleDeleteImage = (index) => {
+    console.log(index)
+    const newArray = [...images];
+    newArray.splice(index, 1);
+    setImages(newArray);
+  };
+
+  const handleEditImage = (text, name, newName) => {
+    console.log(name, newName);
+    const newArrImages = images.map((img) => {
+      if (img && img.name === name) {
+        img.isBase64 = true;
+        img.path = text;
+        img.name = newName;
+      }
+      return img;
+    });
+
+    setImages(newArrImages);
+    return;
+  };
+
+  //submit
+  const handlerSubmit = async (event) => {
+    event.preventDefault();
+    handleSubmit();
+    if (images.length === 0) {
+      setParrafoModal("El servicio/producto debe tener al menos 1 imagen");
+      setTypeModal("error");
+      setModal(true);
+      return;
+    }
+    try {
+      if (location.pathname.startsWith("/miProfile/newProvider")) {
+        await usePost({
+          url: "supplier/create",
+          body: { ...values, images: images, user: user.id },
+          token,
+        });
+      } else {
+        await useUpdate({
+          url: `supplier/update`,
+          body: { ...values, images: images },
+          token,
+        });
+      }
+      setParrafoModal("Servicio/producto creado con éxito");
+      setTypeModal("succes");
+      setModal(true);
+    } catch (error) {
+      console.log(error);
+      setParrafoModal("Lo sentimos, el servicio/producto no pudo ser creada.");
+      setTypeModal("error");
+      setModal(true);
+    }
+  };
+  //manejo del modal
+  const handlerCloseModal = () => {
+    setModal(false);
+    setParrafoModal("");
+    setTypeModal("");
+  };
+
+  //carga de datos proveedor por id
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await useGetPulblication({
+          url: `supplier/getById/${id}`,
+          token,
+        });
+        console.log(data);
+
+        setValues({
+          id:data.data.id,
+          name: data.data.name,
+          shortDescription: data.data.shortDescription || "",
+          category: data.data.category.id || "",
+          email: data?.data?.email || "",
+          phoneNumber: data.data.phoneNumber || "",
+          instagram: data.data.instagram || "",
+          facebook: data.data.facebook || "",
+          country: data?.data?.country?.id || "",
+          province: data?.data?.province?.id || "",
+          city: data?.data?.city || "",
+          description: data?.data?.description || "",
+        });
+
+        const imagesData = [];
+        data?.data?.images?.forEach((img) => {
+          imagesData.push({ ...img, isBase64: false });
+        });
+        setImages(imagesData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [id]);
 
   return (
     <div className="providers-form-screen">
@@ -58,7 +199,7 @@ const ProvidersForm = () => {
         <form
           className="providers-form-inputBox"
           autoComplete="off"
-          onSubmit={handleSubmit}
+          onSubmit={handlerSubmit}
         >
           <TextField
             className={
@@ -112,9 +253,11 @@ const ProvidersForm = () => {
                 : "Seleccioná la categoría de tu Producto/Servicio"
             }
           >
-            {/* <MenuItem value={10}>Diez</MenuItem>
-            <MenuItem value={20}>Veinte</MenuItem>
-            <MenuItem value={30}>Treinta</MenuItem> */}
+            {categoryData?.map((category) => (
+              <MenuItem key={category.id} value={category.id}>
+                {category.category}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             className={
@@ -206,9 +349,11 @@ const ProvidersForm = () => {
                 : "Seleccioná un país de la lista"
             }
           >
-            {/* <MenuItem value={10}>Diez</MenuItem>
-            <MenuItem value={20}>Veinte</MenuItem>
-            <MenuItem value={30}>Treinta</MenuItem> */}
+            {paisesData?.map((pais) => (
+              <MenuItem key={pais.id} value={pais.id}>
+                {pais.name}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             name="province"
@@ -224,9 +369,11 @@ const ProvidersForm = () => {
                 : "Seleccioná una provincia/estado de la lista"
             }
           >
-            {/* <MenuItem value={10}>Diez</MenuItem>
-            <MenuItem value={20}>Veinte</MenuItem>
-            <MenuItem value={30}>Treinta</MenuItem> */}
+            {provinciasData?.map((provincia) => (
+              <MenuItem key={provincia.id} value={provincia.id}>
+                {provincia.nombre}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             className={
@@ -249,36 +396,36 @@ const ProvidersForm = () => {
           />
           <TextField
             className={
-              errors.longDescription && touched.longDescription
+              errors.description && touched.description
                 ? "custom-textfield input-error"
                 : "custom-textfield"
             }
             required
-            value={values.longDescription}
+            value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.longDescription && touched.longDescription}
-            name="longDescription"
+            error={errors.description && touched.description}
+            name="description"
             label="Descripción del Producto/Servicio"
             helperText={
-              errors.longDescription && touched.longDescription
-                ? errors.longDescription
-                : "Máximo 300 caracteres                                     0/300"
+              errors.description && touched.description
+                ? errors.description
+                : `Máximo 300 caracteres                                    ${values.description.length}/300`
             }
             multiline
-            rows={5}
           />
-          <TextField
-            sx={{ marginTop: 12 }}
-            variant="outlined"
-            type="file"
-            label=""
-            onChange={handleChange}
-            accept="image/*"
-          />
-          <Button variant="contained" component="span">
-            Upload
-          </Button>
+          {images.length >= 3 ? null : (
+            <IndexFile functionLoad={handlerLoadImage} type={"input"} />
+          )}
+          <div
+            style={{ display: "flex", flexDirection: "column", width: "80%" }}
+          >
+            <ImagesPublicationList
+              listImages={images}
+              handlerDeleteImage={handleDeleteImage}
+              handleEditImage={handleEditImage}
+            />
+          </div>
           <Button
             sx={{ marginTop: 5, marginBottom: 5 }}
             className={
@@ -290,12 +437,16 @@ const ProvidersForm = () => {
             variant="form"
             type="submit"
             disabled={isSubmitting}
-            // onClick={ Button.className === "ok-button" &&
-            //    alert('This is an alert message!')}
           >
             Cargar Producto/Servicio
           </Button>
         </form>
+        <AlertSuccesErrorModal
+          boolOpen={modal}
+          parrafo={parrafoModal}
+          closeFuncion={handlerCloseModal}
+          type={typeModal}
+        />
       </section>
     </div>
   );

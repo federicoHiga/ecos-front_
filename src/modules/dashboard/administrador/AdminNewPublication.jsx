@@ -6,11 +6,8 @@ import ImagesPublicationList from "../../../components/admin/imagesPublication/i
 import usePost from "../../../utils/services/hooks/usePost";
 import AlertSuccesErrorModal from "../../../components/modals/alertErrorSucces/alertErrorSuccesModal";
 import useUser from "../../../utils/services/hooks/useUser";
-import { useParams } from "react-router-dom";
-import useGetAll from "../../../utils/services/hooks/useGetAll";
-import useGetToken from "../../../utils/services/hooks/useGetToken";
 import useGetPulblication from "../../../utils/services/hooks/getPublication";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 export default function NewPublication() {
   const [publication, setPublication] = useState({
     title: "",

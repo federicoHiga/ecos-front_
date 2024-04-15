@@ -45,13 +45,11 @@ export default function NewPublication() {
           token,
         });
         console.log('data:',data);
-        // setPublication({
-        //   id: data?.data?.id,
-        //   title: data?.data?.title,
-        //   description: data?.data?.description,
-        // });
-        values.title
-        values.description
+        setPublication({
+          id: data?.data?.id,
+          title: data?.data?.title,
+          description: data?.data?.description,
+        });
         const imagesData = []
         data?.data?.imagePublicDtoList?.forEach((img) => {
           imagesData.push( { ...img, isBase64: false });
@@ -101,20 +99,20 @@ export default function NewPublication() {
       if (location.pathname.startsWith("/admin/newPublication")) {
         await usePost({
           url: "publication/create/1",
-          body: { values: values, images: images },
+          body: { ...publication, images: images },
           token,
         });
       } else {
         await usePost({
           url: `publication/edit/${publication.id}/1`,
-          body: { values: values, images: images },
+          body: { ...publication, images: images },
           token,
         });
       }
       setParrafoModal("Publicación creada con éxito");
       setTypeModal("succes");
       setModal(true);
-      // setPublication({ title: "", description: "" });
+      setPublication({ title: "", description: "" });
       setImages([]);
     } catch (error) {
       console.log(error);
@@ -165,7 +163,6 @@ export default function NewPublication() {
         </div> */}
 
         <TextField
-            id="title"
             className={
               errors.title && touched.title
                 ? "custom-textfield input-error"
@@ -205,7 +202,6 @@ export default function NewPublication() {
           </div>
         </div> */}
         <TextField
-            id="description"
             sx={{marginBottom: 22}}
             className={
               errors.description && touched.description

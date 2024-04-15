@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import "./styles.css";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Button, Typography, useTheme } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
-const ProductsCard = ({ status }) => {
+const ProductsCard = ({ status, provider }) => {
   const theme = useTheme();
 
   return (
@@ -16,9 +17,13 @@ const ProductsCard = ({ status }) => {
         <div className="product-card-header-inner-container">
           <Typography
             variant="titulos"
-            sx={{ fontSize: "18px", color: theme.palette.blanco.main }}
+            sx={{
+              fontSize: "18px",
+              color: theme.palette.blanco.main,
+              textOverflow: "ellipsis",
+            }}
           >
-            Lavanda
+            {provider?.name}
           </Typography>
           <Button
             variant="modal"
@@ -40,16 +45,16 @@ const ProductsCard = ({ status }) => {
             variant="subtitulos"
             sx={{ fontSize: "16px", fontWeight: 400, ml: "4px" }}
           >
-            {status === "postulado" && "Postulado"}
-            {status === "exito" && "Aprobado"}
-            {status === "revision" && "En revisión"}
-            {status === "denegado" && "Denegado"}
+            {status === "REVISION_INICIAL" && "Postulado"}
+            {status === "ACEPTADO" && "Aprobado"}
+            {status === "CAMBIOS_REALIZADOS" && "En revisión"}
+            {status === "DENEGADO" && "Denegado"}
           </Typography>
         </div>
       </section>
 
       <section className="product-card-feedback-container">
-        {status === "postulado" && (
+        {status === "REVISION_INICIAL" && (
           <div className="product-card-feedback">
             <Typography
               variant="titulos"
@@ -61,7 +66,7 @@ const ProductsCard = ({ status }) => {
                 mb: 2,
               }}
             >
-              ¡Gracias por querer forma parte de EcoSistema!
+              ¡Gracias por querer formar parte de EcoSistema!
             </Typography>
             <Typography
               variant="subtitulos"
@@ -78,7 +83,7 @@ const ProductsCard = ({ status }) => {
           </div>
         )}
 
-        {status === "exito" && (
+        {status === "ACEPTADO" && (
           <div className="product-card-feedback">
             <Typography
               variant="titulos"
@@ -96,12 +101,12 @@ const ProductsCard = ({ status }) => {
               variant="subtitulos"
               sx={{ fontWeight: 600, fontSize: "16px", textAlign: "center" }}
             >
-              Tu Producto/Servicios está incluído dentro de nuestra Red de Impacto.
+              Tu Producto/Servicios está incluido dentro de nuestra Red de Impacto.
             </Typography>
           </div>
         )}
 
-        {(status === "revision" || status === "denegado") && (
+        {(status === "CAMBIOS_REALIZADOS" || status === "DENEGADO") && (
           <div className="product-card-feedback">
             <Typography
               variant="titulos"
@@ -126,10 +131,7 @@ const ProductsCard = ({ status }) => {
                 textAlign: "start",
               }}
             >
-              Worem ipsum dolor sit amet, consectetur adipiscing elit Worem ipsum dolor sit
-              amet, consectetur adipiscing elit. Worem ipsum dolor sit amet, consectetur
-              adipiscing elit Worem ipsum dolor sit amet, consectetur adipiscing elit. olor sit
-              amet, consectetur adipiscing elit. r sit amet, consectetur adipis.
+              {provider?.feedback}
             </Typography>
           </div>
         )}

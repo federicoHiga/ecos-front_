@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Tab, Tabs, Typography, useTheme } from "@mui/material";
 import ProductsCard from "../../../components/ProductsCard";
-import { SuppliersData } from "../../../utils/data/suppliersMock";
 import { SearchResultCard } from "../../../components/SearchResultsCards";
 import useUser from "../../../utils/services/hooks/useUser";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
+import CustomTabPanel from "../../../components/TabPanel";
+
+const allyProps = (index) => {
+  return {
+    id: `tab-${index}`,
+    "aria-controls": `tabpanel-${index}`,
+  };
+};
 
 const ProvidersProfile = () => {
-  const [prodStatus] = useState("postulado");
-  const prod = SuppliersData[0];
+  const theme = useTheme();
+  const [providers, setProviders] = useState([]);
+  const [value, setValue] = useState(0);
   const { user } = useUser();
+  const { data } = useGetAll({
+    url: `./supplier/user/${user.id}`,
+    needsAuth: true,
+  });
+
+  useEffect(() => {
+    if (data?.data?.length > 0) {
+      setProviders(data?.data?.slice(0, 3));
+    }
+  }, [data]);
+
+  const handleChange = (evt, newValue) => {
+    setValue(newValue);
+  };
+
 
   return (
     <div className="providers-profile-screen">
@@ -24,27 +48,75 @@ const ProvidersProfile = () => {
         <Typography variant="subtitulos" sx={{ mt: 7 }}>
           Mis Productos/Servicios
         </Typography>
-        <div className="providers-profile-products-container">
-          <ProductsCard status={prodStatus} />
-        </div>
+        
       </section>
-      {prodStatus !== "denegado" && (
-        <section className="providers-profile-product-demo">
-          <Typography
-            variant="subtitulos"
-            sx={{
-              fontWeight: 400,
-              fontSize: "20px",
-              textAlign: "center",
-              margin: "0 16px 16px",
-            }}
-          >
-            Asi se vería tu Producto/Servicio en el Directorio
-          </Typography>
 
-          <SearchResultCard supplier={prod} />
-        </section>
-      )}
+      <section className="providers-profile-tabs-container">
+        {providers?.length > 0 ? (
+          <>
+            <Box className="providers-profile-tabs">
+              <Tabs
+                className="providers-profile-tabs-nav"
+                value={value}
+                onChange={handleChange}
+                aria-label="providers-profile-tabs"
+                variant="fullWidth"
+              >
+                {providers?.map((provider, index) => (
+                  <Tab
+                    key={provider.id}
+                    className="providers-profile-tab"
+                    label={provider?.name}
+                    {...allyProps(index)}
+                    sx={{
+                      color: theme.palette.violeta.main,
+                      fontFamily: theme.typography.fontFamily,
+                      textTransform: "none",
+                      fontSize: "16px",
+                    }}
+                  />
+                ))}
+              </Tabs>
+            </Box>
+            {providers.map((provider, index) => (
+              <CustomTabPanel
+                value={value}
+                index={index}
+                key={provider.id}
+                className="providers-tabpanel"
+              >
+                <>
+                  <section>
+                    <div className="providers-profile-products-container">
+                      <ProductsCard status={provider.status} provider={provider} />
+                    </div>
+                    {provider?.status !== "DENEGADO" && (
+                      <div className="providers-profile-demo">
+                        <Typography
+                          variant="subtitulos"
+                          sx={{
+                            fontWeight: 400,
+                            fontSize: "20px",
+                            textAlign: "center",
+                            margin: "0 16px 16px",
+                          }}
+                        >
+                          {provider.status === "ACEPTADO"
+                            ? "Asi se ve tu Producto/Servicio en el Directorio"
+                            : "Asi se vería tu Producto/Servicio en el Directorio"}
+                        </Typography>
+                        <SearchResultCard supplier={provider} />
+                      </div>
+                    )}
+                  </section>
+                </>
+              </CustomTabPanel>
+            ))}
+          </>
+        ) : (
+          <>nada</>
+        )}
+      </section>
     </div>
   );
 };

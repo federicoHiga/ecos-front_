@@ -12,7 +12,13 @@ import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesMod
 import IndexFile from "./components/cloudinary/IndexFile";
 import ProvidersProfile from "./modules/Providers/ProvidersProfile";
 import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
+import PostsAdmin from "./modules/Admin/PostsAdmin";
+import LoadPost from "./modules/Admin/PostsForm/LoadPost";
+import EditPost from "./modules/Admin/PostsForm/EditPost";
+import ProvidersForm from "./modules/Providers/ProvidersForm";
 import AdminListProviders from "./modules/dashboard/administrador/adminListProviders";
+import AdminPublications from "./modules/dashboard/administrador/adminPublications";
+import NewPublication from "./modules/dashboard/administrador/AdminNewPublication";
 
 function App() {
   return (
@@ -31,6 +37,7 @@ function App() {
         <Route path="/posts" element={<PostsView />} />
         <Route path="/providers/:id" element={<ProvidersDetail />} />
         <Route path="/providers/profile" element={<ProvidersProfile />} />
+        <Route path="/providers/profile/postProduct" element={<ProvidersForm />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
@@ -44,12 +51,21 @@ function App() {
 
         {/* Ruta de administrador (dashboard) */}
         <Route path="admin">
+          <Route index element={< AdminDashboard/>} />
+          <Route path="providers" element={""} />
+          <Route path="publications">
+            <Route index element={<PostsAdmin />} />
+            <Route path="loadPublication" element={<LoadPost />} />
+            <Route path="editPublication" element={<EditPost />} />
+          </Route>
           <Route index element={<AdminDashboard />} />
           <Route path="providers">
             <Route index element={<AdminListProviders />} />
             <Route path=":id" element={""} />
           </Route>
-          <Route path="publications" element={""} />
+          <Route path="publications" element={<AdminPublications />} />
+          <Route path="newPublication" element={< NewPublication/>} />
+          <Route path="publications/:id" element={< NewPublication/>} />
         </Route>
       </Routes>
     </AuthProvider>

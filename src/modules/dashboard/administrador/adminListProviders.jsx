@@ -3,11 +3,13 @@ import styles from "./adminListProviders.module.css";
 import { useEffect, useState } from "react";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 import dataButtonsAdmin from "../../../utils/data/dataButtonsAdmin";
+import useUser from "../../../utils/services/hooks/useUser";
 
 export default function AdminListProviders() {
   const [buttonSelected, setButtonSelected] = useState(dataButtonsAdmin[0]);
   const [buttonsShow, setButtonsShow] = useState(dataButtonsAdmin.slice(0,3))
-  const { data, error, loading } = useGetAll({url:buttonSelected?.url});
+  const {token} = useUser()
+  const { data, error, loading } = useGetAll({url:buttonSelected?.url,token});
 
 
   const handlerFindeProviders = (event) => {

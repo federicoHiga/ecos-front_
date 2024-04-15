@@ -9,8 +9,8 @@ export default function ImagesPublicationList({
 }) {
 
     const deleteImage = (event)=>{
-        handlerDeleteImage(Number(event.target.name))
-        console.log(event.target.name)
+        handlerDeleteImage(Number(event.target.id))
+        console.log(event.target.id)
     }
     const editImage = (text,name, newName) =>{
         console.log(name)
@@ -38,7 +38,7 @@ export default function ImagesPublicationList({
           >
             <button
               className="buttonStyle"
-              name={index}
+              id={`${index}`}
               onClick={deleteImage}
             >
               {" "}

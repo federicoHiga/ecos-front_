@@ -36,17 +36,16 @@ function App() {
         <Route path="/providers" element={<ProvidersHome />} />
         <Route path="/posts" element={<PostsView />} />
         <Route path="/providers/:id" element={<ProvidersDetail />} />
-        <Route path="/providers/profile" element={<ProvidersProfile />} />
-        <Route path="/providers/profile/postProduct" element={<ProvidersForm />} />
 
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
 
         {/* Ruta de proveedores (dashboard) */}
         <Route path="miProfile">
-          <Route index element={""} />
+          <Route index element={<ProvidersProfile />} />
           <Route path="providers" element={""} />
-          <Route path="newProvider" element={""} />
+          <Route path="newProvider" element={<ProvidersForm />} />
+          <Route path="updateProduct/:id" element={<ProvidersForm />} />
         </Route>
 
         {/* Ruta de administrador (dashboard) */}

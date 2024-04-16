@@ -7,6 +7,8 @@
     font-weight: 400;
     padding: 7px;
     text-align: start;
+    max-width: 304px;
+    text-overflow: ellipsis;
 }
 
 .longText{
@@ -14,6 +16,8 @@
     font-weight: 400;
     padding: 7px;
     text-align: start;
+    max-width: 304px;
+    text-overflow: ellipsis;
 }
 
 .see-more {

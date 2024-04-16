@@ -155,7 +155,7 @@ const ProvidersForm = () => {
           url: `supplier/getById/${id}`,
           token,
         });
-        console.log(data);
+        console.log("data",data);
 
         setValues({
           id:data.data.id,

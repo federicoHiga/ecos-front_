@@ -18,7 +18,7 @@ export default function ExpandedCard(props) {
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
       <p className="shortText" style={{ display: expanded ? "none" : "block" }}>
-        {shortDescription}
+        {description}
       </p>
       <Collapse
         in={expanded}

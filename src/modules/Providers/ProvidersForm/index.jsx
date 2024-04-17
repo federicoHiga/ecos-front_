@@ -16,6 +16,7 @@ import useUpdate from "../../../utils/services/hooks/useUpdate";
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
+  actions.resetForm()
   console.log(values);
 };
 
@@ -183,7 +184,7 @@ const ProvidersForm = () => {
     };
     fetchData();
   }, [id]);
-
+  console.log("errors",errors)
   return (
     <div className="providers-form-screen">
       <section className="providers-form-title">
@@ -430,7 +431,8 @@ const ProvidersForm = () => {
             sx={{ marginTop: 5, marginBottom: 5 }}
             className={
               Object.keys(errors).length == 0 &&
-              Object.entries(values).some(([key, value]) => value)
+              Object.entries(values).some(([key, value]) => value) &&
+              images.length != 0
                 ? "ok-button"
                 : ""
             }

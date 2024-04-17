@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./styles.css";
 import AdminProviderCard from "../AdminProviderCard";
 import { NoResultsCard } from "../../../components/SearchResultsCards";
+import ProviderFeedback from "../../../components/admin/providerFeedback/providerIdFeedback";
 
 const ProvidersList = ({ providers }) => {
   const [selectedProvider, setSelectedProvider] = useState(null);
@@ -15,7 +16,7 @@ const ProvidersList = ({ providers }) => {
     <>
       {selectedProvider !== null ? (
         <div className="provider-list-selected-provider">
-          Tiene que mostrar el formulario para editar con los datos de {selectedProvider.name}
+          <ProviderFeedback id={selectedProvider?.id} />
         </div>
       ) : (
         <div className="providers-list-main-container">

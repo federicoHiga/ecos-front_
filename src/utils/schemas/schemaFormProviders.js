@@ -25,7 +25,7 @@ export const schemaFormProviders = yup.object().shape({
   country: yup.string().required("Este campo es obligatorio"),
   province: yup.string().required("Este campo es obligatorio"),
   city: yup.string().required("Este campo es obligatorio"),
-  longDescription: yup
+  description: yup
     .string()
     .required("Este campo es obligatorio")
     .max(300, "El texto no debe exceder los 300 caracteres"),

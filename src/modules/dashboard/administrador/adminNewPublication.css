@@ -37,7 +37,7 @@ padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-
+    align-items: center;
 }
 
 .containerTextarea{
@@ -78,6 +78,7 @@ padding: 16px;
     width: 85%;
     display: flex;
     justify-content: end;
+    margin-top: 190px;
 }
 
 .imageContainer{
@@ -87,4 +88,15 @@ padding: 16px;
 }
 .imageStyle{
     width: 100%;
+}
+
+.custom-textfield{
+    width: 328px !important;
+    height: 28px;
+    margin-bottom: 35px !important;
+    font-weight: 500 !important; 
+}
+
+.input-error label{
+    color: rgb(255, 0, 0)!important;
 }

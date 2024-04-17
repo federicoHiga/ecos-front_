@@ -65,7 +65,7 @@ export default function SuppliersCard({ supplier }) {
           component="img"
           // height="128"
           // width='304'
-          image={supplier?.image}
+          image={supplier?.images[0]?.path}
           alt="Producto"
         />
         <Container className="text-container">

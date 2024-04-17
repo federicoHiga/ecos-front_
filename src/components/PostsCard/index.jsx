@@ -7,11 +7,11 @@ import { useLocation } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';;
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
-export default function PostsCard({ post, images }) {
-  const { title, fechaCreacion, description } = post;
+export default function PostsCard({ post }) {
+  const { title, fechaCreacion, description, imagePublicDtoList  } = post;
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -25,7 +25,7 @@ export default function PostsCard({ post, images }) {
   const isAdminRoute = () => {
     return location.pathname.startsWith("/admin/publications");
   };
-
+// console.log("post desde postcard",imagePublicDtoList )
   return (
     <>
       <section className="postsCards-section">
@@ -65,7 +65,7 @@ export default function PostsCard({ post, images }) {
           </div>
           ) : null}
         </div>
-        <Carrousel images={images} />
+        <Carrousel images={imagePublicDtoList} />
         <h2>{new Date(fechaCreacion).toLocaleDateString()}</h2>
         <ExpandedCard description={description} />
       </section>

@@ -6,8 +6,8 @@ import { CardActions, Collapse, Button } from "@mui/material";
 export default function ExpandedCard(props) {
   const { description } = props;
 
-  const shortDescription =
-    description.slice(0, 150) + (description.length > 100 ? "..." : "");
+  // const shortDescription =
+  //   description.slice(0, 150) + (description.length > 100 ? "..." : "");
 
   const [expanded, setExpanded] = useState(false);
 

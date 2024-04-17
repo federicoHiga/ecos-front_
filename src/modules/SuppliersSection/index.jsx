@@ -7,7 +7,13 @@ import { useTheme } from "@emotion/react";
 
 function SuppliersSection({ suppliers }) {
   const theme = useTheme();
+  console.log("dara",suppliers);
+  // console.log("images",suppliers.images);
 
+  // const getImagePaths = (postData) => {
+  //   return postData.images.map((imageObject) => imageObject.path);
+  // };
+  
   return (
     <>
       <Invitacion />
@@ -44,7 +50,7 @@ function SuppliersSection({ suppliers }) {
       <div className="cardContainer">
         {suppliers?.slice(0, 4).map((supplier) => (
           <SuppliersCard key={supplier.id} supplier={supplier} />
-        ))}
+))};
       </div>
     </>
   );

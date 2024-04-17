@@ -13,9 +13,9 @@ export default function PostsView() {
     // "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
   );
 
-  const getImagePaths = (postData) => {
-    return postData.imagePublicDtoList.map((imageObject) => imageObject.path);
-  };
+  // const getImagePaths = (postData) => {
+  //   return postData.imagePublicDtoList.map((imageObject) => imageObject.path);
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,10 +25,9 @@ export default function PostsView() {
     <SearchByChildren>
       <div className="postsView-section">
         <div className="postsView-container">
-          {data?.map((post) => {
-            const imagePaths = getImagePaths(post);
-            return <PostsCard key={post.id} post={post} images={imagePaths} />;
-          })}
+          {data?.map((post) => (
+            <PostsCard key={post.id} post={post} />
+          ))};
         </div>
       </div>
     </SearchByChildren>

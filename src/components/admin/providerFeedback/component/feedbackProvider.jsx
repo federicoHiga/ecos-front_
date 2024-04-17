@@ -42,7 +42,7 @@ export default function FeedbackProvider({
     return (
       <div className="container-feedback">
         <div className="container-title">
-          <h1 className="editar-text">Devolucnión del proveedor</h1>
+          <h1 className="editar-text">Devolución del proveedor</h1>
           <button onClick={handlerEdit}>
             <span className="editar-text">Editar</span>
             <svg

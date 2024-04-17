@@ -92,9 +92,9 @@ export default function ProviderFeedback({ id }) {
     setEdit(!edit);
   };
   return (
-    <div className="container" style={{marginTop:"0px"}}>
+    <div className="container" style={{ marginTop: "0px" }}>
       <StatusProvider status={status} />
-      <div style={{width:"80%", display:"flex", justifyContent:"end"}}>
+      <div style={{ width: "80%", display: "flex", justifyContent: "end" }}>
         <div className="container-select">
           <IconButton
             aria-label="more"
@@ -103,9 +103,9 @@ export default function ProviderFeedback({ id }) {
             aria-expanded={open ? "true" : undefined}
             aria-haspopup="true"
             onClick={handleClick}
-            sx={{justifyContent:"space-between",width:"100%"}}
+            sx={{ justifyContent: "space-between", width: "100%" }}
           >
-            <span style={{fontSize:"16px", fontWeight:400, color:"#222222"}}>Estado</span>
+            <span style={{ fontSize: "16px", fontWeight: 400, color: "#222222" }}>Estado</span>
             <ArrowDropDownIcon />
           </IconButton>
           <Menu
@@ -193,7 +193,7 @@ export default function ProviderFeedback({ id }) {
         label="Correo electrónico"
         value={values.email}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -202,7 +202,7 @@ export default function ProviderFeedback({ id }) {
         label="Teléfono o Whatsapp"
         value={values.phoneNumber}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -211,7 +211,7 @@ export default function ProviderFeedback({ id }) {
         label="Instragram"
         value={values.instagram}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -220,7 +220,7 @@ export default function ProviderFeedback({ id }) {
         label="País"
         value={values.country}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -229,7 +229,7 @@ export default function ProviderFeedback({ id }) {
         label="Provincia/Estado"
         value={values.province}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -238,7 +238,7 @@ export default function ProviderFeedback({ id }) {
         label="Nombre de la Organización"
         value={values.city}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -247,7 +247,7 @@ export default function ProviderFeedback({ id }) {
         label="Descripción corta del Producto/Servicio*"
         value={values.shortDescription}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <TextField
         className={"custom-textfield"}
@@ -258,7 +258,7 @@ export default function ProviderFeedback({ id }) {
         label="Descripción del Producto/Servicio*"
         value={values.description}
         onBlur={handleBlur}
-        disabled
+        readOnly
       />
       <div
         style={{
@@ -266,12 +266,13 @@ export default function ProviderFeedback({ id }) {
           flexDirection: "row",
           width: "80%",
           justifyContent: "space-between",
-          marginTop:"150px"
+          marginTop: "150px"
         }}
       >
-        {images.map((image) => {
+        {images.map((image, index) => {
           return (
             <div
+              key={index}
               style={{
                 backgroundImage: `url(${image?.path})`,
                 backgroundSize: "cover",

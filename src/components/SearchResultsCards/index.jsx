@@ -11,7 +11,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import Slider from "react-slick";
 
-export const NoResultsCard = () => {
+export const NoResultsCard = ({ title, subtitle }) => {
   const theme = useTheme();
 
   return (
@@ -25,7 +25,7 @@ export const NoResultsCard = () => {
           sx={{ fontFamily: theme.typography.fontFamily, color: theme.palette.violeta.main }}
           className="no-results-title"
         >
-          No se encontraron resultados para tu búsqueda
+          {title}
         </Typography>
         <Typography
           variant="body1"
@@ -36,7 +36,7 @@ export const NoResultsCard = () => {
             fontWeight: theme.typography.subtitulos.fontWeight,
           }}
         >
-          Intentá nuevamente con otra consulta
+          {subtitle}
         </Typography>
       </section>
     </div>

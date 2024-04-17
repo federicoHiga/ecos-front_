@@ -139,10 +139,16 @@ export default function NewPublication() {
       // setPublication({ title: "", description: "" });
       setImages([]);
     } catch (error) {
-      console.log(error);
-      setParrafoModal("Lo sentimos, la publicación no pudo ser creada.");
+      console.log(error)
+      if(error?.response?.status==404){
+        setParrafoModal(error?.response?.data?.errorMessage);
+        setTypeModal("error");
+        setModal(true);
+        return
+      }
+      
+      setParrafoModal("Lo sentimos, el servicio/producto no pudo ser creada.");
       setTypeModal("error");
-
       setModal(true);
     }
   };
@@ -247,6 +253,7 @@ export default function NewPublication() {
         parrafo={parrafoModal}
         closeFuncion={handlerCloseModal}
         type={typeModal}
+        route={"/admin"}
       />
     </div>
   );

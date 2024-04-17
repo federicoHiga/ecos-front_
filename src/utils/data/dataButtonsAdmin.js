@@ -8,19 +8,19 @@ const dataButtonsAdmin = [
   {
     id: 2,
     name: "accepted",
-    title: "Aceptados",
+    title: "Aprobados",
     url: "supplier/searchallacepted",
   },
   {
     id: 3,
     name: "review",
-    title: "En revición",
+    title: "En revisión",
     url: "supplier/searchAllReviewAndChange",
   },
   {
     id: 4,
     name: "denied",
-    title: "Denegadas",
+    title: "Denegados",
     url: "supplier/allDeniedSupplier",
   },
 ];

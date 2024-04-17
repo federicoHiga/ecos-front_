@@ -11,10 +11,11 @@ export default function FeedbackProvider({
   feedback,
   handleBlur,
   status,
-  id
+  id,
 }) {
-    const {token} = useUser()
+  const { token } = useUser();
   const [feedbackText, setFeedbackText] = useState(feedback);
+  const [update, setUpdate] = useState(false);
   useEffect(() => {
     setFeedbackText(feedback);
   }, [feedback]);
@@ -23,13 +24,17 @@ export default function FeedbackProvider({
   };
   const handleSubmit = async () => {
     try {
-       await useUpdate({url:`supplier/changeStatus/${id}`,token,body:{status,feedback:feedbackText}})
+      await useUpdate({
+        url: `supplier/changeStatus/${id}`,
+        token,
+        body: { status, feedback: feedbackText },
+      });
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-
   };
   const handlerChange = (event) => {
+    update ? null : setUpdate(true);
     setFeedbackText(event.target.value);
   };
 
@@ -37,7 +42,7 @@ export default function FeedbackProvider({
     return (
       <div className="container-feedback">
         <div className="container-title">
-          <h1 className="editar-text">Devolucnión del proveedor</h1>
+          <h1 className="editar-text">Devolución del proveedor</h1>
           <button onClick={handlerEdit}>
             <span className="editar-text">Editar</span>
             <svg
@@ -63,7 +68,7 @@ export default function FeedbackProvider({
   }
   if (editBool) {
     return (
-      <div style={{ width: "80%", marginBottom:"50px" }}>
+      <div style={{ width: "80%", marginBottom: "50px" }}>
         <div
           style={{
             backgroundColor: "#EAEAEA",
@@ -71,9 +76,8 @@ export default function FeedbackProvider({
             borderTopLeftRadius: "4px",
             padding: "8px",
             borderBottom: "1px solid black",
-            display:"flex",
-            flexDirection:"column"
-
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <span className="text-edit">Edición de devolución al Proveedor</span>
@@ -101,8 +105,17 @@ export default function FeedbackProvider({
             }}
           />
         </div>
-        <div style={{display:"flex", flexDirection:"row", paddingLeft:"16px", paddingRight:"16px", justifyContent:"space-between",marginTop:"4px"}}>
-          <span >Máximo 300 caracteres </span>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            justifyContent: "space-between",
+            marginTop: "4px",
+          }}
+        >
+          <span>Máximo 300 caracteres </span>
           <span>{feedbackText.length}/300 </span>
         </div>
 
@@ -112,7 +125,7 @@ export default function FeedbackProvider({
         >
           <span style={{ width: "100%", textAlign: "center" }}>
             {" "}
-            Guardar cambios
+            {update ? "Guardar cambios" : "enviar"}
           </span>
         </button>
       </div>

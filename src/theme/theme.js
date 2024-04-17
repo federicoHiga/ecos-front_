@@ -25,16 +25,16 @@ const theme = createTheme({
       medium: "#a628bf",
       light: "#e4c0ec",
     },
-    postulado: {
+    REVISION_INICIAL: {
       main: "#505050",
     },
-    exito: {
+    ACEPTADO: {
       main: "#1d9129",
     },
-    revision: {
+    CAMBIOS_REALIZADOS: {
       main: "#b86b11",
     },
-    denegado: {
+    DENEGADO: {
       main: "#bc1111",
     },
     blanco: {

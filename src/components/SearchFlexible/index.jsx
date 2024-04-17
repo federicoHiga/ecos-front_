@@ -61,7 +61,7 @@ export default function SearchByChildren({ children }) {
           </Typography>
         </section>
         <section className="no-results-container">
-          <NoResultsCard />
+          <NoResultsCard title={'No se encontraron resultados para tu búsqueda'} subtitle={'Intentá nuevamente con otra consulta'} />
         </section>
       </div>
     );

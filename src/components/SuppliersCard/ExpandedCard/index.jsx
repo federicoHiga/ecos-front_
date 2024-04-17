@@ -8,11 +8,12 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import "./styles.css";
+import Carrousel from "../../PostsCard/Carrousel";
 
 // eslint-disable-next-line react/prop-types
 const ExpandedCard = ({ open, handleClose, supplier }) => {
   const theme = useTheme();
-
+console.log("supp desde expanded",supplier)
   return (
     <Dialog onClose={handleClose} open={open} className="expanded-card-dialog">
       <header className="expanded-card-header">
@@ -40,7 +41,7 @@ const ExpandedCard = ({ open, handleClose, supplier }) => {
               {supplier?.category?.category}
             </Typography>
           </div>
-          <img className="expanded-card-img" src={supplier?.image} alt="Producto" />
+          <Carrousel className="expanded-card-img" images={supplier?.images} alt="Producto" />
         </div>
 
         <div className="expanded-card-data-container">

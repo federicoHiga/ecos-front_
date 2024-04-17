@@ -4,14 +4,23 @@ import useGetAll from "../../utils/services/hooks/useGetAll";
 import ProviderCategory from "./providerCategory/providerCategory";
 import VisualizacionPublicacion from "./visualizacionPublicacion/visualizacionPublicacion";
 import useUser from "../../utils/services/hooks/useUser";
+import { useEffect, useState } from "react";
 
 export default function AdminPrincipal() {
+  const [load, setLoad] = useState(false)
   const { token } = useUser();
+  
+  useEffect(()=>{
+    setLoad(!load)
+  },[token])
+
+  
   const { data, loading, error } = useGetAll({
     url: "statistics/quantitySupplierByStatus",
     needsAuth: true,
     token: token,
   });
+
 
   return (
     <div className="adminContainer">

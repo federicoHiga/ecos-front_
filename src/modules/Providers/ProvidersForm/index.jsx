@@ -135,7 +135,14 @@ const ProvidersForm = () => {
       setTypeModal("succes");
       setModal(true);
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      if(error?.response?.status==404){
+        setParrafoModal(error?.response?.data?.errorMessage);
+        setTypeModal("error");
+        setModal(true);
+        return
+      }
+      
       setParrafoModal("Lo sentimos, el servicio/producto no pudo ser creada.");
       setTypeModal("error");
       setModal(true);
@@ -448,6 +455,7 @@ const ProvidersForm = () => {
           parrafo={parrafoModal}
           closeFuncion={handlerCloseModal}
           type={typeModal}
+          route={"/miProfile"}
         />
       </section>
     </div>

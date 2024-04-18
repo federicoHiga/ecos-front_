@@ -7,27 +7,16 @@ import useUser from "../../../utils/services/hooks/useUser";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 
 
-export default function ExpandedCard(props) {
-  const { description, id } = props;
-  const { user } = useUser();
+export default function ExpandedCard({post}) {
+  // const { token, user } = useUser();
   const [expanded, setExpanded] = useState(false);
-  console.log("props expand", props);
-
-  // const shortDescription =
-  //   description.slice(0, 150) + (description.length > 100 ? "..." : "");
-
-  const { data } = useGetAll({
-    url: `publication/getById/${id}/${user.id}`,
-    needsAuth: true,
-    token: user.token
-  })
+  
 
   const handleClick = async () => {
     if (expanded) handleExpandClick();
     if (!expanded) {
       try {
         handleExpandClick();
-        console.log("Views + :", data);
       } catch (error) {
         console.error("error:", error);
       }
@@ -41,7 +30,7 @@ export default function ExpandedCard(props) {
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
       <p className="shortText" style={{ display: expanded ? "none" : "block" }}>
-        {description}
+        {post?.description}
       </p>
       <Collapse
         in={expanded}
@@ -49,7 +38,7 @@ export default function ExpandedCard(props) {
         unmountOnExit
         className="postsCards-expand-div"
       >
-        <p className="longText">{description}</p>
+        <p className="longText">{post?.description}</p>
       </Collapse>
       <Button
         sx={{ textTransform: "none" }}

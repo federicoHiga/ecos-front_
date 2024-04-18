@@ -51,12 +51,12 @@ export default function NewPublication() {
   const { token, user } = useUser();
   const location = useLocation();
 
-  console.log("id",id)
+  console.log("id", id);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if(!id)return
+        if (!id) return;
         const { data } = await useGetPulblication({
           url: `publication/getById/${id}/${user.id}`,
           token,
@@ -98,10 +98,11 @@ export default function NewPublication() {
   };
 
   const handleDeleteImage = (index) => {
-    const newArray = [...images];
-    newArray.splice(index, 1);
+    console.log(index);
+    const newArray = images.filter((img) => img.name != index);
     setImages(newArray);
   };
+
   const handlerCloseModal = () => {
     setModal(false);
     setParrafoModal("");
@@ -109,10 +110,10 @@ export default function NewPublication() {
   };
 
   const handlerSubmit = async (e) => {
-    console.log("antes")
+    console.log("antes");
     e.preventDefault();
     handleSubmit();
-    console.log("desp")
+    console.log("desp");
     if (images.length === 0) {
       setParrafoModal("La publicación debe tener al menos 1 imagen");
       setTypeModal("error");
@@ -139,14 +140,14 @@ export default function NewPublication() {
       // setPublication({ title: "", description: "" });
       setImages([]);
     } catch (error) {
-      console.log(error)
-      if(error?.response?.status==404){
+      console.log(error);
+      if (error?.response?.status == 404) {
         setParrafoModal(error?.response?.data?.errorMessage);
         setTypeModal("error");
         setModal(true);
-        return
+        return;
       }
-      
+
       setParrafoModal("Lo sentimos, el servicio/producto no pudo ser creada.");
       setTypeModal("error");
       setModal(true);
@@ -154,7 +155,7 @@ export default function NewPublication() {
   };
 
   const handleEditImage = (text, name, newName) => {
-    console.log(name, newName);
+    console.log(name);
     const newArrImages = images.map((img) => {
       if (img && img.name === name) {
         img.isBase64 = true;
@@ -167,7 +168,6 @@ export default function NewPublication() {
     setImages(newArrImages);
     return;
   };
-  console.log(images);
   return (
     <div className="container">
       <Typography variant="titulos">Carga de publicación</Typography>
@@ -239,15 +239,16 @@ export default function NewPublication() {
             <IndexFile functionLoad={handlerLoadImage} type={"input"} />
           </div>
         )}
-              <div className="imageContainer">
-        <ImagesPublicationList
-          listImages={images}
-          handlerDeleteImage={handleDeleteImage}
-          handleEditImage={handleEditImage}
-        />
-      </div>
-        <button  type="submit">Crear publicación</button>
+        <div className="imageContainer">
+          <ImagesPublicationList
+            listImages={images}
+            handlerDeleteImage={handleDeleteImage}
+            handleEditImage={handleEditImage}
+          />
+        </div>
+        <button type="submit">Crear publicación</button>
       </form>
+
       <AlertSuccesErrorModal
         boolOpen={modal}
         parrafo={parrafoModal}

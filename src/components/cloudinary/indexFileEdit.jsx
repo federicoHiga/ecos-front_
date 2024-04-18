@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import convertFileToBase64 from "../../utils/convert/convertFileToBase64";
 import "./indexFile.css";
+
 export default function IndexFileEdit({ functionLoad, name }) {
   const [file, setFile] = useState();
 
-
-
-  const HandlerLoadFile = async (event) => {
+  const HandlerLoadFile = async (event,oldName) => {
     const loadedFile = event.target.files[0];
+    console.log(oldName)
     const fileSize = loadedFile.size / 1024 / 1024; // Tamaño en MB
-
     if (fileSize > 3) {
       alert("El tamaño máximo permitido es de 3MB");
       input.value = ""; // Borra el archivo seleccionado
@@ -17,22 +16,24 @@ export default function IndexFileEdit({ functionLoad, name }) {
     const newName = loadedFile.name
     const fileBase64 = await convertFileToBase64(loadedFile);
 
-    functionLoad(fileBase64, name, newName);
+    functionLoad(fileBase64, oldName, newName);
+    console.log({viejo:oldName, nuevo:newName})
     setFile(fileBase64);
 
   };
-
-    return (
+  console.log(name)
+  return (
       <>
         <input
           type="file"
           placeholder="texto para imagen"
-          id="file"
+          id={name}
           className="inputFileEdit"
-          onChange={HandlerLoadFile}
+          name={name}
+          onChange={(event)=>HandlerLoadFile(event,name)}
           accept=".jpg, .jpeg, .png"
         />
-        <label htmlFor="file" className="editStyle">
+        <label htmlFor={name} className="editStyle"  >
           <svg
             width="18"
             height="18"

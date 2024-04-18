@@ -11,7 +11,7 @@ const ProductsCard = ({ status, provider }) => {
   const navigate = useNavigate();
 
   const toDetail = () => {
-    console.log('navega al form del update')
+    navigate(`updateProduct/${provider?.id}`)
   }
 
   return (
@@ -54,6 +54,7 @@ const ProductsCard = ({ status, provider }) => {
           >
             {status === "REVISION_INICIAL" && "Postulado"}
             {status === "ACEPTADO" && "Aprobado"}
+            {status === "REQUIERE_CAMBIOS" && "En revisión"}
             {status === "CAMBIOS_REALIZADOS" && "En revisión"}
             {status === "DENEGADO" && "Denegado"}
           </Typography>
@@ -113,7 +114,7 @@ const ProductsCard = ({ status, provider }) => {
           </div>
         )}
 
-        {(status === "CAMBIOS_REALIZADOS" || status === "DENEGADO") && (
+        {(status === "REQUIERE_CAMBIOS" || status === "DENEGADO" || status === 'CAMBIOS_REALIZADOS') && (
           <div className="product-card-feedback">
             <Typography
               variant="titulos"

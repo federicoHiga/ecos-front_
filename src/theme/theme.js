@@ -34,6 +34,9 @@ const theme = createTheme({
     CAMBIOS_REALIZADOS: {
       main: "#b86b11",
     },
+    REQUIERE_CAMBIOS: {
+      main: "#b86b11",
+    },
     DENEGADO: {
       main: "#bc1111",
     },
@@ -87,7 +90,7 @@ const theme = createTheme({
     MuiButton: {
       variants: [
         {
-          props: { variant: "purple" }, 
+          props: { variant: "purple" },
           style: {
             textTransform: "none",
             border: "none",
@@ -138,7 +141,7 @@ const theme = createTheme({
           },
         },
         {
-          props: { variant: "form" }, 
+          props: { variant: "form" },
           style: {
             textTransform: "none",
             border: "none",
@@ -155,7 +158,7 @@ const theme = createTheme({
               backgroundColor: "#505050",
             },
           },
-        }
+        },
       ],
     },
     MuiTextField: {

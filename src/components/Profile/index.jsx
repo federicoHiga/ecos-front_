@@ -143,7 +143,7 @@ export default function Profile() {
           </div>
         </div>
         <div onClick={handleClose} id="item-mi-perfil">
-          <a href="/providers/profile">Mi perfil</a>
+          <a href="/profile">Mi perfil</a>
         </div>
         <div onClick={handleClose}>
           <span onClick={googleSignOut}>

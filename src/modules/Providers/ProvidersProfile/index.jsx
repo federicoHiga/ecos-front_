@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { Box, Button, Tab, Tabs, Typography, useTheme } from "@mui/material";
 import ProductsCard from "../../../components/ProductsCard";
-import { SearchResultCard } from "../../../components/SearchResultsCards";
+import { NoResultsCard, SearchResultCard } from "../../../components/SearchResultsCards";
 import useUser from "../../../utils/services/hooks/useUser";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 import CustomTabPanel from "../../../components/TabPanel";
@@ -38,7 +38,7 @@ const ProvidersProfile = () => {
   };
 
   const handleClick = () => {
-    navigate('/providers/profile/postProduct')
+    navigate('/profile/newProvider')
   }
 
   return (
@@ -120,7 +120,7 @@ const ProvidersProfile = () => {
             ))}
           </>
         ) : (
-          <>nada</>
+          <NoResultsCard title={'Todavía no hay productos o servicios'} subtitle={'Cuando los crees se visualizarán aquí'} />
         )}
       </section>
     </div>

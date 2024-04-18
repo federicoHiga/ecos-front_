@@ -41,7 +41,7 @@ function App() {
         <Route path="login" element={<SignIn />} />
 
         {/* Ruta de proveedores (dashboard) */}
-        <Route path="miProfile">
+        <Route path="/profile">
           <Route index element={<ProvidersProfile />} />
           <Route path="providers" element={""} />
           <Route path="newProvider" element={<ProvidersForm />} />

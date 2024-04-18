@@ -7,7 +7,7 @@ import AlertSuccesErrorModal from "../../../components/modals/alertErrorSucces/a
 import useUser from "../../../utils/services/hooks/useUser";
 import useGetPulblication from "../../../utils/services/hooks/getPublication";
 import { useLocation, useParams } from "react-router-dom";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, FormHelperText } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 import { schemaFormPublication } from "../../../utils/schemas/schemaFormPublication";
@@ -193,6 +193,11 @@ export default function NewPublication() {
 
         <TextField
           id="title"
+          sx={{'& .MuiOutlinedInput-root': {
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderWidth: '1px', 
+            }
+          }}}
           className={
             errors.title && touched.title
               ? "custom-textfield input-error"
@@ -213,7 +218,11 @@ export default function NewPublication() {
         />
         <TextField
           id="description"
-          sx={{ marginBottom: 22 }}
+          sx={{ marginBottom: 22, '& .MuiOutlinedInput-root': {
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderWidth: '1px', 
+            }
+          } }}
           className={
             errors.description && touched.description
               ? "custom-textfield input-error"
@@ -229,16 +238,14 @@ export default function NewPublication() {
           helperText={
             errors.description && touched.description
               ? errors.description
-              : "Máximo 2.000 caracteres"
+              : <FormHelperText sx={{display:'flex', justifyContent:'space-between'}}>
+                <p>Máximo 2000 carácteres</p>
+                <p>{values.description.length}/2000</p>
+              </FormHelperText> 
           }
           multiline
           rows={10}
         />
-        {images.length >= 3 ? null : (
-          <div className="containerIndexFile">
-            <IndexFile functionLoad={handlerLoadImage} type={"input"} />
-          </div>
-        )}
         <div className="imageContainer">
           <ImagesPublicationList
             listImages={images}
@@ -246,7 +253,12 @@ export default function NewPublication() {
             handleEditImage={handleEditImage}
           />
         </div>
-        <button type="submit">Crear publicación</button>
+        {images.length >= 3 ? null : (
+          <div className="containerIndexFile">
+            <IndexFile functionLoad={handlerLoadImage} type={"input"} />
+          </div>
+        )}
+        <button type="submit" style={{padding:'10px 50px'}}>Crear publicación</button>
       </form>
 
       <AlertSuccesErrorModal

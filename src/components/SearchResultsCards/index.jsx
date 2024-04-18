@@ -10,6 +10,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import Slider from "react-slick";
+import Carrousel from "../PostsCard/Carrousel";
 
 export const NoResultsCard = ({ title, subtitle }) => {
   const theme = useTheme();
@@ -80,15 +81,16 @@ export const SearchResultCard = ({ supplier }) => {
               {supplier?.category?.category}
             </Typography>
           </div>
-          <Slider {...settings} className="search-result-card-carousel">
+          {/* <Slider {...settings} className="search-result-card-carousel">
             <div className="search-result-card-img">
-              <img
+              <Carrousel
                 className="search-result-image"
                 alt="Imagen ilustrativa"
-                src={supplier.image}
+                src={supplier?.images}
               />
             </div>
-          </Slider>
+          </Slider> */}
+          <Carrousel className="expanded-card-img" images={supplier?.images} alt="Producto" />
         </section>
 
         <section className="search-result-product-data-container">

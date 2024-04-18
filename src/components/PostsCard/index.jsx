@@ -11,7 +11,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
 export default function PostsCard({ post }) {
-  const { title, fechaCreacion, description, imagePublicDtoList  } = post;
+  const { title, fechaCreacion, description, imagePublicDtoList, id, user, cantVisualizations } = post;
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -26,6 +26,8 @@ export default function PostsCard({ post }) {
     return location.pathname.startsWith("/admin/publications");
   };
 // console.log("post desde postcard",imagePublicDtoList )
+
+  console.log('cantVisualizations', cantVisualizations)
   return (
     <>
       <section className="postsCards-section">
@@ -66,9 +68,9 @@ export default function PostsCard({ post }) {
           ) : null}
         </div>
         <Carrousel images={imagePublicDtoList} />
-        <h2>{new Date(fechaCreacion).toLocaleDateString()}</h2>
-        <ExpandedCard description={description} />
+        <h2>{fechaCreacion}</h2>
+        <ExpandedCard description={description} id={id} user={user.id} />
       </section>
     </>
-  );
+  )
 }

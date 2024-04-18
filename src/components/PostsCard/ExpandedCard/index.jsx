@@ -2,14 +2,37 @@ import React from "react";
 import "./styles.css";
 import { useState } from "react";
 import { CardActions, Collapse, Button } from "@mui/material";
+import axios from "axios";
+import useUser from "../../../utils/services/hooks/useUser";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
+
 
 export default function ExpandedCard(props) {
-  const { description } = props;
+  const { description, id } = props;
+  const { user } = useUser();
+  const [expanded, setExpanded] = useState(false);
+  console.log("props expand", props);
 
   // const shortDescription =
   //   description.slice(0, 150) + (description.length > 100 ? "..." : "");
 
-  const [expanded, setExpanded] = useState(false);
+  const { data } = useGetAll({
+    url: `publication/getById/${id}/${user.id}`,
+    needsAuth: true,
+    token: user.token
+  })
+
+  const handleClick = async () => {
+    if (expanded) handleExpandClick();
+    if (!expanded) {
+      try {
+        handleExpandClick();
+        console.log("Views + :", data);
+      } catch (error) {
+        console.error("error:", error);
+      }
+    }
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -28,10 +51,11 @@ export default function ExpandedCard(props) {
       >
         <p className="longText">{description}</p>
       </Collapse>
-      <Button sx={{textTransform: 'none'}}
+      <Button
+        sx={{ textTransform: "none" }}
         variant="text"
         expand={expanded ? "true" : undefined}
-        onClick={handleExpandClick}
+        onClick={handleClick}
         aria-expanded={expanded}
         aria-label="show more"
       >

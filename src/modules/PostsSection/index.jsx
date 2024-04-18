@@ -8,7 +8,7 @@ function PostsSection() {
     "publication"
     // "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
   );
-  // console.log("dataPost", data);
+  console.log("dataPost", data);
 
   return (
     <section className="posts-section">
@@ -18,8 +18,7 @@ function PostsSection() {
       </div>
       {data?.slice(0, 3)?.map((post) => (
         <PostsCard key={post.id} post={post} />
-      ))}
-      ;
+      ))};
       <Link to={"/posts"}>
         <button className="posts-section-button">Ir a Publicaciones</button>
       </Link>

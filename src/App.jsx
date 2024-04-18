@@ -52,11 +52,11 @@ function App() {
         <Route path="admin">
           <Route index element={< AdminDashboard/>} />
           <Route path="providers" element={""} />
-          <Route path="publications">
+          {/* <Route path="publications">
             <Route index element={<PostsAdmin />} />
             <Route path="loadPublication" element={<LoadPost />} />
             <Route path="editPublication" element={<EditPost />} />
-          </Route>
+          </Route> */}
           <Route index element={<AdminDashboard />} />
           <Route path="providers">
             <Route index element={<AdminListProviders />} />

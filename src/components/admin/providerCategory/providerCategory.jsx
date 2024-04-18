@@ -4,7 +4,7 @@ import useUser from "../../../utils/services/hooks/useUser";
 export default function ProviderCategory() {
   const {token} = useUser()
 
-  const {data} = useGetAll({url:"statistics/quantitySupplierByCategory",token})
+  const {data} = useGetAll({url:"statistics/quantitySupplierByCategory",token,needsAuth:true})
   return (
     <div className="container">
       <div className="categoryBox">

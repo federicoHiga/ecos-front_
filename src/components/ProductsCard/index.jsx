@@ -46,7 +46,7 @@ const ProductsCard = ({ status, provider }) => {
         <div className="product-card-status">
           <figure
             className="status-circle"
-            style={{ backgroundColor: theme.palette[status].main }}
+            style={{ backgroundColor: theme.palette[status]?.main }}
           ></figure>
           <Typography
             variant="subtitulos"

@@ -2,6 +2,7 @@ import PostsCard from "../../../components/PostsCard";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 import "./adminPublications.css";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const hardImages = [
   "https://res.cloudinary.com/dxatwbzff/image/upload/v1710415070/Quinto/1c27a72869b176f8ac7bc5f75f460594_fddnpc.jpg",
@@ -10,11 +11,12 @@ const hardImages = [
 ];
 export default function AdminPublications() {
   const { data, error, loading } = useGetAll({ url: "publication" });
+  const navigate = useNavigate()
   
   return (
     <div className="postsContainer">
       <Typography variant="titulos">Publicaciones</Typography>
-      <button className="buttonCrearPublicacion">Crear publicación</button>
+      <button className="buttonCrearPublicacion" onClick={()=>navigate('/admin/publications/newPublication')}>Crear publicación</button>
 
         <div className="postsView-container">
         <Typography variant="subtitulos">Publicaciones cargadas</Typography>

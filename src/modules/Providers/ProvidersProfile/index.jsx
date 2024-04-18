@@ -70,7 +70,7 @@ const ProvidersProfile = () => {
               >
                 {providers?.map((provider, index) => (
                   <Tab
-                    key={provider.id}
+                    key={provider?.id}
                     className="providers-profile-tab"
                     label={provider?.name}
                     {...allyProps(index)}
@@ -84,7 +84,7 @@ const ProvidersProfile = () => {
                 ))}
               </Tabs>
             </Box>
-            {providers.map((provider, index) => (
+            {providers?.map((provider, index) => (
               <CustomTabPanel
                 value={value}
                 index={index}

@@ -4,7 +4,7 @@ import useGetAll from "../../../utils/services/hooks/useGetAll";
 import useUser from "../../../utils/services/hooks/useUser";
 export default function VisualizacionPublicacion() {
   const {token} = useUser()
-  const {data} = useGetAll({url:"statistics/publicationByQuantityViews",token})
+  const {data} = useGetAll({url:"statistics/publicationByQuantityViews",token,needsAuth:true})
   return (
     <div className="container">
       <div>

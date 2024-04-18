@@ -32,7 +32,7 @@ export default function ImagesPublicationList({
               backgroundPosition: "center",
               width: "100%",
               height: "150px",
-              padding: "10px",
+              // padding: "10px",
               display: "flex",
               flexDirection: "row",
               justifyContent: "end",

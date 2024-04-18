@@ -5,30 +5,34 @@ import "./imagesPublication.css";
 export default function ImagesPublicationList({
   listImages,
   handlerDeleteImage,
-  handleEditImage
+  handleEditImage,
 }) {
 
-    const deleteImage = (event)=>{
-        handlerDeleteImage(Number(event.target.id))
-        console.log(event.target.id)
-    }
-    const editImage = (text,name, newName) =>{
-        console.log(name)
-        handleEditImage(text, name,newName)
-    }
+  const deleteImage = (name) => {
+    console.log(name)
+    handlerDeleteImage(name);
+  };
+
+  const editImage = (text, name, newName) => {
+    console.log(name, newName);
+    handleEditImage(text, name, newName);
+  };
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      {listImages?.map((image,index) => {
+      {listImages?.map((image, index) => {
         return (
           <div
-            style={
-              {
-              backgroundImage:`url(${image.isBase64?("data:image/png;base64,"+image?.path):(image?.path)})`,
+            style={{
+              backgroundImage: `url(${
+                image.isBase64
+                  ? "data:image/png;base64," + image?.path
+                  : image?.path
+              })`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               width: "100%",
               height: "150px",
-              padding: "10px",
+              // padding: "10px",
               display: "flex",
               flexDirection: "row",
               justifyContent: "end",
@@ -38,8 +42,9 @@ export default function ImagesPublicationList({
           >
             <button
               className="buttonStyle"
-              id={`${index}`}
-              onClick={deleteImage}
+              type="button"
+              name={image?.name}
+              onClick={(event)=>deleteImage(image?.name)}
             >
               {" "}
               <svg
@@ -54,7 +59,7 @@ export default function ImagesPublicationList({
                 />
               </svg>
             </button>
-            <IndexFileEdit name={image?.name} functionLoad={editImage}/>
+            <IndexFileEdit name={image?.name} functionLoad={editImage} />
           </div>
         );
       })}

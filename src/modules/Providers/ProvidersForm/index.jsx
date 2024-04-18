@@ -16,7 +16,7 @@ import useUpdate from "../../../utils/services/hooks/useUpdate";
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm()
+  actions.resetForm();
   console.log(values);
 };
 
@@ -60,11 +60,12 @@ const ProvidersForm = () => {
   const category = useGetAll({ url: "category" });
   const categoryData = category?.data?.data;
 
-  const paises = useGetAll({ url: "pais/paises", token });
+  const paises = useGetAll({ url: "pais/paises", token, needsAuth: true });
   const paisesData = paises?.data?.data;
   const provincias = useGetAll({
     url: `provincias/provinciasByIdPais/${values.country}`,
     token,
+    needsAuth: true,
   });
   const provinciasData = provincias?.data?.data;
   //logica de manejo de imagenes
@@ -86,9 +87,8 @@ const ProvidersForm = () => {
   };
 
   const handleDeleteImage = (index) => {
-    console.log(index)
-    const newArray = [...images];
-    newArray.splice(index, 1);
+    console.log(index);
+    const newArray = images.filter((img) => img.name != index);
     setImages(newArray);
   };
 
@@ -135,14 +135,14 @@ const ProvidersForm = () => {
       setTypeModal("succes");
       setModal(true);
     } catch (error) {
-      console.log(error)
-      if(error?.response?.status==404){
+      console.log(error);
+      if (error?.response?.status == 404) {
         setParrafoModal(error?.response?.data?.errorMessage);
         setTypeModal("error");
         setModal(true);
-        return
+        return;
       }
-      
+
       setParrafoModal("Lo sentimos, el servicio/producto no pudo ser creada.");
       setTypeModal("error");
       setModal(true);
@@ -163,10 +163,10 @@ const ProvidersForm = () => {
           url: `supplier/getById/${id}`,
           token,
         });
-        console.log("data",data);
+        console.log("data", data);
 
         setValues({
-          id:data.data.id,
+          id: data.data.id,
           name: data.data.name,
           shortDescription: data.data.shortDescription || "",
           category: data.data.category.id || "",
@@ -191,7 +191,7 @@ const ProvidersForm = () => {
     };
     fetchData();
   }, [id]);
-  console.log("errors",errors)
+  console.log(images);
   return (
     <div className="providers-form-screen">
       <section className="providers-form-title">
@@ -425,6 +425,7 @@ const ProvidersForm = () => {
           {images.length >= 3 ? null : (
             <IndexFile functionLoad={handlerLoadImage} type={"input"} />
           )}
+
           <div
             style={{ display: "flex", flexDirection: "column", width: "80%" }}
           >
@@ -450,6 +451,7 @@ const ProvidersForm = () => {
             Cargar Producto/Servicio
           </Button>
         </form>
+
         <AlertSuccesErrorModal
           boolOpen={modal}
           parrafo={parrafoModal}

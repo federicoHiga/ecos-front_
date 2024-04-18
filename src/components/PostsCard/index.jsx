@@ -4,30 +4,53 @@ import "./styles.css";
 import Carrousel from "./Carrousel";
 import ExpandedCard from "./ExpandedCard";
 import { useLocation } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import useUser from "../../utils/services/hooks/useUser";
+import useDelete from "../../utils/services/hooks/deleteHook";
+import AlertSuccesErrorModal from "../modals/alertErrorSucces/alertErrorSuccesModal";
 
 export default function PostsCard({ post }) {
   const { title, fechaCreacion, description, imagePublicDtoList, id, user, cantVisualizations } = post;
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [openModel, setOpenModel] = useState(false);
+  const [parrafo, setParrafo] = useState("");
+
+  const handleCloseModal = () => {
+    setOpenModel(false);
+    setParrafo("");
+    setTypeModal("");
+    window.location.reload();
+  };
+  const [typeModal, setTypeModal] = useState(null);
+  const { token } = useUser();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleOcultar = async (id) => {
+    try {
+      await useDelete({ url: `publication/delete/${id}`, token });
+      setOpenModel(true);
+      setParrafo("Se elimino la publicacion de forma correcta");
+      setTypeModal("succes");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const isAdminRoute = () => {
     return location.pathname.startsWith("/admin/publications");
   };
-// console.log("post desde postcard",imagePublicDtoList )
-
-  console.log('cantVisualizations', cantVisualizations)
+  // console.log("post desde postcard",imagePublicDtoList )
   return (
     <>
       <section className="postsCards-section">
@@ -35,41 +58,42 @@ export default function PostsCard({ post }) {
           <h1>{title}</h1>
           {isAdminRoute() ? (
             <div>
-            <IconButton
-              aria-label="more"
-              id="long-button"
-              aria-controls={open ? 'long-menu' : undefined}
-              aria-expanded={open ? 'true' : undefined}
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <MoreVertIcon />
-            </IconButton>
-            <Menu
-              id="long-menu"
-              
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              PaperProps={{
-                style: {
-                  width: '15ch',
-                },
-              }}
-            >
-                <MenuItem   onClick={handleClose}>
-                  Editar
-                </MenuItem>
-                <MenuItem   onClick={handleClose}>
-                  Ocultar
-                </MenuItem>
-            </Menu>
-          </div>
+              <IconButton
+                aria-label="more"
+                id="long-button"
+                aria-controls={open ? "long-menu" : undefined}
+                aria-expanded={open ? "true" : undefined}
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="long-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                  style: {
+                    width: "15ch",
+                  },
+                }}
+              >
+                <MenuItem onClick={handleClose}>Editar</MenuItem>
+                <MenuItem onClick={() => handleOcultar(id)}>Ocultar</MenuItem>
+              </Menu>
+            </div>
           ) : null}
         </div>
         <Carrousel images={imagePublicDtoList} />
         <h2>{fechaCreacion}</h2>
         <ExpandedCard description={description} id={id} user={user.id} />
+        <AlertSuccesErrorModal
+          boolOpen={openModel}
+          parrafo={parrafo}
+          closeFuncion={handleCloseModal}
+          type={typeModal}
+        />
       </section>
     </>
   )

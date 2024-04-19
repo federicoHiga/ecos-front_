@@ -5,7 +5,7 @@ import bars from "../../assets/svg/nav/bars.svg";
 import close from "../../assets/svg/nav/close.svg";
 import NavLink from "./NavLink";
 import Profile from '../../components/Profile'
-import { useLocation } from "react-router-dom";
+import useUser from "../../utils/services/hooks/useUser";
 
 const GlobalNav = () => {
   const user = JSON.parse(sessionStorage.getItem("userData"));
@@ -48,18 +48,12 @@ const ProviderNav = () => {
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
+  const { user } = useUser();
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
-  const isAdminRoute = () => {
-    return location.pathname.startsWith("/admin");
-  };
-  const isProviderRoute = () => {
-    return location.pathname.startsWith("/miProfile");
-  };
 
   return (
     <nav>
@@ -72,7 +66,7 @@ export default function Nav() {
           )}
         </button>
         {open === true ? (
-          <ul id="nav-items">{isAdminRoute() ? <AdminNav /> : <GlobalNav />}</ul>
+          <ul id="nav-items">{user.rol === 'ADMINISTRADOR' ? <AdminNav /> : <GlobalNav />}</ul>
         ) : null}
       </div>
       <img src={logotipo} alt="logotipo" id="logotipo" />

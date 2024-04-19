@@ -7,12 +7,6 @@ import { useTheme } from "@emotion/react";
 
 function SuppliersSection({ suppliers }) {
   const theme = useTheme();
-  console.log("dara",suppliers);
-  // console.log("images",suppliers.images);
-
-  // const getImagePaths = (postData) => {
-  //   return postData.images.map((imageObject) => imageObject.path);
-  // };
   
   return (
     <>

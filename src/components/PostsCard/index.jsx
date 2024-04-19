@@ -13,12 +13,15 @@ import useDelete from "../../utils/services/hooks/deleteHook";
 import AlertSuccesErrorModal from "../modals/alertErrorSucces/alertErrorSuccesModal";
 
 export default function PostsCard({ post }) {
-  const { id, title, fechaCreacion, description, imagePublicDtoList } = post;
+  const { title, fechaCreacion, description, imagePublicDtoList, id, user, cantVisualizations } = post;
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [openModel, setOpenModel] = useState(false);
   const [parrafo, setParrafo] = useState("");
+  const [typeModal, setTypeModal] = useState(null);
+  const { token } = useUser();
+  // console.log("DATA post", id)
 
   const handleCloseModal = () => {
     setOpenModel(false);
@@ -26,8 +29,6 @@ export default function PostsCard({ post }) {
     setTypeModal("");
     window.location.reload();
   };
-  const [typeModal, setTypeModal] = useState(null);
-  const { token } = useUser();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,7 +37,9 @@ export default function PostsCard({ post }) {
     setAnchorEl(null);
   };
 
-  const handleOcultar = async (id) => {
+  const handleOcultar = async (id, event) => {
+    event.preventDefault();
+    console.log("event",event)
     try {
       await useDelete({ url: `publication/delete/${id}`, token });
       setOpenModel(true);
@@ -80,14 +83,14 @@ export default function PostsCard({ post }) {
                 }}
               >
                 <MenuItem onClick={handleClose}>Editar</MenuItem>
-                <MenuItem onClick={() => handleOcultar(id)}>Ocultar</MenuItem>
+                <MenuItem onClick={handleOcultar}>Ocultar</MenuItem>
               </Menu>
             </div>
           ) : null}
         </div>
         <Carrousel images={imagePublicDtoList} />
-        <h2>{new Date(fechaCreacion).toLocaleDateString()}</h2>
-        <ExpandedCard description={description} />
+        <h2>{fechaCreacion}</h2>
+        <ExpandedCard post={post} />
         <AlertSuccesErrorModal
           boolOpen={openModel}
           parrafo={parrafo}
@@ -96,5 +99,5 @@ export default function PostsCard({ post }) {
         />
       </section>
     </>
-  );
+  )
 }

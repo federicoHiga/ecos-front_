@@ -2,14 +2,26 @@ import React from "react";
 import "./styles.css";
 import { useState } from "react";
 import { CardActions, Collapse, Button } from "@mui/material";
+import axios from "axios";
+import useUser from "../../../utils/services/hooks/useUser";
+import useGetAll from "../../../utils/services/hooks/useGetAll";
 
-export default function ExpandedCard(props) {
-  const { description } = props;
 
-  // const shortDescription =
-  //   description.slice(0, 150) + (description.length > 100 ? "..." : "");
-
+export default function ExpandedCard({post}) {
+  // const { token, user } = useUser();
   const [expanded, setExpanded] = useState(false);
+  
+
+  const handleClick = async () => {
+    if (expanded) handleExpandClick();
+    if (!expanded) {
+      try {
+        handleExpandClick();
+      } catch (error) {
+        console.error("error:", error);
+      }
+    }
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -18,7 +30,7 @@ export default function ExpandedCard(props) {
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
       <p className="shortText" style={{ display: expanded ? "none" : "block" }}>
-        {description}
+        {post?.description}
       </p>
       <Collapse
         in={expanded}
@@ -26,12 +38,13 @@ export default function ExpandedCard(props) {
         unmountOnExit
         className="postsCards-expand-div"
       >
-        <p className="longText">{description}</p>
+        <p className="longText">{post?.description}</p>
       </Collapse>
-      <Button sx={{textTransform: 'none'}}
+      <Button
+        sx={{ textTransform: "none" }}
         variant="text"
         expand={expanded ? "true" : undefined}
-        onClick={handleExpandClick}
+        onClick={handleClick}
         aria-expanded={expanded}
         aria-label="show more"
       >

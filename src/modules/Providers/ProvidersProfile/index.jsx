@@ -15,7 +15,7 @@ const allyProps = (index) => {
   };
 };
 
-const ProvidersProfile = () => {
+export const ProvidersProfile = () => {
   const theme = useTheme();
   const [providers, setProviders] = useState([]);
   const [value, setValue] = useState(0);
@@ -38,7 +38,7 @@ const ProvidersProfile = () => {
   };
 
   const handleClick = () => {
-    navigate('/profile/newProvider')
+    navigate('/profile/product/create')
   }
 
   return (

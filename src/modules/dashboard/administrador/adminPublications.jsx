@@ -16,7 +16,7 @@ export default function AdminPublications() {
   return (
     <div className="postsContainer">
       <Typography variant="titulos">Publicaciones</Typography>
-      <button className="buttonCrearPublicacion" onClick={()=>navigate('/admin/publications/newPublication')}>Crear publicación</button>
+      <button className="buttonCrearPublicacion" onClick={()=>navigate('/admin/posts/create')}>Crear publicación</button>
 
         <div className="postsView-container">
         <Typography variant="subtitulos">Publicaciones cargadas</Typography>

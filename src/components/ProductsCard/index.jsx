@@ -11,7 +11,7 @@ const ProductsCard = ({ status, provider }) => {
   const navigate = useNavigate();
 
   const toDetail = () => {
-    navigate(`updateProduct/${provider?.id}`)
+    navigate(`/profile/product/update/${provider?.id}`)
   }
 
   return (

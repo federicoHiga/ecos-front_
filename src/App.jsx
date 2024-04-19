@@ -19,6 +19,7 @@ import ProvidersForm from "./modules/Providers/ProvidersForm";
 import AdminListProviders from "./modules/dashboard/administrador/adminListProviders";
 import AdminPublications from "./modules/dashboard/administrador/adminPublications";
 import NewPublication from "./modules/dashboard/administrador/AdminNewPublication";
+import * as webAppRoutes from './constants/webAppRoutes'
 
 function App() {
   return (
@@ -40,32 +41,18 @@ function App() {
         {/* Ruta de proveedores (visitante) */}
         <Route path="login" element={<SignIn />} />
 
-        {/* Ruta de proveedores (dashboard) */}
-        <Route path="/profile">
-          <Route index element={<ProvidersProfile />} />
-          <Route path="providers" element={""} />
-          <Route path="newProvider" element={<ProvidersForm />} />
-          <Route path="updateProduct/:id" element={<ProvidersForm />} />
-        </Route>
+        {/* Rutas de usuario proveedor */}
+        <Route path={webAppRoutes.PROVIDER_PROFILE.path} element={webAppRoutes.PROVIDER_PROFILE.element} />
+        <Route path={webAppRoutes.CREATE_PRODUCT.path} element={webAppRoutes.CREATE_PRODUCT.element} />
+        <Route path={webAppRoutes.UPDATE_PRODUCT.path} element={webAppRoutes.UPDATE_PRODUCT.element} />
 
-        {/* Ruta de administrador (dashboard) */}
-        <Route path="admin">
-          <Route index element={< AdminDashboard/>} />
-          <Route path="providers" element={""} />
-          {/* <Route path="publications">
-            <Route index element={<PostsAdmin />} />
-            <Route path="loadPublication" element={<LoadPost />} />
-            <Route path="editPublication" element={<EditPost />} />
-          </Route> */}
-          <Route index element={<AdminDashboard />} />
-          <Route path="providers">
-            <Route index element={<AdminListProviders />} />
-            <Route path=":id" element={""} />
-          </Route>
-          <Route path="publications" element={<AdminPublications />} />
-          <Route path="newPublication" element={< NewPublication/>} />
-          <Route path="publications/:id" element={< NewPublication/>} />
-        </Route>
+        {/* Rutas de usuario admin */}
+        <Route path={webAppRoutes.ADMIN_DASHBOARD.path} element={webAppRoutes.ADMIN_DASHBOARD.element} />
+        <Route path={webAppRoutes.PROVIDERS_LIST.path} element={webAppRoutes.PROVIDERS_LIST.element} />
+        <Route path={webAppRoutes.POSTS_LIST.path} element={webAppRoutes.POSTS_LIST.element} />
+        <Route path={webAppRoutes.CREATE_POST.path} element={webAppRoutes.CREATE_POST.element} />
+        <Route path={webAppRoutes.UPDATE_POST.path} element={webAppRoutes.UPDATE_POST.element} />
+
       </Routes>
     </AuthProvider>
   );

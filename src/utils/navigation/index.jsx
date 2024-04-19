@@ -8,12 +8,12 @@ const PrivateRoute = ({ Component, roles }) => {
     const { user } = useUser();
 
     if (!user) {
-        return <Navigate to='/login' />
-    } else if (roles && roles.indexOf(user.rol) === -1) {
-        return <Navigate to={{ pathname: '/login' }} />
+        return <Navigate to='/' />
+    } else if (roles && roles.indexOf(user.role) === -1) {
+        return <Navigate to={{ pathname: '/' }} />
     } else {
         return (
-            < Component />
+            <Component />
         )
     }
 }

@@ -106,6 +106,7 @@ const handleCloseModel = ()=>{
             onBlur={handleBlur}
             variant="standard"
             sx={{
+              maxWidth:'100%',
               paddingBottom: "100px",
               border: "none",
               "& .MuiInput-underline:before": {

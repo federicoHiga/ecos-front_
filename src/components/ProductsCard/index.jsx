@@ -11,7 +11,7 @@ const ProductsCard = ({ status, provider }) => {
   const navigate = useNavigate();
 
   const toDetail = () => {
-    console.log('navega al form del update')
+    navigate(`/miProfile/updateProduct/${provider.id}`)
   }
 
   return (

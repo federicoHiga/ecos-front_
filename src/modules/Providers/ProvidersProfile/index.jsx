@@ -38,7 +38,7 @@ const ProvidersProfile = () => {
   };
 
   const handleClick = () => {
-    navigate('/providers/profile/postProduct')
+    navigate('/miProfile/newProvider')
   }
 
   return (

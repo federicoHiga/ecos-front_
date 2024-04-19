@@ -8,13 +8,13 @@ import { useEffect, useState } from "react";
 
 export default function AdminPrincipal() {
   const [load, setLoad] = useState(false)
-  const { token } = useUser();
-  
-  useEffect(()=>{
-    setLoad(!load)
-  },[token])
+  const token = window.sessionStorage.getItem("token");
 
-  
+  useEffect(() => {
+    setLoad(!load)
+  }, [token])
+
+
   const { data, loading, error } = useGetAll({
     url: "statistics/quantitySupplierByStatus",
     needsAuth: true,

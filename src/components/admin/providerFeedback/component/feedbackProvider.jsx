@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import usePost from "../../../../utils/services/hooks/usePost";
 import useUpdate from "../../../../utils/services/hooks/useUpdate";
 import useUser from "../../../../utils/services/hooks/useUser";
+import AlertSuccesErrorModal from "../../../../components/modals/alertErrorSucces/alertErrorSuccesModal";
 export default function FeedbackProvider({
   handlerChangeEdit,
   editBool,
@@ -16,6 +17,11 @@ export default function FeedbackProvider({
   const { token } = useUser();
   const [feedbackText, setFeedbackText] = useState(feedback);
   const [update, setUpdate] = useState(false);
+  const [boolModal, setBoolModal] = useState(false)
+  const [parrafo, setParrafo] = useState("")
+  const [type, setType] = useState("")
+
+
   useEffect(() => {
     setFeedbackText(feedback);
   }, [feedback]);
@@ -29,15 +35,24 @@ export default function FeedbackProvider({
         token,
         body: { status, feedback: feedbackText },
       });
+      setBoolModal(true)
+      setParrafo("Devolución enviada con éxito")
+      setType("succes")
     } catch (error) {
-      console.log(error);
-    }
+      setBoolModal(true)
+      setParrafo("Lo sentimos, la devolución no pudo ser enviada.")
+      setType("Error")
+        }
   };
   const handlerChange = (event) => {
     update ? null : setUpdate(true);
     setFeedbackText(event.target.value);
   };
-
+const handleCloseModel = ()=>{
+    setBoolModal(false)
+    setParrafo("")
+    setType("")
+}
   if (!editBool) {
     return (
       <div className="container-feedback">
@@ -128,6 +143,7 @@ export default function FeedbackProvider({
             {update ? "Guardar cambios" : "enviar"}
           </span>
         </button>
+        <AlertSuccesErrorModal boolOpen={boolModal} parrafo={parrafo} closeFuncion={handleCloseModel} type={type} route={"/admin/providers"} />
       </div>
     );
   }

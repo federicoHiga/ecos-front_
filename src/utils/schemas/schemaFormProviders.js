@@ -17,11 +17,11 @@ export const schemaFormProviders = yup.object().shape({
     .email("Formato de correo invalido"),
   phoneNumber: yup
     .string()
-    .required("Este campo es obligatorio")
-    .matches(/^\d{13}$/, "Formato de teléfono invalido"),
+    .required("Este campo es obligatorio"),
+    // .matches(/^\d{13}$/, "Formato de teléfono invalido"),
     // .matches(/^(+?\d{1,12})?$/, "Formato de teléfono invalido"),
-  instagram: yup.string().required("Este campo es obligatorio"),
-  facebook: yup.string().required("Este campo es obligatorio"),
+  instagram: yup.string(),
+  facebook: yup.string(),
   country: yup.string().required("Este campo es obligatorio"),
   province: yup.string().required("Este campo es obligatorio"),
   city: yup.string().required("Este campo es obligatorio"),

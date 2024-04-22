@@ -35,7 +35,7 @@ useEffect(()=>{
       </div>
       {posts?.slice(0, 3)?.map((post) => (
         <PostsCard key={post.id} post={post} />
-      ))};
+      ))}
       <Link to={"/posts"}>
         <button className="posts-section-button">Ir a Publicaciones</button>
       </Link>

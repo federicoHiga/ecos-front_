@@ -13,9 +13,9 @@ const hardImages = [
 export default function AdminPublications() {
   const [refresh, setRefresh] = useState(false)
 
-  const { data, error, loading } = useGetAll({ url: "publication",refresh })
+  const { data, error, loading } = useGetAll({ url: "publication", refresh })
   const navigate = useNavigate()
-  useEffect(() => {}, [refresh])
+  useEffect(() => { }, [refresh])
   const handlerRefreshFunction = () => {
     setRefresh(!refresh)
     console.log(refresh)
@@ -26,7 +26,7 @@ export default function AdminPublications() {
       <Typography variant="titulos">Publicaciones</Typography>
       <button
         className="buttonCrearPublicacion"
-        onClick={() => navigate("/admin/publications/newPublication")}
+        onClick={() => navigate("/admin/posts/create")}
       >
         Crear publicación
       </button>

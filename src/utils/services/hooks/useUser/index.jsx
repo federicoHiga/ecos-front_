@@ -12,11 +12,17 @@ const useUser = () => {
     setToken(tokenData)
   }
 
+  const logout = () => {
+    setUser(null);
+    setToken(null)
+  }
+
   return {
     token,
     user,
     initializeUser,
-    initializeToken
+    initializeToken,
+    logout
   };
 };
 

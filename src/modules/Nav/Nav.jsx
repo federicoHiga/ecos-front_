@@ -28,10 +28,10 @@ const GlobalNav = () => {
 const AdminNav = () => {
   return (
     <div>
+      <NavLink href="/" font="bold" text="Inicio" />
       <NavLink href="/admin" font="bold" text="Dashboard Administrador" />
       <NavLink href="/admin/providers" font="bold" text="Proveedores" />
       <NavLink href="/admin/posts" font="bold" text="Publicaciones" />
-      <NavLink href="/" font="bold" text="Logout" />
     </div>
   );
 };

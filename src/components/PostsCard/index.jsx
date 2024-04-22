@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import "./styles.css"
 import Carrousel from "./Carrousel"
 import ExpandedCard from "./ExpandedCard"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import IconButton from "@mui/material/IconButton"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
@@ -12,7 +12,7 @@ import useUser from "../../utils/services/hooks/useUser"
 import useDelete from "../../utils/services/hooks/deleteHook"
 import AlertSuccesErrorModal from "../modals/alertErrorSucces/alertErrorSuccesModal"
 
-export default function PostsCard({ post,refreshFunction }) {
+export default function PostsCard({ post, refreshFunction }) {
   const {
     title,
     fechaCreacion,
@@ -21,7 +21,7 @@ export default function PostsCard({ post,refreshFunction }) {
     id,
     user,
     cantVisualizations
-     
+
   } = post
   const location = useLocation()
   const [anchorEl, setAnchorEl] = useState(null)
@@ -30,6 +30,7 @@ export default function PostsCard({ post,refreshFunction }) {
   const [parrafo, setParrafo] = useState("")
   const [typeModal, setTypeModal] = useState(null)
   const { token } = useUser()
+  const navigate = useNavigate();
   // console.log("DATA post", id)
 
   const handleCloseModal = () => {
@@ -46,6 +47,7 @@ export default function PostsCard({ post,refreshFunction }) {
 
   const handleClose = () => {
     setAnchorEl(null)
+    navigate(`/admin/posts/update/${post?.id}`)
   }
 
   const handleOcultar = async (id, event) => {
@@ -60,7 +62,7 @@ export default function PostsCard({ post,refreshFunction }) {
   }
 
   const isAdminRoute = () => {
-    return location.pathname.startsWith("/admin/publications")
+    return location.pathname.startsWith("/admin/posts")
   }
   // console.log("post desde postcard",imagePublicDtoList )
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { Box, Button, Tab, Tabs, Typography, useTheme } from "@mui/material";
+import { Box, Button, Tab, Tabs, Tooltip, Typography, useTheme } from "@mui/material";
 import ProductsCard from "../../../components/ProductsCard";
 import { NoResultsCard, SearchResultCard } from "../../../components/SearchResultsCards";
 import useUser from "../../../utils/services/hooks/useUser";
@@ -21,6 +21,8 @@ export const ProvidersProfile = () => {
   const [value, setValue] = useState(0);
   const navigate = useNavigate()
   const { user } = useUser();
+  const [showMessage, setShowMessage] = useState(false)
+
   const { data } = useGetAll({
     url: `supplier/user/${user.id}`,
     needsAuth: true,
@@ -41,6 +43,10 @@ export const ProvidersProfile = () => {
     navigate('/profile/product/create')
   }
 
+  const handleTooltip = () => {
+    setShowMessage((prevState) => !prevState)
+  }
+
   return (
     <div className="providers-profile-screen">
       <section className="providers-profile-name-container">
@@ -50,7 +56,11 @@ export const ProvidersProfile = () => {
       </section>
 
       <section className="providers-profile-main-container">
-        <Button variant="purple" onClick={handleClick} disabled={providers?.length >= 3}>Cargar Producto/Servicio</Button>
+        <Tooltip open={showMessage} arrow onClose={handleTooltip} title="Ha alcanzado el límite de productos" sx={{ mt: 1 }} slotProps={{ popper: { modifiers: [{ name: 'offset', options: { offset: [0, -15] } }] } }} leaveTouchDelay={2000}>
+          <span onClick={handleTooltip}>
+            <Button variant="purple" onClick={handleClick} disabled={providers?.length >= 3}>Cargar Producto/Servicio</Button>
+          </span>
+        </Tooltip>
         <Typography variant="subtitulos" sx={{ mt: 7 }}>
           Mis Productos/Servicios
         </Typography>

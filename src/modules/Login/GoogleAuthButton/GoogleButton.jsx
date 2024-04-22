@@ -21,7 +21,7 @@ export default function GoogleButton() {
         initializeUser(response.data)
         initializeToken(response.data.token)
         if (response.data.rol === "PROVEEDOR") {
-          navigate('/')
+          navigate('/profile')
         } else {
           navigate('/admin')
         }

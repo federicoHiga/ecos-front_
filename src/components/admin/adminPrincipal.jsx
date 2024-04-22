@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function AdminPrincipal() {
   const [load, setLoad] = useState(false)
-  const token = window.sessionStorage.getItem("token");
+  const { token } = useUser();
 
   useEffect(() => {
     setLoad(!load)

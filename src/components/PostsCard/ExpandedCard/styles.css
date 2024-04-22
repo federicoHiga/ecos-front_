@@ -1,23 +1,24 @@
 .postsCards-expand-div{
     display: contents !important;
+    text-align: unset !important;
 }
 
 .shortText {
     font-size: 16px;
     font-weight: 400;
     padding: 7px;
-    text-align: start;
+    text-align: unset !important;
     max-width: 304px;
-    text-overflow: ellipsis;
+    margin: auto;
 }
 
 .longText{
     font-size: 16px;
     font-weight: 400;
     padding: 7px;
-    text-align: start;
+    text-align: unset !important;
     max-width: 304px;
-    text-overflow: ellipsis;
+    margin: auto;
 }
 
 .see-more {

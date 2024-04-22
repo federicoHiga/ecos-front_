@@ -11,7 +11,12 @@ export default function ExpandedCard({post}) {
   // const { token, user } = useUser();
   const [expanded, setExpanded] = useState(false);
   
+  function shortText (description, words){
+    const word = description.split(' ');
+    return word.slice(0, words).join(' ') + '...';
+  }
 
+  const shortDescription = shortText(post?.description, 30);
 
   const handleClick = async () => {
     if (expanded) handleExpandClick();
@@ -25,14 +30,14 @@ export default function ExpandedCard({post}) {
   };
 
   const handleExpandClick = () => {
-    console.log(post)
+    // console.log(post)
     setExpanded(!expanded);
   };
 
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
       <p className="shortText" style={{ display: expanded ? "none" : "block" }}>
-        {post?.description}
+        {shortDescription}
       </p>
       <Collapse
         in={expanded}

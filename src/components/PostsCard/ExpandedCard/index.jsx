@@ -12,6 +12,7 @@ export default function ExpandedCard({post}) {
   const [expanded, setExpanded] = useState(false);
   
 
+
   const handleClick = async () => {
     if (expanded) handleExpandClick();
     if (!expanded) {
@@ -24,6 +25,7 @@ export default function ExpandedCard({post}) {
   };
 
   const handleExpandClick = () => {
+    console.log(post)
     setExpanded(!expanded);
   };
 

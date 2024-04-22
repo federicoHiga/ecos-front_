@@ -106,6 +106,10 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "#4E169D",
             },
+            "&:disabled": {
+              backgroundColor: "#eaeaea",
+              color: "#7c7c7c",
+            },
           },
         },
         {

@@ -2,16 +2,21 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 
 const useUser = () => {
-  const { token, user, setUser } = useContext(AuthContext);
+  const { setToken, token, user, setUser } = useContext(AuthContext);
 
-  const loadUserData = (data) => {
-    setUser(data)
+  const initializeUser = (userData) => {
+    setUser(userData);
+  }
+
+  const initializeToken = (tokenData) => {
+    setToken(tokenData)
   }
 
   return {
     token,
     user,
-    loadUserData
+    initializeUser,
+    initializeToken
   };
 };
 

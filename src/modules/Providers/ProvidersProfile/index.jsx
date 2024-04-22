@@ -29,7 +29,7 @@ export const ProvidersProfile = () => {
 
   useEffect(() => {
     if (data?.data?.length > 0) {
-      setProviders(data?.data?.slice(0, 3));
+      setProviders(data?.data);
     }
   }, [data]);
 
@@ -50,7 +50,7 @@ export const ProvidersProfile = () => {
       </section>
 
       <section className="providers-profile-main-container">
-        <Button variant="purple" onClick={handleClick} >Cargar Producto/Servicio</Button>
+        <Button variant="purple" onClick={handleClick} disabled={providers?.length >= 3}>Cargar Producto/Servicio</Button>
         <Typography variant="subtitulos" sx={{ mt: 7 }}>
           Mis Productos/Servicios
         </Typography>

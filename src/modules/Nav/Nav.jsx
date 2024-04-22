@@ -66,7 +66,7 @@ export default function Nav() {
           )}
         </button>
         {open === true ? (
-          <ul id="nav-items">{user.rol === 'ADMINISTRADOR' ? <AdminNav /> : <GlobalNav />}</ul>
+          <ul id="nav-items">{user !== null && user.rol === 'ADMINISTRADOR' ? <AdminNav /> : <GlobalNav />}</ul>
         ) : null}
       </div>
       <img src={logotipo} alt="logotipo" id="logotipo" />

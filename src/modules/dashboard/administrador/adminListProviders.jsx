@@ -18,7 +18,7 @@ export default function AdminListProviders() {
   const [url, setUrl] = useState(null)
   const [value, setValue] = useState(0)
   const [providers, setProviders] = useState([]);
-  const { user } = useUser();
+  const { token } = useUser();
   const theme = useTheme();
 
   const handleChange = (evt, newValue) => {
@@ -28,12 +28,11 @@ export default function AdminListProviders() {
   const { data } = useGetAll({
     url: url || 'supplier/allNews',
     needsAuth: true,
-    token: user.token,
+    token: token,
   })
 
   useEffect(() => {
     if (data?.data?.length >= 0) {
-      console.log('DATA.DATA: ', data.data)
       setProviders(data?.data);
     }
   }, [url, data])

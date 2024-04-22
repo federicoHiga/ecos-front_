@@ -8,7 +8,7 @@ import useUser from "../../../utils/services/hooks/useUser";
 
 export default function GoogleButton() {
   const navigate = useNavigate()
-  const { loadUserData } = useUser();
+  const { initializeUser, initializeToken } = useUser();
 
   const googleSuccess = async (res) => {
     const scope = res.scope
@@ -18,7 +18,8 @@ export default function GoogleButton() {
       if (response) {
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('userData', JSON.stringify(response.data))
-        loadUserData(response.data)
+        initializeUser(response.data)
+        initializeToken(response.data.token)
         if (response.data.rol === "PROVEEDOR") {
           navigate('/')
         } else {

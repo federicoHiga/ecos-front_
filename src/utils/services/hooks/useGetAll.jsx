@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import instanceAxios from "../axiosConfig";
 import { LOCAL_URL } from "../constants";
 const useGetAll = (props) => {
-  const { url, token, needsAuth } = props;
+  const { url, token, needsAuth,refresh } = props;
   const [data, setData] = useState(null);
   const [error, setError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ const useGetAll = (props) => {
         setData(null);
         setLoading(false);
       });
-  }, [url]);
+  }, [url,refresh]);
 
   return { data, error, loading };
 };

@@ -9,7 +9,7 @@ import useGetAll from "../../../utils/services/hooks/useGetAll";
 import IndexFile from "../../../components/cloudinary/IndexFile";
 import ImagesPublicationList from "../../../components/admin/imagesPublication/imagesPublication";
 import usePost from "../../../utils/services/hooks/usePost";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AlertSuccesErrorModal from "../../../components/modals/alertErrorSucces/alertErrorSuccesModal";
 import useGetPulblication from "../../../utils/services/hooks/getPublication";
 import useUpdate from "../../../utils/services/hooks/useUpdate";
@@ -49,7 +49,7 @@ const ProvidersForm = () => {
   });
   const { token, user } = useUser();
   const [images, setImages] = useState([]);
-
+  const navigate = useNavigate();
   //estados modal
   const [modal, setModal] = useState(false);
   const [parrafoModal, setParrafoModal] = useState("");
@@ -152,7 +152,10 @@ const ProvidersForm = () => {
   const handlerCloseModal = () => {
     setModal(false);
     setParrafoModal("");
-    setTypeModal("");
+    // setTypeModal("");
+    if (typeModal === 'succes') {
+      navigate('/miProfile')
+    }
   };
 
   //carga de datos proveedor por id
@@ -421,26 +424,29 @@ const ProvidersForm = () => {
                 : `Máximo 300 caracteres                                    ${values.description.length}/300`
             }
             multiline
+            rows={5}
           />
-          {images.length >= 3 ? null : (
-            <IndexFile functionLoad={handlerLoadImage} type={"input"} />
-          )}
+          <div style={{ marginTop: '100px', minWidth: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            {images.length >= 3 ? null : (
+              <IndexFile functionLoad={handlerLoadImage} type={"input"} />
+            )}
 
-          <div
-            style={{ display: "flex", flexDirection: "column", width: "80%" }}
-          >
-            <ImagesPublicationList
-              listImages={images}
-              handlerDeleteImage={handleDeleteImage}
-              handleEditImage={handleEditImage}
-            />
+            <div
+              style={{ display: "flex", flexDirection: "column", width: "80%" }}
+            >
+              <ImagesPublicationList
+                listImages={images}
+                handlerDeleteImage={handleDeleteImage}
+                handleEditImage={handleEditImage}
+              />
+            </div>
           </div>
           <Button
             sx={{ marginTop: 5, marginBottom: 5 }}
             className={
               Object.keys(errors).length == 0 &&
-              Object.entries(values).some(([key, value]) => value) &&
-              images.length != 0
+                Object.entries(values).some(([key, value]) => value) &&
+                images.length != 0
                 ? "ok-button"
                 : ""
             }

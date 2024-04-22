@@ -17,7 +17,7 @@ export default function GoogleButton() {
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('userData', JSON.stringify(response.data))
         if(response.data.rol === "PROVEEDOR"){
-          navigate('/')
+          navigate('/miProfile')
         } else {
           navigate('/admin')
         } 

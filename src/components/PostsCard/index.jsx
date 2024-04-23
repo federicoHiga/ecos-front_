@@ -64,7 +64,7 @@ export default function PostsCard({ post, refreshFunction }) {
   const isAdminRoute = () => {
     return location.pathname.startsWith("/admin/posts")
   }
-  // console.log("post desde postcard",imagePublicDtoList )
+  console.log("expanded desde postcard", <ExpandedCard /> )
   return (
     <>
       <section className="postsCards-section">

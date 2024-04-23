@@ -27,7 +27,7 @@ export default function PostsView() {
         <div className="postsView-container">
           {data?.map((post) => (
             <PostsCard key={post.id} post={post} />
-          ))};
+          ))}
         </div>
       </div>
     </SearchByChildren>

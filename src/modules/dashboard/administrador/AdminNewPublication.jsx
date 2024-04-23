@@ -11,7 +11,7 @@ import { Typography, Button, FormHelperText } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 import { schemaFormPublication } from "../../../utils/schemas/schemaFormPublication";
-import useUpdate from "../../../utils/services/hooks/useUpdate";
+import { useNavigate } from 'react-router-dom';
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -50,15 +50,16 @@ export default function NewPublication() {
   // };
   const { token, user } = useUser();
   const location = useLocation();
+  const navigate = useNavigate();
 
   console.log("id", id);
-
+console.log(values)
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!id) return;
         const { data } = await useGetPulblication({
-          url: `publication/getById/${id}/${user.id}`,
+          url: `publication/getById/${id}`,
           token,
         });
         console.log("data:", data);
@@ -70,7 +71,7 @@ export default function NewPublication() {
         });
         const imagesData = [];
         data?.data?.imagePublicDtoList?.forEach((img) => {
-          imagesData.push({ ...img, isBase64: false });
+          imagesData.push({ ...img, isBase64: false,name:img.path });
         });
         setImages(imagesData);
       } catch (error) {
@@ -104,16 +105,16 @@ export default function NewPublication() {
   };
 
   const handlerCloseModal = () => {
+    if(typeModal=="succes") {navigate('/admin/posts'); }
     setModal(false);
     setParrafoModal("");
     setTypeModal("");
+
   };
 
   const handlerSubmit = async (e) => {
-    console.log("antes");
     e.preventDefault();
     handleSubmit();
-    console.log("desp");
     if (images.length === 0) {
       setParrafoModal("La publicación debe tener al menos 1 imagen");
       setTypeModal("error");
@@ -127,20 +128,25 @@ export default function NewPublication() {
           body: { ...values, images: images },
           token,
         });
+        setImages([]);
+        setValues({
+          id: "",
+          title: "",
+          description: "",
+        })
       } else {
         await usePost({
           url: `publication/edit/${values.id}/1`,
           body: { ...values, images: images },
           token,
         });
+
       }
       setParrafoModal("Publicación creada con éxito");
       setTypeModal("succes");
       setModal(true);
       // setPublication({ title: "", description: "" });
-      setImages([]);
     } catch (error) {
-      console.log(error);
       if (error?.response?.status == 404) {
         setParrafoModal(error?.response?.data?.errorMessage);
         setTypeModal("error");
@@ -168,6 +174,7 @@ export default function NewPublication() {
     setImages(newArrImages);
     return;
   };
+  console.log(images)
   return (
     <div className="container">
       <Typography variant="titulos">Carga de publicación</Typography>

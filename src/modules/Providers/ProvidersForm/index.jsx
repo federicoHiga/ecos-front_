@@ -16,7 +16,6 @@ import useUpdate from "../../../utils/services/hooks/useUpdate";
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
   console.log(values);
 };
 
@@ -118,7 +117,7 @@ const ProvidersForm = () => {
       return;
     }
     try {
-      if (location.pathname.startsWith("/miProfile/newProvider")) {
+      if (!id) {
         await usePost({
           url: "supplier/create",
           body: { ...values, images: images, user: user.id },
@@ -150,11 +149,12 @@ const ProvidersForm = () => {
   };
   //manejo del modal
   const handlerCloseModal = () => {
+    console.log(values)
     setModal(false);
     setParrafoModal("");
     // setTypeModal("");
     if (typeModal === 'succes') {
-      navigate('/miProfile')
+      navigate('/profile')
     }
   };
 
@@ -162,6 +162,7 @@ const ProvidersForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        if(!id)return
         const { data } = await useGetPulblication({
           url: `supplier/getById/${id}`,
           token,
@@ -194,7 +195,6 @@ const ProvidersForm = () => {
     };
     fetchData();
   }, [id]);
-  console.log(images);
   return (
     <div className="providers-form-screen">
       <section className="providers-form-title">
@@ -247,7 +247,7 @@ const ProvidersForm = () => {
             helperText={
               errors.shortDescription && touched.shortDescription
                 ? errors.shortDescription
-                : "Se visualizará en el subtítulo de la publicación 0/50"
+                :`Se visualizará en el subtítulo de la publicación ${values.shortDescription.length}/50`
             }
           />
           <TextField
@@ -463,7 +463,7 @@ const ProvidersForm = () => {
           parrafo={parrafoModal}
           closeFuncion={handlerCloseModal}
           type={typeModal}
-          route={"/miProfile"}
+          route={"/profile"}
         />
       </section>
     </div>

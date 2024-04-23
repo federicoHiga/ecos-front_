@@ -153,8 +153,8 @@
 
     .postsView-container{
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Define 3 columnas de igual tamaño */
-      grid-gap: 20px; /* Espacio entre columnas (opcional) */
+      grid-template-columns: repeat(2, 1fr); 
+      grid-gap: 20px; 
       flex-wrap: wrap;
       /* align-items: center; */
       /* justify-content: center; */

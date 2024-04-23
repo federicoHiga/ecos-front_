@@ -38,7 +38,6 @@
 @media (min-width: 1008px) {
     .shortText{
         margin: unset;
-        /* max-height: 100px; */
         overflow: hidden;
         text-overflow: ellipsis;
     }

@@ -33,13 +33,3 @@ align-items: start;
     font-weight: 600;
     padding: 7px;
 } 
-
-  /* Desktop */
-
-@media (min-width: 1008px) {
-
-    .postsCards-section{
-        max-width: 328px;
-        /* max-height: 410px; */
-    }
-  }

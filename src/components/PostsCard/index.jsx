@@ -11,6 +11,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert"
 import useUser from "../../utils/services/hooks/useUser"
 import useDelete from "../../utils/services/hooks/deleteHook"
 import AlertSuccesErrorModal from "../modals/alertErrorSucces/alertErrorSuccesModal"
+import { PartyMode } from "@mui/icons-material"
 
 export default function PostsCard({ post, refreshFunction }) {
   const {
@@ -64,10 +65,19 @@ export default function PostsCard({ post, refreshFunction }) {
   const isAdminRoute = () => {
     return location.pathname.startsWith("/admin/posts")
   }
-  console.log("expanded desde postcard", <ExpandedCard /> )
+
+  const [style, setStyle] = useState(-1);
+
+  useEffect((id) => {
+    if(!style){
+      setStyle(style === id ? -1 : id);
+    }
+  }, [style]);
+
+  
   return (
     <>
-      <section className="postsCards-section">
+      <section className="postsCards-section" style={{height: style === id ? "max-conent" : "min-content"}} > 
         <div className="buttonTitleSection">
           <h1>{title}</h1>
           {isAdminRoute() ? (
@@ -103,7 +113,7 @@ export default function PostsCard({ post, refreshFunction }) {
         </div>
         <Carrousel images={imagePublicDtoList} />
         <h2>{fechaCreacion}</h2>
-        <ExpandedCard post={post} />
+        <ExpandedCard post={post} style={style} setStyle={setStyle}/>
         <AlertSuccesErrorModal
           boolOpen={openModel}
           parrafo={parrafo}

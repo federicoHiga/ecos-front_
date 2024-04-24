@@ -7,41 +7,32 @@ import useUser from "../../../utils/services/hooks/useUser";
 import useGetAll from "../../../utils/services/hooks/useGetAll";
 
 
-export default function ExpandedCard({post}) {
+export default function ExpandedCard({post, style, setStyle}) {
   // const { token, user } = useUser();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(-1);
+
+  const handleExpandClick = (id) => {
+    
+    setExpanded(expanded === id ? -1 : id);
+    setStyle(!style)
+  };
   
-  function shortText (description, words){
-    const word = description.split(' ');
-    return word.slice(0, words).join(' ') + '...';
-  }
+  // function shortText (description, words){
+  //   const word = description.split(' ');
+  //   return word.slice(0, words).join(' ') + '...';
+  // }
 
-  const shortDescription = shortText(post?.description, 30);
-
-  const handleClick = async () => {
-    if (expanded) handleExpandClick();
-    if (!expanded) {
-      try {
-        handleExpandClick();
-      } catch (error) {
-        console.error("error:", error);
-      }
-    }
-  };
-
-  const handleExpandClick = () => {
-    // console.log(post)
-    setExpanded(!expanded);
-  };
+  // const shortDescription = (post?.description + "...") 
 
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
-      <p className="shortText" style={{ display: expanded ? "none" : "block" }}>
-        {shortDescription}
+      <p className="shortText" style={{ display: (expanded === post?.id) ? "none" : "block" }}>
+        {post?.description}
       </p>
       <Collapse
-        in={expanded}
-        timeout="auto"
+        in={expanded === post?.id}
+        out={expanded === post?.id}
+        timeout={"auto"}
         unmountOnExit
         className="postsCards-expand-div"
       >
@@ -51,11 +42,11 @@ export default function ExpandedCard({post}) {
         sx={{ textTransform: "none" }}
         variant="text"
         expand={expanded ? "true" : undefined}
-        onClick={handleClick}
-        aria-expanded={expanded}
+        onClick={()=> handleExpandClick(post?.id)}
+        aria-expanded={expanded === post?.id}
         aria-label="show more"
       >
-        {expanded ? (
+        {(expanded === post?.id) ? (
           <p className="see-more">Ver menos</p>
         ) : (
           <p className="see-more">Ver mas</p>

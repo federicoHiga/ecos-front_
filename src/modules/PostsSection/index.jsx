@@ -33,9 +33,11 @@ useEffect(()=>{
         <h1 className="title">Publicaciones</h1>
         <h2>Impulsando transformaciones</h2>
       </div>
-      {posts?.slice(0, 3)?.map((post) => (
+      <div className="posts-section-cards">
+        {posts?.slice(0, 3)?.map((post) => (
         <PostsCard key={post.id} post={post} />
       ))}
+      </div>
       <Link to={"/posts"}>
         <button className="posts-section-button">Ir a Publicaciones</button>
       </Link>

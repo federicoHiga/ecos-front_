@@ -2,7 +2,7 @@
 import Invitacion from "../../modules/invitacion/Invitacion";
 import SuppliersCard from "../../components/SuppliersCard";
 import "./styles.css";
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { useEffect, useState } from "react";
 import UbicationModal from "../modals/ubication/Ubication";
@@ -28,35 +28,13 @@ function SuppliersSection({ suppliers }) {
     <>
       <UbicationModal isOpen={openModal} onClose={handleCloseModal}/>
       <Invitacion />
-      <div>
-        <Box
-          className="recomendaciones"
-          sx={{
-            marginLeft: 2,
-            fontSize: "16px",
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: theme.typography.fontFamily,
-            }}
-          >
-            Recomendaciones locales para vos{/*props.recomendaciones*/}
-          </h3>
-        </Box>
-        <Box
-          className="proveedores"
-          sx={{
-            fontWeight: "bold",
-            margin: 2,
-            fontSize: "22px",
-          }}
-        >
-          <h3 style={{ fontFamily: theme.typography.fontFamily }}>
-            {" "}
-            Proveedores cerca tuyo{/*props.proveedores*/}
-          </h3>
-        </Box>
+      <div className="recommendations-section">
+        <Typography className='recommendations-title' vairant='subtitulos' sx={{ fontWeight: 600, fontSize: '16px', lineHeight: '25px', color: theme.palette.negro.main }}>
+          Recomendaciones locales para vos
+        </Typography>
+        <Typography className="recommendations-subtitle" variant='subtitulos' sx={{ mt: '5px', fontWeight: 700, fontSize: "22px", lineHeight: "25px", color: theme.palette.negro.main }}>
+          Proveedores cerca tuyo
+        </Typography>
       </div>
       <div className="cardContainer">
       {suppliersUbication ? (

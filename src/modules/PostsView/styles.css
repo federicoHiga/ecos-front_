@@ -147,21 +147,15 @@
     z-index: 1;
   }
 
+  /* Desktop */
+
   @media (min-width: 1008px) {
-    .recomendaciones{
-      text-align: center;
-    }
-    .proveedores{
-      text-align: center;
+
+    .postsView-container{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      grid-gap: 20px; 
+      flex-wrap: wrap;
     }
   }
   
-  
-  @media (max-width: 1008px) {
-    .recomendaciones{
-      text-align: left;
-    }
-    .proveedores{
-      text-align: left;
-    }
-  }

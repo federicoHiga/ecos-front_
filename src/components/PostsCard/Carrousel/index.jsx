@@ -13,6 +13,7 @@ export default function Carrousel({ images }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    className: "dots"
   };
 
   return (

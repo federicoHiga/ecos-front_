@@ -37,6 +37,7 @@ function SuppliersSection({ suppliers }) {
         </Typography>
       </div>
       <div className="cardContainer">
+        <section className="suppliers-cards-grid ">
       {suppliersUbication ? (
          suppliersUbication.slice(0, 4).map((supplierUb) => (
            <SuppliersCard key={supplierUb.id} supplier={supplierUb} />
@@ -46,6 +47,8 @@ function SuppliersSection({ suppliers }) {
            <SuppliersCard key={supplier.id} supplier={supplier} />
          ))
        )}
+
+        </section>
 
       </div>
     </>

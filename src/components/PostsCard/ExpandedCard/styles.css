@@ -39,14 +39,3 @@
     font-weight: 600;
     color: #4E169D;
 }
-
-@media (min-width: 1008px) {
-    /* .shortText{
-        margin: unset;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 304px;
-        height: 115px;
-        max-height: 120px;
-    } */
-}

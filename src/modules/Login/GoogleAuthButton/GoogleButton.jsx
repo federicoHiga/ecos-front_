@@ -14,7 +14,7 @@ export default function GoogleButton() {
     const scope = res.scope
     const code = res.code
     try {
-      const response = await axios.post('http://localhost:8080/login/oauth2/code/google', { code, scope }); // ruta del backend 
+      const response = await axios.post('http://localhost:8080/login/oauth2/code/google', { code, scope }); 
       if (response) {
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('userData', JSON.stringify(response.data))

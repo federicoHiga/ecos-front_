@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { Box, Container } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Card from "@mui/material/Card";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
@@ -24,110 +23,44 @@ export default function SuppliersCard({ supplier }) {
   };
 
   return (
-    <Card
-      className="card"
-      onClick={handleOpen}
-      sx={{
-        maxWidth: 250,
-        width: "152px",
-        height: "248px",
-        position: "relative",
-        margin: 1.5,
-        borderRadius: 2,
-        overflow: "visible",
-        zIndex: 1,
-        boxShadow: "none",
-      }}
-    >
-      <CardContent sx={{ padding: "10px" }}>
-        <Box
-          sx={{
-            color: "#4E169D",
-            minWidth: "96px",
-            position: "absolute",
-            top: "-4px",
-            right: "0",
-            border: 1,
-            borderColor: "#00A364",
-            borderRadius: 0.5,
-            backgroundColor: "white",
-            boxShadow: 5,
-            textAlign: "center",
-            padding: "3px 6px",
-          }}
-        >
-          <h4 style={{ fontFamily: theme.typography.fontFamily, fontSize: "13px" }}>
-            {supplier?.category?.category}
-          </h4>
-        </Box>
-        <CardMedia
-          sx={{ borderRadius: 1, width: "136px", height: "136px" }}
-          component="img"
-          // height="128"
-          // width='304'
-          image={supplier?.images[0]?.path}
-          alt="Producto"
-        />
-        <Container className="text-container">
-          <Box
-            sx={{
-              textAlign: "left",
-              marginTop: "10px",
-            }}
-          >
-            <h4
-              style={{
-                fontFamily: theme.typography.fontFamily,
-                fontSize: "16px",
-                fontWeight: 500,
-              }}
-            >
-              {supplier?.name}
-            </h4>
-          </Box>
-          <Box
-            sx={{
-              textAlign: "left",
-            }}
-          >
-            <h5
-              style={{
-                fontFamily: theme.typography.fontFamily,
-                fontSize: "13px",
-                fontWeight: 400,
-              }}
-            >
-              {supplier?.shortDescription}
-            </h5>
-          </Box>
-          <div
-            style={{
-              display: "flex",
-              marginTop: "15px",
-              alignItems: "center",
-            }}
-          >
-            <LocationOnOutlinedIcon
-              sx={{
-                color: "#4E169D",
-                fontSize: "22px",
-              }}
-            />
-            <Box>
-              <h4
-                style={{
-                  fontFamily: theme.typography.fontFamily,
-                  fontSize: "13px",
-                  fontWeight: 400,
+    <div className='card-container'>
+      <div className='card-category-container' style={{ border: `1px solid ${theme.palette.verdes.main}`, backgroundColor: theme.palette.blanco.main }}>
+        <Typography variant='subtitulos' sx={{ fontWeight: 400, fontSize: "13px", lineHeight: '18px' }}>
+          {supplier?.category?.category}
+        </Typography>
+      </div>
+      <Card
+        className="card"
+        onClick={handleOpen}
+        sx={{ backgroundColor: theme.palette.blanco.main }}
+      >
+        <section className="card-content">
+          <CardMedia className='card-content-img' component={'img'} image={supplier?.images[0]?.path} alt='Producto' />
+          <div className='card-content-text-container'>
+            <div className="supplier-card-data-container">
+              <Typography variant='subtitulos' className='supplier-name' sx={{ fontWeight: 500, fontSize: "16px", lineHeight: '25px', color: theme.palette.negro.main, maxWidth: '100%' }} >
+                {supplier?.name}
+              </Typography>
+              <Typography variant='subtitulos' className='supplier-short-description' sx={{ fontWeight: 400, fontSize: "13px", lineHeight: '18px', color: theme.palette.negro.main, maxWidth: '100%' }} >
+                {supplier?.shortDescription}
+              </Typography>
+            </div>
+            <div className="supplier-card-location-container">
+              <LocationOnOutlinedIcon
+                sx={{
+                  color: "#4E169D",
+                  fontSize: "24px",
+                  mr: '4px'
                 }}
-              >
+              />
+              <Typography variant='subtitulos' sx={{ fontWeight: 400, fontSize: "13px", lineHeight: "20px", color: theme.palette.negro.main }}>
                 {supplier?.city}
-              </h4>
-            </Box>
+              </Typography>
+            </div>
           </div>
-        </Container>
-      </CardContent>
-      {open && <ExpandedCard handleClose={handleClose} open={open} supplier={supplier} />}
-    </Card>
+        </section>
+        {open && <ExpandedCard handleClose={handleClose} open={open} supplier={supplier} />}
+      </Card>
+    </div>
   );
 }

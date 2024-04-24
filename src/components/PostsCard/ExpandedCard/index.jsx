@@ -17,17 +17,17 @@ export default function ExpandedCard({post, style, setStyle}) {
     setStyle(!style)
   };
   
-  function shortText (description, words){
-    const word = description.split(' ');
-    return word.slice(0, words).join(' ') + '...';
-  }
+  // function shortText (description, words){
+  //   const word = description.split(' ');
+  //   return word.slice(0, words).join(' ') + '...';
+  // }
 
-  const shortDescription = shortText(post?.description, 30);
+  // const shortDescription = (post?.description + "...") 
 
   return (
     <CardActions disableSpacing className="postsCards-expand-div">
       <p className="shortText" style={{ display: (expanded === post?.id) ? "none" : "block" }}>
-        {shortDescription}
+        {post?.description}
       </p>
       <Collapse
         in={expanded === post?.id}

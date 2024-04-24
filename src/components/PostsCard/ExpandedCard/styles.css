@@ -8,8 +8,13 @@
     font-weight: 400;
     padding: 7px;
     text-align: unset !important;
+    margin: unset;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 304px;
-    margin: auto;
+    height: 115px;
+    max-height: 120px;
+    box-sizing: border-box;
 }
 
 .longText{
@@ -36,9 +41,12 @@
 }
 
 @media (min-width: 1008px) {
-    .shortText{
+    /* .shortText{
         margin: unset;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
+        max-width: 304px;
+        height: 115px;
+        max-height: 120px;
+    } */
 }

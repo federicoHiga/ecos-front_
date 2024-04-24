@@ -1,0 +1,36 @@
+.postsCards-expand-div{
+    display: contents !important;
+    text-align: unset !important;
+}
+
+.shortText {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 7px;
+    text-align: unset !important;
+    max-width: 304px;
+    margin: auto;
+}
+
+.longText{
+    font-size: 16px;
+    font-weight: 400;
+    padding: 7px;
+    text-align: unset !important;
+    max-width: 304px;
+    margin: auto;
+}
+
+.see-more {
+    width: 152px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4E169D;
+}

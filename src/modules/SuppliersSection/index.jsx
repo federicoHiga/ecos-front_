@@ -39,11 +39,11 @@ function SuppliersSection({ suppliers }) {
       <div className="suppliers-section-cards-background" style={{ backgroundColor: theme.palette.verdes.main }}>
         <section className="suppliers-cards-grid ">
           {suppliersUbication ? (
-            suppliersUbication.slice(0, 4).map((supplierUb) => (
+            suppliersUbication?.slice(0, 4)?.map((supplierUb) => (
               <SuppliersCard key={supplierUb.id} supplier={supplierUb} />
             ))
           ) : (
-            suppliers?.slice(0, 4).map((supplier) => (
+            suppliers?.content.slice(0, 4)?.map((supplier) => (
               <SuppliersCard key={supplier.id} supplier={supplier} />
             ))
           )}

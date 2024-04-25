@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AlertSuccesErrorModal from "../../../components/modals/alertErrorSucces/alertErrorSuccesModal";
 import useGetPulblication from "../../../utils/services/hooks/getPublication";
 import useUpdate from "../../../utils/services/hooks/useUpdate";
+import FormHelperText from '@mui/material/FormHelperText';
 
 const onSubmit = async (values, actions) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -421,7 +422,10 @@ const ProvidersForm = () => {
             helperText={
               errors.description && touched.description
                 ? errors.description
-                : `Máximo 300 caracteres                                    ${values.description.length}/300`
+                : <FormHelperText style={{display:'flex', justifyContent:'space-between'}}>
+                  <span>Máximo 300 caracteres</span>
+                  <span>{values.description.length}/300</span>
+                </FormHelperText>
             }
             multiline
             rows={5}
@@ -432,7 +436,7 @@ const ProvidersForm = () => {
             )}
 
             <div
-              style={{ display: "flex", flexDirection: "column", width: "80%" }}
+              style={{ display: "flex", flexDirection: "column", width: "80%", alignItems: 'center' }}
             >
               <ImagesPublicationList
                 listImages={images}

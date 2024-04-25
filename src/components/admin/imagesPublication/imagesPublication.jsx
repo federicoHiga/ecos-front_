@@ -18,7 +18,7 @@ export default function ImagesPublicationList({
     handleEditImage(text, name, newName);
   };
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ display: "flex", flexDirection: "row", gap: "10px", flexWrap:'wrap', justifyContent: 'center'}}>
       {listImages?.map((image, index) => {
         return (
           <div

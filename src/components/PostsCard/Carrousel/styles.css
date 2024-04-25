@@ -1,5 +1,5 @@
-.carrousel-container {
-  margin-bottom: 20px;
+.dots{
+  margin-bottom: 12px;
 }
 
 .carrousel-img {
@@ -11,10 +11,11 @@
 .carrousel-img img {
   width: 100%;
   max-width: 304px;
-  height: auto;
+  height: 140px;
   position: relative;
   object-fit: cover;
   max-height: 140px;
+
 }
 
 .slick-arrow {
@@ -43,5 +44,3 @@
   color: #4e169d !important;
 }
 
-/* npm install react-slick
-npm install slick-carousel --save */

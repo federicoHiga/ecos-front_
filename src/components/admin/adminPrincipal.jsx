@@ -20,6 +20,8 @@ export default function AdminPrincipal() {
     needsAuth: true,
     token: token,
   });
+  console.log(data)
+
 
 
   return (

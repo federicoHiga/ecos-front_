@@ -253,7 +253,7 @@ console.log(values)
           multiline
           rows={10}
         />
-        <div className="imageContainer">
+        <div className="imageContainer" style={{display: 'flex', alignItems:'center'}}>
           <ImagesPublicationList
             listImages={images}
             handlerDeleteImage={handleDeleteImage}

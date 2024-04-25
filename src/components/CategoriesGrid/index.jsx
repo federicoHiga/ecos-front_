@@ -38,7 +38,7 @@ const CategoriesGrid = () => {
       <section>
         <Button
           variant="purple"
-          sx={{ padding: "10px 24px" }}
+          sx={{ padding: "10px 24px", mb: 2 }}
           onClick={() => navigate("/providers")}
         >
           Ver más categorías

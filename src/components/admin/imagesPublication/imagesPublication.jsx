@@ -18,7 +18,7 @@ export default function ImagesPublicationList({
     handleEditImage(text, name, newName);
   };
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ display: "flex", flexDirection: "row", gap: "10px", flexWrap:'wrap', justifyContent: 'center'}}>
       {listImages?.map((image, index) => {
         return (
           <div
@@ -30,9 +30,8 @@ export default function ImagesPublicationList({
               })`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              width: "100%",
+              width: "320px",
               height: "150px",
-              // padding: "10px",
               display: "flex",
               flexDirection: "row",
               justifyContent: "end",

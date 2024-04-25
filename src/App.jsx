@@ -8,24 +8,14 @@ import { AuthProvider } from "./utils/context/AuthContext";
 import PostsView from "./modules/PostsView";
 import ProvidersHome from "./modules/Providers/ProvidersHome";
 import ProvidersDetail from "./modules/Providers/ProvidersDetail";
-import AlertModal from "./components/modals/alertErrorSucces/alertErrorSuccesModal";
-import IndexFile from "./components/cloudinary/IndexFile";
-import ProvidersProfile from "./modules/Providers/ProvidersProfile";
-import AdminDashboard from "./modules/dashboard/administrador/adminDashboard";
-import PostsAdmin from "./modules/Admin/PostsAdmin";
-import LoadPost from "./modules/Admin/PostsForm/LoadPost";
-import EditPost from "./modules/Admin/PostsForm/EditPost";
-import ProvidersForm from "./modules/Providers/ProvidersForm";
-import AdminListProviders from "./modules/dashboard/administrador/adminListProviders";
-import AdminPublications from "./modules/dashboard/administrador/adminPublications";
-import NewPublication from "./modules/dashboard/administrador/AdminNewPublication";
 import * as webAppRoutes from './constants/webAppRoutes'
+import Chatbot from "./modules/Chatbot";
 
 function App() {
   return (
     <AuthProvider>
       <Nav />
-
+      <Chatbot />
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Inicio />}></Route>

@@ -16,17 +16,17 @@ function SuppliersSection({ suppliers }) {
     const providersPostsFromLocalStorage = JSON.parse(localStorage.getItem('providersPostUb'));
     setSuppliersUbication(providersPostsFromLocalStorage)
     if (!providersPostsFromLocalStorage) {
-      setOpenModal(true); 
-    } 
-  }, []); 
+      setOpenModal(true);
+    }
+  }, []);
 
   const handleCloseModal = () => {
-    setOpenModal(false); 
+    setOpenModal(false);
   };
 
   return (
     <>
-      <UbicationModal isOpen={openModal} onClose={handleCloseModal}/>
+      <UbicationModal isOpen={openModal} onClose={handleCloseModal} />
       <Invitacion />
       <div className="recommendations-section">
         <Typography className='recommendations-title' vairant='subtitulos' sx={{ fontWeight: 600, fontSize: '16px', lineHeight: '25px', color: theme.palette.negro.main }}>
@@ -36,20 +36,18 @@ function SuppliersSection({ suppliers }) {
           Proveedores cerca tuyo
         </Typography>
       </div>
-      <div className="cardContainer">
+      <div className="suppliers-section-cards-background" style={{ backgroundColor: theme.palette.verdes.main }}>
         <section className="suppliers-cards-grid ">
-      {suppliersUbication ? (
-         suppliersUbication.slice(0, 4).map((supplierUb) => (
-           <SuppliersCard key={supplierUb.id} supplier={supplierUb} />
-         ))
-       ) : (
-         suppliers?.slice(0, 4).map((supplier) => (
-           <SuppliersCard key={supplier.id} supplier={supplier} />
-         ))
-       )}
-
+          {suppliersUbication ? (
+            suppliersUbication.slice(0, 4).map((supplierUb) => (
+              <SuppliersCard key={supplierUb.id} supplier={supplierUb} />
+            ))
+          ) : (
+            suppliers?.slice(0, 4).map((supplier) => (
+              <SuppliersCard key={supplier.id} supplier={supplier} />
+            ))
+          )}
         </section>
-
       </div>
     </>
   );

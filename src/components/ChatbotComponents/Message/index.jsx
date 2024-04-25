@@ -9,16 +9,21 @@ import TypingText from "./typingText"
 const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPushNewQuestion }) => {
   const [isTypingComplete, setIsTypingComplete] = useState(false)
     const [isAddQuestions, setIsAddQuestion] = useState(false)
+    const [isClicked, setIsClicked] =useState(false)
   const handleTypingComplete = () => {
     setIsTypingComplete(true)
   }
   const handleButtionAnswer = (id) => {
+    if(isClicked) return
+    setIsClicked(true)
     handlerFindAnswer(id)
+
   }
   const pushQuestion = ()=>{
     handlerPushNewQuestion()
     setIsAddQuestion(true)
   }
+  
 
   return (
     <div className={user ? "message-wrapper user" : "message-wrapper"}>
@@ -60,6 +65,7 @@ const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPu
                 <button
                   className="buttonQuestion"
                   onClick={() => handleButtionAnswer(question.id)}
+                  disabled={isClicked}
                 >
                   {" "}
                   {question?.question}{" "}

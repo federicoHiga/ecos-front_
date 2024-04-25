@@ -3,6 +3,7 @@ import "./styles.css";
 import { Popover } from "@mui/material";
 import ActionButton from "../../components/ChatbotComponents/ActionButton";
 import { Grow } from "@mui/material";
+import Chat from "../../components/ChatbotComponents/Chat";
 
 const Chatbot = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -38,7 +39,9 @@ const Chatbot = () => {
                 }}
                 TransitionComponent={Grow}
                 TransitionProps={{ timeout: 300 }}
-            ></Popover>
+            >
+                <Chat handleClose={handleClose} />
+            </Popover>
         </div>
     );
 };

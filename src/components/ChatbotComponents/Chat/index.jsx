@@ -117,9 +117,10 @@ const Chat = ({ handleClose }) => {
           </div>
         </section>
         <section className="chat-content">
-          {conversationArray?.map((conversation) => {
+          {conversationArray?.map((conversation, index) => {
             return (
               <ChatMessage
+                key={index}
                 user={conversation.type == "user" ? "user" : null}
                 listQuestions={
                   conversation.type === "user" ? conversation.data : null

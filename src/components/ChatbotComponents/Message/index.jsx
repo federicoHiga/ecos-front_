@@ -60,9 +60,10 @@ const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPu
           }
         >
           {user ? (
-            listQuestions?.map((question) => {
+            listQuestions?.map((question, index) => {
               return (
                 <button
+                  key={index}
                   className="buttonQuestion"
                   onClick={() => handleButtionAnswer(question.id)}
                   disabled={isClicked}

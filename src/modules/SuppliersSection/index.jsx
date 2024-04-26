@@ -43,7 +43,7 @@ function SuppliersSection({ suppliers }) {
               <SuppliersCard key={supplierUb.id} supplier={supplierUb} />
             ))
           ) : (
-            suppliers?.content.slice(0, 4)?.map((supplier) => (
+            suppliers?.slice(0, 4)?.map((supplier) => (
               <SuppliersCard key={supplier.id} supplier={supplier} />
             ))
           )}

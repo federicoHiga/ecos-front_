@@ -63,7 +63,7 @@ const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPu
             listQuestions?.map((question) => {
               return (
                 <button
-                  className="buttonQuestion"
+                  className={isClicked ? "buttonQuestionDisable" : "buttonQuestion"  }
                   onClick={() => handleButtionAnswer(question.id)}
                   disabled={isClicked}
                 >

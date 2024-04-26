@@ -18,7 +18,8 @@ const Chat = ({ handleClose }) => {
   const theme = useTheme()
   const [conversationArray, setConversationArray] = useState([])
   const [firstQuestions, setFirstQuestion] = useState(false)
- 
+  const [listChildren, setListChildren] = useState([])
+
   const handleClick = () => {
     handleClose()
   }
@@ -39,21 +40,41 @@ const Chat = ({ handleClose }) => {
 
   const handlerFindAnswer = async (id) => {
     try {
-      console.log(id)
-      const { data } = await useGetWithoutEffect({ url: `chat/answer/${id}` })
 
+      if(id==0){
+        setConversationArray([
+          ...conversationArray,
+          { type: "user", data: conversationArray[0]?.data },
+        ])
+      }
+      const { data } = await useGetWithoutEffect({ url: `chat/answer/${id}` })
+      if (data?.data?.questions?.length > 0) {
+        setListChildren(data?.data?.questions)
+      } else {
+        setListChildren([])
+      }
       setConversationArray([
         ...conversationArray,
-        { type: "chat", data: data?.data }     ])
+        { type: "chat", data: data?.data },
+      ])
     } catch (error) {
       console.log(error)
     }
   }
-const handlerPushNewQuestion = () =>{
-    setConversationArray([
+
+  const handlerPushNewQuestion = () => {
+    if (listChildren.length > 0) {
+      setConversationArray([
         ...conversationArray,
-        { type: "user", data: conversationArray[0]?.data }     ])
-}
+        { type: "user", data: [...listChildren,{id:0,question:"Volver."}] },
+      ])
+    } else {
+      setConversationArray([
+        ...conversationArray,
+        { type: "user", data: conversationArray[0]?.data },
+      ])
+    }
+  }
 
   return (
     <div className="chat-section">
@@ -103,8 +124,14 @@ const handlerPushNewQuestion = () =>{
                 listQuestions={
                   conversation.type === "user" ? conversation.data : null
                 }
-                handlerFindAnswer={conversation.type === "user" ? handlerFindAnswer : null}
-                answer={conversation.type === "chat" ? conversation?.data?.answer : null}
+                handlerFindAnswer={
+                  conversation.type === "user" ? handlerFindAnswer : null
+                }
+                answer={
+                  conversation.type === "chat"
+                    ? conversation?.data?.answer
+                    : null
+                }
                 handlerPushNewQuestion={handlerPushNewQuestion}
               />
             )

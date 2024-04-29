@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/styles/Inicio/inicio.css";
 import PostsSection from "../PostsSection/index";
 import ImpactEnterprises from "../../components/ImpactEnterprises";
@@ -10,7 +10,7 @@ import useGetAll from "../../utils/services/hooks/useGetAll";
 
 export default function Inicio() {
   const { data } = useGetAll({
-    url: "supplier",
+    url: `supplier?size=4&pageNumber=0`,
     needsAuth: false,
   });
 
@@ -18,7 +18,7 @@ export default function Inicio() {
     <div>
       <SearchByChildren>
         <ImpactEnterprises />
-        <SuppliersSection suppliers={data?.data} />
+        <SuppliersSection suppliers={data?.data?.content} />
         <CategoriesGrid />
         <PostsSection />
       </SearchByChildren>

@@ -1,46 +1,74 @@
 import { useEffect, useState } from "react";
 import PostsCard from "../../../components/PostsCard";
-import useGetAll from "../../../utils/services/hooks/useGetAll";
 import "./adminPublications.css";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import useGetWithParams from "../../../utils/services/hooks/useGetWithParams";
+import useDevice from "../../../utils/services/hooks/useDevice";
+import CustomPagination from "../../../components/Pagination";
 
-const hardImages = [
-  "https://res.cloudinary.com/dxatwbzff/image/upload/v1710415070/Quinto/1c27a72869b176f8ac7bc5f75f460594_fddnpc.jpg",
-  "https://res.cloudinary.com/dpbuvii9v/image/upload/v1712264504/c1498999f8addebf3e800720a2445865_uzmafz.jpg",
-  "https://res.cloudinary.com/dpbuvii9v/image/upload/v1712264503/ca3817b7e452c7de4602ccf498f7afd1_xfkd2x.png",
-];
 export default function AdminPublications() {
   const [refresh, setRefresh] = useState(false);
-
-  const { data, error, loading } = useGetAll({ url: "publication", refresh });
   const navigate = useNavigate();
-  useEffect(() => {}, [refresh]);
+  const [page, setPage] = useState(0)
+  const [itemsToShow, setItemsToShow] = useState([])
+  const [pageSize, setPageSize] = useState(null)
+  const [totalPages, setTotalPages] = useState(0)
+  const { isMobile } = useDevice();
+
+  useEffect(() => {
+    if (isMobile) {
+      setPageSize(3)
+    } else {
+      setPageSize(6)
+    }
+  }, [isMobile])
+
+  const { data, error } = useGetWithParams({
+    url: 'publication',
+    size: pageSize,
+    pageNumber: page
+  })
+
+  useEffect(() => {
+    if (data) {
+      setItemsToShow(data?.data?.content)
+      setTotalPages(data?.data?.totalPages)
+    }
+  }, [data]);
+
   const handlerRefreshFunction = () => {
     setRefresh(!refresh);
     console.log(refresh);
   };
 
+  const handlePageChange = (newPage) => {
+    setPage(newPage - 1)
+  }
+
   return (
     <div className="postsContainer">
-      <Typography variant="titulos">Publicaciones</Typography>
-      <button
-        className="buttonCrearPublicacion"
-        onClick={() => navigate("/admin/posts/create")}
-      >
-        Crear publicación
-      </button>
-      <Typography variant="subtitulos">Publicaciones cargadas</Typography>
-      <div className="postsView-container">
-        {data?.data?.map((post) => (
+      <section className="admin-posts-header">
+        <Typography variant="titulos" sx={{ mt: 5, mb: 3 }} >Publicaciones</Typography>
+        <button
+          className="buttonCrearPublicacion"
+          onClick={() => navigate("/admin/posts/create")}
+        >
+          Crear publicación
+        </button>
+        <Typography variant="subtitulos" sx={{ mb: 2 }}>Publicaciones cargadas</Typography>
+      </section>
+      <Grid container direction={'row'} justifyContent={'center'} className='admin-posts-grid' columns={{ xs: 1, sm: 1, md: 3, lg: 3 }}>
+        {itemsToShow?.map((post) => (
           <PostsCard
             key={post.id}
             post={post}
-            images={hardImages}
+            images={itemsToShow?.imagePublicDtoList}
             refreshFunction={handlerRefreshFunction}
           />
         ))}
-      </div>
+      </Grid>
+      <CustomPagination totalPages={totalPages} currentPage={page} onPageChange={handlePageChange} />
     </div>
   );
 }

@@ -12,16 +12,13 @@ const ProvidersHome = () => {
 
   return (
     <SearchByChildren>
-      <section
-        className="providers-home"
-        style={{ backgroundColor: theme.palette.verdes.main }}
-      >
+      <section className="providers-home-background" style={{ backgroundColor: theme.palette.verdes.main }}>
         <div className="providers-home-subtitle">
           <Typography variant="titulos" sx={{ fontSize: "24px" }}>
             Categorías
           </Typography>
         </div>
-        <div className="providers">
+        <div className="providers-categories-grid">
           {data?.data.map((category) => (
             <Button
               variant="categories"

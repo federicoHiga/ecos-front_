@@ -1,57 +1,52 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import "./styles.css";
+import './styles.css'
 import { useState } from "react";
-import { CardActions, Collapse, Button } from "@mui/material";
-import axios from "axios";
-import useUser from "../../../utils/services/hooks/useUser";
-import useGetAll from "../../../utils/services/hooks/useGetAll";
+import { Collapse, Button } from "@mui/material";
 
-
-export default function ExpandedCard({post, style, setStyle}) {
-  // const { token, user } = useUser();
+export default function ExpandedCard({ post, style, setStyle }) {
   const [expanded, setExpanded] = useState(-1);
 
   const handleExpandClick = (id) => {
-    
     setExpanded(expanded === id ? -1 : id);
     setStyle(!style)
   };
-  
-  // function shortText (description, words){
-  //   const word = description.split(' ');
-  //   return word.slice(0, words).join(' ') + '...';
-  // }
-
-  // const shortDescription = (post?.description + "...") 
 
   return (
-    <CardActions disableSpacing className="postsCards-expand-div">
-      <p className="shortText" style={{ display: (expanded === post?.id) ? "none" : "block" }}>
-        {post?.description}
-      </p>
-      <Collapse
-        in={expanded === post?.id}
-        out={expanded === post?.id}
-        timeout={"auto"}
-        unmountOnExit
-        className="postsCards-expand-div"
-      >
-        <p className="longText">{post?.description}</p>
-      </Collapse>
-      <Button
-        sx={{ textTransform: "none" }}
-        variant="text"
-        expand={expanded ? "true" : undefined}
-        onClick={()=> handleExpandClick(post?.id)}
-        aria-expanded={expanded === post?.id}
-        aria-label="show more"
-      >
-        {(expanded === post?.id) ? (
-          <p className="see-more">Ver menos</p>
-        ) : (
-          <p className="see-more">Ver mas</p>
-        )}
-      </Button>
-    </CardActions>
+    <>
+      <section className="posts-cards-inner-wrapper">
+        <div className="posts-card-text-container">
+          <p className="shortText" style={{ height: (expanded === post?.id) ? "auto" : "96px" }}>
+            {post?.description}
+          </p>
+          <Collapse
+            sx={{ margin: '0px', padding: '0px' }}
+            className="postsCards-collapse-div"
+            in={expanded === post?.id}
+            out={expanded === post?.id}
+            timeout={"auto"}
+            unmountOnExit
+          >
+          </Collapse>
+        </div>
+        <div className="posts-card-button-container">
+          <Button
+            className='posts-cards-button'
+            sx={{ textTransform: "none" }}
+            variant="text"
+            expand={expanded ? "true" : undefined}
+            onClick={() => handleExpandClick(post?.id)}
+            aria-expanded={expanded === post?.id}
+            aria-label="show more"
+          >
+            {(expanded === post?.id) ? (
+              <p className="see-more">Ver menos</p>
+            ) : (
+              <p className="see-more">Ver mas</p>
+            )}
+          </Button>
+        </div>
+      </section>
+    </>
   );
 }

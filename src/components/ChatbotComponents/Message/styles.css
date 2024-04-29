@@ -47,6 +47,7 @@
 
 .message-wrapper.user > .message-inner-container {
   flex-direction: row-reverse;
+  margin-bottom: 20px;
 }
 
 .message-content-container.user::after {

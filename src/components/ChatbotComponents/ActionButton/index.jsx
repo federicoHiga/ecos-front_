@@ -7,10 +7,6 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 const ActionButton = ({ handleOpen }) => {
     const theme = useTheme();
 
-    // const handleClick = (evt) => {
-    //     handleOpen(evt)
-    // }
-
     const handleClick = (evt) => {
         handleOpen(evt)
     }

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import "./styles.css"
 import ChatMessage from "../Message"
 import {
@@ -76,6 +76,15 @@ const Chat = ({ handleClose }) => {
     }
   }
 
+  // fixed scrolling
+
+  const scrollContainerRef = useRef(null);
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+    }
+  }, [conversationArray]);
+
   return (
     <div className="chat-section">
       <Stack
@@ -116,7 +125,11 @@ const Chat = ({ handleClose }) => {
             </IconButton>
           </div>
         </section>
-        <section className="chat-content">
+        <section 
+          className="chat-content"
+          ref={scrollContainerRef}
+          style={{overflowY: 'auto', height: '400px' }}
+          >
           {conversationArray?.map((conversation) => {
             return (
               <ChatMessage

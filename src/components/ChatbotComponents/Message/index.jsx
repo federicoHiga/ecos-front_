@@ -1,32 +1,39 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react"
-import "./styles.css"
-import SmartToyIcon from "@mui/icons-material/SmartToy"
-import PersonIcon from "@mui/icons-material/Person"
-import { Avatar } from "@mui/material"
-import TypingText from "./typingText"
+import React, { useState } from "react";
+import "./styles.css";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+import PersonIcon from "@mui/icons-material/Person";
+import { Avatar } from "@mui/material";
+import TypingText from "./typingText";
 
-const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPushNewQuestion }) => {
-  const [isTypingComplete, setIsTypingComplete] = useState(false)
-    const [isAddQuestions, setIsAddQuestion] = useState(false)
-    const [isClicked, setIsClicked] =useState(false)
+const ChatMessage = ({
+  user,
+  listQuestions,
+  answer,
+  handlerFindAnswer,
+  handlerPushNewQuestion,
+}) => {
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isAddQuestions, setIsAddQuestion] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const handleTypingComplete = () => {
-    setIsTypingComplete(true)
-  }
+    setIsTypingComplete(true);
+  };
   const handleButtionAnswer = (id) => {
-    if(isClicked) return
-    setIsClicked(true)
-    handlerFindAnswer(id)
-
-  }
-  const pushQuestion = ()=>{
-    handlerPushNewQuestion()
-    setIsAddQuestion(true)
-  }
-  
+    if (isClicked) return;
+    setIsClicked(true);
+    handlerFindAnswer(id);
+  };
+  const pushQuestion = () => {
+    handlerPushNewQuestion();
+    setIsAddQuestion(true);
+  };
 
   return (
-    <div className={user ? "message-wrapper user" : "message-wrapper"}>
+    <div
+      style={{ marginBottom: !user && !isTypingComplete ? "300px" : null}}
+      className={user ? "message-wrapper user" : "message-wrapper"}
+    >
       <section className="message-inner-container">
         <div
           className={
@@ -60,17 +67,20 @@ const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPu
           }
         >
           {user ? (
-            listQuestions?.map((question) => {
+            listQuestions?.map((question, i) => {
               return (
                 <button
-                  className="buttonQuestion"
+                  id={i}
+                  className={
+                    isClicked ? "buttonQuestionDisable" : "buttonQuestion"
+                  }
                   onClick={() => handleButtionAnswer(question.id)}
                   disabled={isClicked}
                 >
                   {" "}
                   {question?.question}{" "}
                 </button>
-              )
+              );
             })
           ) : (
             <TypingText
@@ -84,7 +94,7 @@ const ChatMessage = ({ user, listQuestions, answer, handlerFindAnswer, handlerPu
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default ChatMessage
+export default ChatMessage;

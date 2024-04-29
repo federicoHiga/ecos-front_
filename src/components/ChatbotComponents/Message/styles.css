@@ -47,6 +47,7 @@
 
 .message-wrapper.user > .message-inner-container {
   flex-direction: row-reverse;
+  margin-bottom: 20px;
 }
 
 .message-content-container.user::after {
@@ -63,6 +64,15 @@
   padding: 2px;
   border-radius: 4px;
   margin: 4px;
+  }
+
+  .buttonQuestionDisable{
+    background-color: #b3a4c9;
+    font-size: 10px;
+    text-align: left;
+    padding: 2px;
+    border-radius: 4px;
+    margin: 4px;
   }
 
   .buttonQuestion:hover{

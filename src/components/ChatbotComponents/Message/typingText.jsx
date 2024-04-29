@@ -29,7 +29,7 @@ const TypingText = ({
     return () => clearInterval(interval)
   }, [displayedText, text, speed, onComplete])
 
-  return <span>{displayedText}</span>
+  return <span style={{marginBottom:"300px"}}>{displayedText}</span>
 }
 
 export default TypingText

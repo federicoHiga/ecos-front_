@@ -12,6 +12,7 @@ const ChatMessage = ({
   answer,
   handlerFindAnswer,
   handlerPushNewQuestion,
+  scrollToBottom
 }) => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isAddQuestions, setIsAddQuestion] = useState(false);
@@ -30,55 +31,31 @@ const ChatMessage = ({
   };
 
   return (
-    <div
-      style={{ marginBottom: !user && !isTypingComplete ? "300px" : null}}
-      className={user ? "message-wrapper user" : "message-wrapper"}
-    >
+    <div className={user ? "message-wrapper user" : "message-wrapper"} >
       <section className="message-inner-container">
-        <div
-          className={
-            user ? "message-avatar-container user" : "message-avatar-container"
-          }
-        >
+        <div className={user ? "message-avatar-container user" : "message-avatar-container"}>
           {user ? (
-            <Avatar
-              sx={{ width: 30, height: 30 }}
-              className="message-avatar user"
-            >
-              <PersonIcon
-                sx={{ fontSize: "1.15rem" }}
-                className="message-avatar-icon"
-              />
+            <Avatar sx={{ width: 30, height: 30 }} className="message-avatar user">
+              <PersonIcon sx={{ fontSize: "1.15rem" }} className="message-avatar-icon" />
             </Avatar>
           ) : (
             <Avatar sx={{ width: 30, height: 30 }} className="message-avatar">
-              <SmartToyIcon
-                sx={{ fontSize: "1.15rem" }}
-                className="message-avatar-icon"
-              />
+              <SmartToyIcon sx={{ fontSize: "1.15rem" }} className="message-avatar-icon" />
             </Avatar>
           )}
         </div>
-        <div
-          className={
-            user
-              ? "message-content-container user"
-              : "message-content-container"
-          }
-        >
+        <div className={user ? "message-content-container user" : "message-content-container"}>
           {user ? (
             listQuestions?.map((question, i) => {
               return (
                 <button
                   id={i}
-                  className={
-                    isClicked ? "buttonQuestionDisable" : "buttonQuestion"
-                  }
+                  className={isClicked ? "buttonQuestionDisable" : "buttonQuestion"}
                   onClick={() => handleButtionAnswer(question.id)}
                   disabled={isClicked}
+                  key={i}
                 >
-                  {" "}
-                  {question?.question}{" "}
+                  {question?.question}
                 </button>
               );
             })
@@ -86,6 +63,7 @@ const ChatMessage = ({
             <TypingText
               text={answer}
               speed={50}
+              scrollToBottom={scrollToBottom}
               onComplete={handleTypingComplete}
               pushQuestion={pushQuestion}
               boolFinish={isAddQuestions}

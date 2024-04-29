@@ -6,6 +6,7 @@
 }
 
 .message-inner-container {
+  width: 100%;
   max-width: 100%;
   display: flex;
   padding: 5px 0;
@@ -47,7 +48,7 @@
 
 .message-wrapper.user > .message-inner-container {
   flex-direction: row-reverse;
-  margin-bottom: 20px;
+  /* min-height: 200px; */
 }
 
 .message-content-container.user::after {
@@ -57,24 +58,24 @@
   border-left: 10px solid #d2d2d2;
 }
 
-.buttonQuestion{
-  background-color: #4E169D;
+.buttonQuestion {
+  background-color: #4e169d;
   font-size: 10px;
   text-align: left;
   padding: 2px;
   border-radius: 4px;
   margin: 4px;
-  }
+}
 
-  .buttonQuestionDisable{
-    background-color: #b3a4c9;
-    font-size: 10px;
-    text-align: left;
-    padding: 2px;
-    border-radius: 4px;
-    margin: 4px;
-  }
+.buttonQuestionDisable {
+  background-color: #b3a4c9;
+  font-size: 10px;
+  text-align: left;
+  padding: 2px;
+  border-radius: 4px;
+  margin: 4px;
+}
 
-  .buttonQuestion:hover{
-    background-color: #4e169d9f;
-  }
+.buttonQuestion:hover {
+  background-color: #4e169d9f;
+}

@@ -6,11 +6,13 @@ const TypingText = ({
   onComplete,
   pushQuestion,
   boolFinish,
+  scrollToBottom
 }) => {
   const [displayedText, setDisplayedText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
 
   useEffect(() => {
+    scrollToBottom()
     const interval = setInterval(() => {
       if (displayedText.length < text.length) {
         setDisplayedText((prev) => prev + text[displayedText.length])
@@ -29,7 +31,7 @@ const TypingText = ({
     return () => clearInterval(interval)
   }, [displayedText, text, speed, onComplete])
 
-  return <span style={{marginBottom:"300px"}}>{displayedText}</span>
+  return <span style={{ marginBottom: "300px" }}>{displayedText}</span>
 }
 
 export default TypingText

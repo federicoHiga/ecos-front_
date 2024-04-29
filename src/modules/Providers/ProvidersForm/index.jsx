@@ -436,7 +436,7 @@ const ProvidersForm = () => {
             )}
 
             <div
-              style={{ display: "flex", flexDirection: "column", width: "80%", alignItems: 'center' }}
+              style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: 'center', marginTop: '10px' }}
             >
               <ImagesPublicationList
                 listImages={images}

@@ -59,4 +59,8 @@
   .providers-detail-screen-background::before {
     min-height: 32.5vw;
   }
+  .providers-detail-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }

@@ -1,35 +1,56 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import PostsCard from "../../components/PostsCard";
 import SearchByChildren from "../../components/SearchFlexible";
-import { useLocation } from "react-router-dom";
-import useGetToken from "../../utils/services/hooks/useGetToken";
+import useGetWithParams from "../../utils/services/hooks/useGetWithParams";
+import useDevice from "../../utils/services/hooks/useDevice";
+import { Grid, useTheme } from "@mui/material";
+import CustomPagination from "../../components/Pagination";
 
 export default function PostsView() {
-  const { pathname } = useLocation();
+  const theme = useTheme();
+  const [page, setPage] = useState(0)
+  const [itemsToShow, setItemsToShow] = useState([])
+  const [pageSize, setPageSize] = useState(null)
+  const [totalPages, setTotalPages] = useState(0)
+  const { isMobile } = useDevice();
 
-  const { data, loading, error } = useGetToken(
-    "publication"
-    // "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoaWdhbWFyYWRvbmFmZWRlcmljb0BnbWFpbC5jb20iLCJyb2xlcyI6IkFETUlOSVNUUkFET1IiLCJpYXQiOjE3MTE0NjU0MzcsImV4cCI6MTcxMTQ2OTAzN30.rG72XsUQ2n3mY4Dh9gWdp3pFuGnsuakj6WFx0chNUR565Ww_KGwh-kL3Xk3MhbVLmWQg4vaN283buozLmalFtA"
-  );
-
-  // const getImagePaths = (postData) => {
-  //   return postData.imagePublicDtoList.map((imageObject) => imageObject.path);
-  // };
+  const { data, error } = useGetWithParams({
+    url: 'publication',
+    size: pageSize,
+    pageNumber: page
+  })
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (isMobile) {
+      setPageSize(3)
+    } else {
+      setPageSize(6)
+    }
+  }, [isMobile])
+
+
+  useEffect(() => {
+    if (data) {
+      setItemsToShow(data?.data?.content)
+      setTotalPages(data?.data?.totalPages)
+    }
+  }, [data])
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage - 1)
+  }
 
   return (
     <SearchByChildren>
-      <div className="postsView-section">
-        <div className="postsView-container">
-          {data?.map((post) => (
+      <section className="posts-view-background-container" style={{ backgroundColor: theme.palette.verdes.main }}>
+        <Grid container direction={'row'} justifyContent={'center'} className='posts-view-grid' columns={{ xs: 1, sm: 1, md: 3, lg: 3 }}>
+          {itemsToShow.map((post) => (
             <PostsCard key={post.id} post={post} />
           ))}
-        </div>
-      </div>
+        </Grid>
+      </section>
+      <CustomPagination totalPages={totalPages} currentPage={page} onPageChange={handlePageChange} />
     </SearchByChildren>
   );
 }

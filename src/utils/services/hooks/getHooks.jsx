@@ -3,7 +3,7 @@ import instanceAxios from "../axiosConfig";
 import { SuppliersData } from "../../data/suppliersMock";
 
 export default function useGetByNameHook(props) {
-  const { url, name } = props;
+  const { url, name, size, pageNumber } = props;
   const [data, setData] = useState(null);
   const [error, setError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(true);
@@ -11,10 +11,11 @@ export default function useGetByNameHook(props) {
   useEffect(() => {
     const get = async () => {
       try {
-        if(!name ) {
+        if (!name) {
           setData(null)
-          return}
-        const response = await instanceAxios.get(url, { params: {name:name} });
+          return
+        }
+        const response = await instanceAxios.get(url, { params: { name: name, size: size, pageNumber: pageNumber } });
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -23,8 +24,8 @@ export default function useGetByNameHook(props) {
         setData(null)
       }
     };
-   get();
-  }, [url,name]);
+    get();
+  }, [url, name, size, pageNumber]);
 
   return { data, loading, error };
 }

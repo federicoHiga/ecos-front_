@@ -27,7 +27,9 @@ const ProvidersList = ({ providers }) => {
               </div>
             ))
             :
-            (<NoResultsCard title={'Todavía no hay proveedores en esta sección'} subtitle={'Cuando estén disponibles los podrás ver'} />)
+            <div className="providers-list-no-data">
+              <NoResultsCard title={'Todavía no hay proveedores en esta sección'} subtitle={'Cuando estén disponibles los podrás ver'} />
+            </div>
           }
         </div>
       )}

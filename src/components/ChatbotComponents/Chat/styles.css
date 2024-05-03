@@ -27,13 +27,12 @@
 }
 
 .chat-layout > .chat-content {
-  border: 1px solid green;
+  scroll-behavior: smooth;
   background-color: #fafafa;
   flex: 0.885;
   display: grid;
-  grid-template-columns: minmax(300px, 1fr);
+  grid-template-columns: minmax(100%, 1fr);
   grid-auto-rows: max-content;
-  /* overflow-y: scroll; */
   overflow-x: hidden;
-  row-gap: 12px;
+  overflow-y: auto;
 }

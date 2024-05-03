@@ -1,87 +1,80 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState, useRef } from "react"
-import "./styles.css"
-import ChatMessage from "../Message"
-import {
-  Avatar,
-  IconButton,
-  Stack,
-  Typography,
-  useScrollTrigger,
-  useTheme,
-} from "@mui/material"
-import SmartToyIcon from "@mui/icons-material/SmartToy"
-import CancelIcon from "@mui/icons-material/Cancel"
-import useGetWithoutEffect from "../../../utils/services/hooks/useGetWithoutEffect"
+import React, { useEffect, useState, useRef } from "react";
+import "./styles.css";
+import ChatMessage from "../Message";
+import { Avatar, IconButton, Stack, Typography, useTheme } from "@mui/material";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
+import CancelIcon from "@mui/icons-material/Cancel";
+import useGetWithoutEffect from "../../../utils/services/hooks/useGetWithoutEffect";
 
 const Chat = ({ handleClose }) => {
-  const theme = useTheme()
-  const [conversationArray, setConversationArray] = useState([])
-  const [firstQuestions, setFirstQuestion] = useState(false)
-  const [listChildren, setListChildren] = useState([])
+  const theme = useTheme();
+  const [conversationArray, setConversationArray] = useState([]);
+  const [firstQuestions, setFirstQuestion] = useState(false);
+  const [listChildren, setListChildren] = useState([]);
+  const lastMessageRef = useRef(null);
 
   const handleClick = () => {
-    handleClose()
-  }
+    handleClose();
+  };
 
   useEffect(() => {
     const findQuestion = async () => {
       try {
-        if (firstQuestions) return
-        const { data } = await useGetWithoutEffect({ url: "chat/initial" })
-        setConversationArray([{ type: "user", data: data?.data }])
-        setFirstQuestion(true)
+        if (firstQuestions) return;
+        const { data } = await useGetWithoutEffect({ url: "chat/initial" });
+        setConversationArray([{ type: "user", data: data?.data }]);
+        setFirstQuestion(true);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    findQuestion()
-  }, [firstQuestions])
+    };
+    findQuestion();
+  }, [firstQuestions]);
 
   const handlerFindAnswer = async (id) => {
     try {
-
-      if(id==0){
+      if (id == 0) {
         setConversationArray([
           ...conversationArray,
           { type: "user", data: conversationArray[0]?.data },
-        ])
+        ]);
       }
-      const { data } = await useGetWithoutEffect({ url: `chat/answer/${id}` })
+      const { data } = await useGetWithoutEffect({ url: `chat/answer/${id}` });
       if (data?.data?.questions?.length > 0) {
-        setListChildren(data?.data?.questions)
+        setListChildren(data?.data?.questions);
       } else {
-        setListChildren([])
+        setListChildren([]);
       }
-      setConversationArray([
-        ...conversationArray,
-        { type: "chat", data: data?.data },
-      ])
+      setConversationArray([...conversationArray, { type: "chat", data: data?.data }]);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handlerPushNewQuestion = () => {
     if (listChildren.length > 0) {
       setConversationArray([
         ...conversationArray,
-        { type: "user", data: [...listChildren,{id:0,question:"Volver."}] },
-      ])
+        { type: "user", data: [...listChildren, { id: 0, question: "Volver." }] },
+      ]);
     } else {
       setConversationArray([
         ...conversationArray,
         { type: "user", data: conversationArray[0]?.data },
-      ])
+      ]);
     }
-  }
+  };
 
   // fixed scrolling
 
-  const scrollContainerRef = useRef(null);
+  const scrollToBottom = () => {
+    lastMessageRef.current?.scrollIntoView();
+  };
+
   useEffect(() => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+    if (lastMessageRef.current) {
+      scrollToBottom();
     }
   }, [conversationArray]);
 
@@ -102,9 +95,7 @@ const Chat = ({ handleClose }) => {
                 border: "1px solid white",
               }}
             >
-              <SmartToyIcon
-                sx={{ fontSize: "1.5rem", color: theme.palette.blanco.main }}
-              />
+              <SmartToyIcon sx={{ fontSize: "1.5rem", color: theme.palette.blanco.main }} />
             </Avatar>
             <Typography
               variant="subtitulos"
@@ -119,40 +110,29 @@ const Chat = ({ handleClose }) => {
           </div>
           <div className="chat-close">
             <IconButton aria-label="chat-close" onClick={handleClick}>
-              <CancelIcon
-                sx={{ color: theme.palette.blanco.main, fontSize: "1.5rem" }}
-              />
+              <CancelIcon sx={{ color: theme.palette.blanco.main, fontSize: "1.5rem" }} />
             </IconButton>
           </div>
         </section>
-        <section 
-          className="chat-content"
-          ref={scrollContainerRef}
-          style={{overflowY: 'auto', height: '400px' }}
-          >
-          {conversationArray?.map((conversation) => {
+        <section className="chat-content">
+          {conversationArray?.map((conversation, index) => {
             return (
               <ChatMessage
+                key={index}
+                scrollToBottom={scrollToBottom}
                 user={conversation.type == "user" ? "user" : null}
-                listQuestions={
-                  conversation.type === "user" ? conversation.data : null
-                }
-                handlerFindAnswer={
-                  conversation.type === "user" ? handlerFindAnswer : null
-                }
-                answer={
-                  conversation.type === "chat"
-                    ? conversation?.data?.answer
-                    : null
-                }
+                listQuestions={conversation.type === "user" ? conversation.data : null}
+                handlerFindAnswer={conversation.type === "user" ? handlerFindAnswer : null}
+                answer={conversation.type === "chat" ? conversation?.data?.answer : null}
                 handlerPushNewQuestion={handlerPushNewQuestion}
               />
-            )
+            );
           })}
+          <div ref={lastMessageRef}></div>
         </section>
       </Stack>
     </div>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;

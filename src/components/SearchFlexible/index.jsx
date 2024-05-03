@@ -1,62 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/styles/Inicio/inicio.css";
 import Searchbar from "../../components/Searchbar";
 import useGetByNameHook from "../../utils/services/hooks/getHooks";
 import { Typography, useTheme } from "@mui/material";
 import { NoResultsCard, SearchResultCard } from "../../components/SearchResultsCards";
 import { useLocation } from "react-router";
+import HomeHeader from "./HomeHeader";
+import ProvidersHeader from "./ProvidersHeader";
+import PostsHeader from "./PostsHeader";
+import useDevice from "../../utils/services/hooks/useDevice";
+import CustomPagination from "../Pagination";
 
 export default function SearchByChildren({ children }) {
   const theme = useTheme();
-  const [searchText, setSearchText] = useState(null);
   const location = useLocation();
+  const [screen] = useState(() => `${location.pathname.split('/')[1]}`);
+  const [searchText, setSearchText] = useState(null);
+  const [page, setPage] = useState(null)
+  const [itemsToShow, setItemsToShow] = useState(null)
+  const [pageSize, setPageSize] = useState(null)
+  const [totalPages, setTotalPages] = useState(0)
+  const { isMobile } = useDevice();
+
   const handleSearch = (evt) => {
-    if (evt == "") setSearchText(null);
+    if (evt === "") {
+      setSearchText(null);
+      setItemsToShow(null)
+    }
     else setSearchText(evt);
-  };
-
-  const isProveedor = () => {
-    return (
-      location.pathname === "/providers" || location.pathname.split("/")[1] === "providers"
-    );
-  };
-
-  const isPublicacion = () => {
-    return location.pathname === "/posts";
-  };
-  const isHome = () => {
-    return location.pathname === "/";
-  };
-
-  const background = () => {
-    if (isHome()) {
-      return "home";
-    }
-    if (isPublicacion()) {
-      return "home-posts";
-    }
-    if (isProveedor()) {
-      return "home-providers";
-    }
   };
 
   const { data, error, loading } = useGetByNameHook({
     url: "/supplier/searchbyname",
     name: searchText,
+    size: pageSize,
+    pageNumber: page
   });
-  if (data?.length === 0) {
+
+  useEffect(() => {
+    if (isMobile) {
+      setPageSize(3)
+    } else {
+      setPageSize(7)
+    }
+  }, [isMobile])
+
+  useEffect(() => {
+    if (data) {
+      setItemsToShow(data?.content);
+      setTotalPages(data?.totalPages)
+      setPage(data?.number)
+    }
+  }, [data])
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage - 1)
+  }
+
+  if (itemsToShow?.length === 0 || searchText === '') {
     return (
       <div className="search-results-screen">
         <Searchbar functionText={handleSearch} text={searchText} />
         <section className="search-results-title-container">
-          <Typography
-            variant="h1"
-            className="search-results-title"
-            sx={{
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: theme.typography.titulos.fontWeight,
-            }}
-          >
+          <Typography variant="titulos" className='search-results-title' sx={{ color: theme.palette.negro.main }}>
             Resultados de tu búsqueda
           </Typography>
         </section>
@@ -66,26 +72,24 @@ export default function SearchByChildren({ children }) {
       </div>
     );
   }
-  if (data?.length > 0 && data !== null) {
+
+
+  if (itemsToShow?.length > 0 && itemsToShow !== null) {
     return (
       <div className="search-results-screen">
         <Searchbar functionText={handleSearch} text={searchText} />
         <section className="search-results-title-container">
-          <Typography
-            variant="h1"
-            className="search-results-title"
-            sx={{
-              fontFamily: theme.typography.fontFamily,
-              fontWeight: theme.typography.titulos.fontWeight,
-            }}
-          >
+          <Typography variant="titulos" className="search-results-title" sx={{ color: theme.palette.negro.main }}>
             Resultados de tu búsqueda
           </Typography>
         </section>
         <section className="search-results-grid">
-          {data.map((data) => (
-            <SearchResultCard key={data.name} supplier={data} />
+          {itemsToShow.map((item) => (
+            <SearchResultCard key={item.name} supplier={item} />
           ))}
+        </section>
+        <section className="search-resutls-pagination">
+          <CustomPagination totalPages={totalPages} currentPage={page} onPageChange={handlePageChange} />
         </section>
       </div>
     );
@@ -93,49 +97,11 @@ export default function SearchByChildren({ children }) {
 
   return (
     <div className="home-page">
-      <header className={background()}>
+      <header className={`home-header-default ${screen}`}>
         <Searchbar functionText={handleSearch} text={searchText} />
-        <section className="home-title-container">
-          <Typography
-            variant="titulos"
-            sx={{ fontSize: "18px", color: theme.palette.blanco.main, mb: "8px" }}
-          >
-            {isPublicacion() && "PUBLICACIONES"}
-            {isHome() && "RED DE IMPACTO"}
-            {isProveedor() && "PROVEEDORES"}
-          </Typography>
-          <Typography
-            variant="subtitulos"
-            className="home-subtitles"
-            sx={{
-              fontSize: "28px",
-              fontWeight: 500,
-              color: theme.palette.blanco.main,
-              mb: "16px",
-              width: "240px",
-            }}
-          >
-            {isHome() &&
-              "Conectamos proveedores y personas comprometidas con el impacto y el consumo consciente"}
-            {isPublicacion() && "Historias de impacto"}
-            {isProveedor() && "Directorio ECO"}
-          </Typography>
-          <Typography
-            variant="subtitulos"
-            className="home-subtitles"
-            sx={{
-              fontSize: "24px",
-              fontWeight: 400,
-              color: theme.palette.blanco.main,
-              width: "240px",
-            }}
-          >
-            {isPublicacion() &&
-              "Encontrá inspiración y explorá las noticias y tendencias que están dando forma a un mundo más verde"}
-            {isProveedor() &&
-              "Descubrí a quienes comparten tu pasión por el impacto positivo y la sostenibilidad"}
-          </Typography>
-        </section>
+        {screen === '' && <HomeHeader />}
+        {screen === 'providers' && <ProvidersHeader />}
+        {screen === 'posts' && <PostsHeader />}
       </header>
       {children}
     </div>

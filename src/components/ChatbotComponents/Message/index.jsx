@@ -57,7 +57,7 @@ const ChatMessage = ({
                   disabled={isClicked}
                   key={i}
                 >
-                  {question?.question}
+                 {i+1}. {question?.question}
                 </button>
               );
             })

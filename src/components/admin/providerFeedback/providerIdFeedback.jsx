@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { IconButton, Menu, MenuItem, TextField } from "@mui/material";
 import "./providerIdFeedback.css";
 import { useFormik } from "formik";
@@ -7,8 +8,9 @@ import useUser from "../../../utils/services/hooks/useUser";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import StatusProvider from "./component/status";
 import FeedbackProvider from "./component/feedbackProvider";
+import ImagesDetail from '../../ImagesDetail'
 
-export default function ProviderFeedback({ id }) {
+export default function ProviderFeedback({ id, providerStatus }) {
   const {
     values,
     errors,
@@ -35,10 +37,13 @@ export default function ProviderFeedback({ id }) {
   });
   const [images, setImages] = useState([]);
   const { token } = useUser();
-  const [status, setStatus] = useState("ACEPTADO");
+  const [status, setStatus] = useState(() => providerStatus);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [edit, setEdit] = useState(false);
+  const [showZoom, setShowZoom] = useState(false);
+  const [activeImage, setActiveImage] = useState(0)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -91,6 +96,12 @@ export default function ProviderFeedback({ id }) {
   const handleEditBool = () => {
     setEdit(!edit);
   };
+
+  const handleZoom = (index) => {
+    setActiveImage(index)
+    setShowZoom((prevState) => !prevState)
+  }
+
   return (
     <div className="container" style={{ marginTop: "0px" }}>
       <StatusProvider status={status} />
@@ -273,6 +284,7 @@ export default function ProviderFeedback({ id }) {
           return (
             <div
               key={index}
+              onClick={() => handleZoom(index)}
               style={{
                 backgroundImage: `url(${image?.path})`,
                 backgroundSize: "cover",
@@ -290,6 +302,11 @@ export default function ProviderFeedback({ id }) {
           );
         })}
       </div>
+      {
+        showZoom && (
+          <ImagesDetail images={images} open={showZoom} onClose={handleZoom} activeImage={activeImage} />
+        )
+      }
     </div>
   );
 }

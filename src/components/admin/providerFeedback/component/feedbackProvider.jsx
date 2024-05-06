@@ -75,8 +75,8 @@ const handleCloseModel = ()=>{
             </svg>
           </button>
         </div>
-        <div>
-          <p>{feedbackText}</p>
+        <div className="feedback-text-container">
+          <p className="feedback-text">{feedbackText}</p>
         </div>
       </div>
     );

@@ -37,6 +37,7 @@ export default function AdminListProviders() {
     }
   }, [url, data])
 
+
   return (
     <div className={styles.container}>
       <section className={styles.titleContainer} >

@@ -10,6 +10,7 @@ import { grey } from '@mui/material/colors';
 import perfilImage from '../../assets/svg/perfil.svg'
 import './profile.css'
 import { useNavigate } from 'react-router-dom';
+import useVisitorLocation from '../../utils/services/hooks/useLocation';
 
 const ProviderStyledMenu = styled((props) => (
   <Menu
@@ -70,6 +71,7 @@ const AdminStyledMenu = styled((props) => (
 export default function Profile() {
   const [anchorEl, setAnchorEl] = useState(null)
   const { user, logout } = useUser();
+  const { clearLocation } = useVisitorLocation();
   const navigate = useNavigate()
 
   const open = Boolean(anchorEl)
@@ -89,6 +91,7 @@ export default function Profile() {
         sessionStorage.removeItem('token')
         navigate('/login')
         logout();
+        clearLocation();
       }
     } catch (error) {
       console.log(error);

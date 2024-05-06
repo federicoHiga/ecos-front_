@@ -1,7 +1,14 @@
 export default function StatusProvider({ status }) {
   if (status === "ACEPTADO") {
     return (
-        <div style={{ display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <svg
           width="24"
           height="24"
@@ -11,13 +18,20 @@ export default function StatusProvider({ status }) {
         >
           <circle cx="12" cy="12" r="12" fill="#1D9129" />
         </svg>
-        <h1>Aceptado</h1>
+        <h1 style={{ marginLeft: "8px" }}>Aceptado</h1>
       </div>
     );
   }
-  if (status === "REQUIERE_CAMBIOS") {
+  if (status === "REQUIERE_CAMBIOS" || status === "CAMBIOS_REALIZADOS" || status === 'REQUIERE_CAMBIOS') {
     return (
-        <div style={{ display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <svg
           width="24"
           height="24"
@@ -27,13 +41,20 @@ export default function StatusProvider({ status }) {
         >
           <circle cx="12" cy="12" r="12" fill="#B86B11" />
         </svg>
-        <h1>En revisión</h1>
+        <h1 style={{ marginLeft: "8px" }}>En revisión</h1>
       </div>
     );
   }
   if (status === "DENEGADO") {
     return (
-      <div style={{ display: "flex", flexDirection: "row", justifyContent:"center", alignItems:"center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <svg
           width="24"
           height="24"
@@ -44,7 +65,7 @@ export default function StatusProvider({ status }) {
           <circle cx="12" cy="12" r="12" fill="#BC1111" />
         </svg>
 
-        <h1>Denegado</h1>
+        <h1 style={{ marginLeft: "8px" }}>Denegado</h1>
       </div>
     );
   }

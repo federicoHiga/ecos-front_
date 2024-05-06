@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import instanceAxios from "../axiosConfig";
 import { LOCAL_URL } from "../constants";
+
 const useGetAll = (props) => {
-  const { url, token, needsAuth,refresh } = props;
+  const { url, token, needsAuth, refresh } = props;
   const [data, setData] = useState(null);
   const [error, setError] = useState({ status: false, message: "" });
   const [loading, setLoading] = useState(true);
-  
+
   const getData = async () => {
     if (needsAuth) {
       return await instanceAxios.get(`${LOCAL_URL}/${url}`, {
@@ -38,7 +40,7 @@ const useGetAll = (props) => {
         setData(null);
         setLoading(false);
       });
-  }, [url,refresh]);
+  }, [url, refresh]);
 
   return { data, error, loading };
 };

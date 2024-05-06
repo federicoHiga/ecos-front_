@@ -1,6 +1,5 @@
 .providers-list-main-container {
-  /* border: 3px dashed green; */
-  margin-top: 25px;
+  margin: 25px 0 15px;
   max-height: 420px;
   /* min-height: max-content;
   max-height: 550px; */

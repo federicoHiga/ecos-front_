@@ -16,7 +16,7 @@ const ProvidersList = ({ providers }) => {
     <>
       {selectedProvider !== null ? (
         <div className="provider-list-selected-provider">
-          <ProviderFeedback id={selectedProvider?.id} />
+          <ProviderFeedback id={selectedProvider?.id} providerStatus={selectedProvider?.status} />
         </div>
       ) : (
         <div className="providers-list-main-container">

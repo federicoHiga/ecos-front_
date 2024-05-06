@@ -17,6 +17,7 @@ const ChatMessage = ({
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isAddQuestions, setIsAddQuestion] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  console.log(answer)
   const handleTypingComplete = () => {
     setIsTypingComplete(true);
   };
@@ -47,6 +48,7 @@ const ChatMessage = ({
         <div className={user ? "message-content-container user" : "message-content-container"}>
           {user ? (
             listQuestions?.map((question, i) => {
+              
               return (
                 <button
                   id={i}
@@ -55,7 +57,7 @@ const ChatMessage = ({
                   disabled={isClicked}
                   key={i}
                 >
-                  {question?.question}
+                 {i+1}. {question?.question}
                 </button>
               );
             })

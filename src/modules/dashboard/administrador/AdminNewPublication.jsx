@@ -35,24 +35,19 @@ export default function NewPublication() {
     validationSchema: schemaFormPublication,
     onSubmit,
   });
-  // const [publication, setPublication] = useState({
-  //   title: "",
-  //   description: "",
-  // });
+
   const { id } = useParams();
   const [images, setImages] = useState([]);
 
   const [modal, setModal] = useState(false);
   const [parrafoModal, setParrafoModal] = useState("");
   const [typeModal, setTypeModal] = useState("");
-  // const handlerChangeText = (event) => {
-  //   setPublication({ ...publication, [event.target.name]: event.target.value });
-  // };
+
   const { token, user } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log("id", id);
+  console.log("user", user);
 console.log(values)
   useEffect(() => {
     const fetchData = async () => {
@@ -145,7 +140,6 @@ console.log(values)
       setParrafoModal("Publicación creada con éxito");
       setTypeModal("succes");
       setModal(true);
-      // setPublication({ title: "", description: "" });
     } catch (error) {
       if (error?.response?.status == 404) {
         setParrafoModal(error?.response?.data?.errorMessage);
@@ -182,22 +176,6 @@ console.log(values)
         Completá los datos para crear una nueva publicación
       </Typography>
       <form action="" className="form" onSubmit={handlerSubmit}>
-        {/* <div className="containerTextInput">
-          <div className="">
-            <input
-              type="text"
-              className="inputText"
-              name="title"
-              placeholder="Titulo*"
-              value={publication?.title}
-              onChange={handlerChangeText}
-            />
-          </div>
-          <label htmlFor="title" className="labelText">
-            Se visualizará en el título de la publicación
-          </label>
-        </div> */}
-
         <TextField
           id="title"
           sx={{'& .MuiOutlinedInput-root': {
